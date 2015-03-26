@@ -64,7 +64,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             println("delegate")
             peripheral.delegate = self;
             
-            println("connect")
+            println("connect");
             self.centralManager.connectPeripheral(peripheral, options: nil);
         }
         
