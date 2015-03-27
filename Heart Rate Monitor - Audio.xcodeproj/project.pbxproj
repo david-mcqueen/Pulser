@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		553D43751AC54CD600AFA827 /* HeartRateZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D43741AC54CD600AFA827 /* HeartRateZones.swift */; };
 		5597BE431A681A0800A59921 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597BE421A681A0800A59921 /* AppDelegate.swift */; };
 		5597BE451A681A0800A59921 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597BE441A681A0800A59921 /* ViewController.swift */; };
 		5597BE481A681A0800A59921 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5597BE461A681A0800A59921 /* Main.storyboard */; };
 		5597BE4A1A681A0900A59921 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5597BE491A681A0900A59921 /* Images.xcassets */; };
 		5597BE4D1A681A0900A59921 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5597BE4B1A681A0900A59921 /* LaunchScreen.xib */; };
 		5597BE591A681A0900A59921 /* Heart_Rate_Monitor___AudioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597BE581A681A0900A59921 /* Heart_Rate_Monitor___AudioTests.swift */; };
+		55E979821AC57D4700E19DBF /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979811AC57D4700E19DBF /* Utilities.swift */; };
+		55E979841AC57D7600E19DBF /* UserHeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979831AC57D7600E19DBF /* UserHeartRate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		553D43741AC54CD600AFA827 /* HeartRateZones.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateZones.swift; sourceTree = "<group>"; };
 		5597BE3D1A681A0800A59921 /* Heart Rate Monitor - Audio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Heart Rate Monitor - Audio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5597BE411A681A0800A59921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5597BE421A681A0800A59921 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +40,8 @@
 		5597BE521A681A0900A59921 /* Heart Rate Monitor - AudioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Heart Rate Monitor - AudioTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5597BE571A681A0900A59921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5597BE581A681A0900A59921 /* Heart_Rate_Monitor___AudioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Heart_Rate_Monitor___AudioTests.swift"; sourceTree = "<group>"; };
+		55E979811AC57D4700E19DBF /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		55E979831AC57D7600E19DBF /* UserHeartRate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeartRate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,9 @@
 				5597BE491A681A0900A59921 /* Images.xcassets */,
 				5597BE4B1A681A0900A59921 /* LaunchScreen.xib */,
 				5597BE401A681A0800A59921 /* Supporting Files */,
+				553D43741AC54CD600AFA827 /* HeartRateZones.swift */,
+				55E979811AC57D4700E19DBF /* Utilities.swift */,
+				55E979831AC57D7600E19DBF /* UserHeartRate.swift */,
 			);
 			path = "Heart Rate Monitor - Audio";
 			sourceTree = "<group>";
@@ -212,7 +221,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				553D43751AC54CD600AFA827 /* HeartRateZones.swift in Sources */,
 				5597BE451A681A0800A59921 /* ViewController.swift in Sources */,
+				55E979841AC57D7600E19DBF /* UserHeartRate.swift in Sources */,
+				55E979821AC57D4700E19DBF /* Utilities.swift in Sources */,
 				5597BE431A681A0800A59921 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +419,7 @@
 				5597BE5E1A681A0900A59921 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5597BE5F1A681A0900A59921 /* Build configuration list for PBXNativeTarget "Heart Rate Monitor - AudioTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +428,7 @@
 				5597BE611A681A0900A59921 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

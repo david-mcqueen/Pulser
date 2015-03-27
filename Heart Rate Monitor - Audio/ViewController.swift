@@ -13,6 +13,8 @@ import AVFoundation;
 import CoreLocation;
 
 class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
+
+
     
     let HRM_DEVICE_INFO_SERVICE_UUID = CBUUID(string: "180A");
     let HRM_HEART_RATE_SERVICE_UUID = CBUUID(string: "180D");
@@ -26,6 +28,23 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
 
     var connected: Bool = false;
     
+    var currentBPM: Int?;
+    
+    let rest:(lower:Int, upper:Int) = (50, 99);
+    let zone1:(lower:Int, upper:Int) = (100, 119);
+    let zone2:(lower:Int, upper:Int) = (120, 139);
+    let zone3:(lower:Int, upper:Int) = (140, 159);
+    let zone4:(lower:Int, upper:Int) = (160, 179);
+    let zone5:(lower:Int, upper:Int) = (180, 199);
+    let max = (200);
+    
+    var currentZone = HeartRateZone.Rest;
+    
+    var speechArray:[String] = [];
+    
+    var uttenenceCounter = 0;
+    
+    var mySpeechSynthesizer:AVSpeechSynthesizer = AVSpeechSynthesizer()
     
     
     override func viewDidLoad() {
@@ -34,7 +53,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
         centralManager = CBCentralManager(delegate: self, queue: nil);
         
-
+        let intervalTimer = 10.0;
+        //Start a timer for X seconds, to announce BPM changes
+        var timer = NSTimer.scheduledTimerWithTimeInterval(intervalTimer, target: self, selector: Selector("speakData"), userInfo: nil, repeats: true);
         
     }
 
@@ -152,20 +173,46 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         }
     }
     
+    func speakData(){
+        println("speakData \(currentBPM)")
+        if (currentBPM != nil){
+            
+            speechArray.append("Heart rate is \(currentBPM!) beats per minute");
+            
+            
+            if (currentBPM >= zone1.lower && currentBPM <= zone1.upper){
+                currentZone = HeartRateZone.ZoneOne
+            }else if (currentBPM >= zone2.lower && currentBPM <= zone2.upper){
+                currentZone = HeartRateZone.ZoneTwo;
+            }else if (currentBPM >= zone3.lower && currentBPM <= zone3.upper){
+                currentZone = HeartRateZone.ZoneThree;
+            }else if (currentBPM >= zone4.lower && currentBPM <= zone4.upper){
+                currentZone = HeartRateZone.ZoneFour;
+            }else if (currentBPM >= zone5.lower && currentBPM <= zone5.upper){
+                currentZone = HeartRateZone.ZoneFive;
+            }else if (currentBPM >= max){
+                currentZone = HeartRateZone.Max;
+            }else if (currentBPM <= rest.upper){
+                currentZone = HeartRateZone.Rest;
+            }
+    
+            speechArray.append("In \(currentZone.rawValue)")
+
+            speakAllUtterences();
+        }
+        
+    }
     
     
     //MARK:- CBCharacteristic helpers
-    
     //Get the BPM info
     func getHeartBPMData(characteristic: CBCharacteristic!, error: NSError!){
-        println("get BPM")
         var data = characteristic.value;
         var values = [UInt8](count:data.length, repeatedValue: 0)
         data.getBytes(&values, length: data.length);
-        println(values);
-        println("BPM: \(values[1])")
         
-        self.speak("Heart rate is \(values[1]) beats per minute");
+        currentBPM = Int(values[1]);
+
     }
     
     func getManufacturerName(characteristic: CBCharacteristic){
@@ -176,18 +223,25 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
     }
     
-    func speak(toSay: String){
-        var mySpeechSynthesizer:AVSpeechSynthesizer = AVSpeechSynthesizer()
-        var myString:String = toSay
-        var mySpeechUtterance:AVSpeechUtterance = AVSpeechUtterance(string:myString)
-        
-        println("\(mySpeechUtterance.speechString)")
-        println("My string - \(myString)")
-        mySpeechUtterance.rate = 0.2
-        
-        
-        mySpeechSynthesizer .speakUtterance(mySpeechUtterance)
-
+    
+ 
+    func startSpeaking(){
+        self.speakNextUtterence();
+    }
+    
+    func speakNextUtterence(){
+        if((speechArray.count > 0)){
+            var nextUtterence: AVSpeechUtterance = AVSpeechUtterance(string:speechArray[0]);
+            speechArray.removeAtIndex(0);
+            nextUtterence.rate = 0.15;
+            self.mySpeechSynthesizer.speakUtterance(nextUtterence);
+        }
+    }
+    
+    func speakAllUtterences(){
+        while((speechArray.count > 0)){
+            speakNextUtterence();
+        }
     }
 
 }
