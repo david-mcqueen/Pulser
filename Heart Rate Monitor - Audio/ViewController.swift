@@ -28,17 +28,10 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
 
     var connected: Bool = false;
     
-    var currentBPM: Int?;
+    var user = UserHeartRate();
     
-    let rest:(lower:Int, upper:Int) = (50, 99);
-    let zone1:(lower:Int, upper:Int) = (100, 119);
-    let zone2:(lower:Int, upper:Int) = (120, 139);
-    let zone3:(lower:Int, upper:Int) = (140, 159);
-    let zone4:(lower:Int, upper:Int) = (160, 179);
-    let zone5:(lower:Int, upper:Int) = (180, 199);
-    let max = (200);
+    var CurrentBPM:Int = 0;
     
-    var currentZone = HeartRateZone.Rest;
     
     var speechArray:[String] = [];
     
@@ -49,11 +42,29 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        
+        //Get all the users zones
+        var rest = Zone(_lower: nil, _upper: 99, _zone: HeartRateZone.Rest);
+        var zone1 = Zone(_lower: 100, _upper: 119, _zone: HeartRateZone.ZoneOne);
+        let zone2 = Zone(_lower: 120, _upper: 139, _zone: HeartRateZone.ZoneTwo);
+        let zone3 = Zone(_lower: 140, _upper: 159, _zone: HeartRateZone.ZoneThree);
+        let zone4 = Zone(_lower: 160, _upper: 179, _zone: HeartRateZone.ZoneFour);
+        let zone5 = Zone(_lower: 180, _upper: 199, _zone: HeartRateZone.ZoneFive);
+        let max = Zone(_lower: 200, _upper: nil, _zone: HeartRateZone.Max);
+        
+
+        user.Zones.append(rest);
+        user.Zones.append(zone1);
+        user.Zones.append(zone2);
+        user.Zones.append(zone3);
+        user.Zones.append(zone4);
+        user.Zones.append(zone5);
+        user.Zones.append(max);
         
         centralManager = CBCentralManager(delegate: self, queue: nil);
         
-        let intervalTimer = 10.0;
+        let intervalTimer = 30.0;
         //Start a timer for X seconds, to announce BPM changes
         var timer = NSTimer.scheduledTimerWithTimeInterval(intervalTimer, target: self, selector: Selector("speakData"), userInfo: nil, repeats: true);
         
@@ -174,33 +185,12 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     func speakData(){
-        println("speakData \(currentBPM)")
-        if (currentBPM != nil){
             
-            speechArray.append("Heart rate is \(currentBPM!) beats per minute");
-            
-            
-            if (currentBPM >= zone1.lower && currentBPM <= zone1.upper){
-                currentZone = HeartRateZone.ZoneOne
-            }else if (currentBPM >= zone2.lower && currentBPM <= zone2.upper){
-                currentZone = HeartRateZone.ZoneTwo;
-            }else if (currentBPM >= zone3.lower && currentBPM <= zone3.upper){
-                currentZone = HeartRateZone.ZoneThree;
-            }else if (currentBPM >= zone4.lower && currentBPM <= zone4.upper){
-                currentZone = HeartRateZone.ZoneFour;
-            }else if (currentBPM >= zone5.lower && currentBPM <= zone5.upper){
-                currentZone = HeartRateZone.ZoneFive;
-            }else if (currentBPM >= max){
-                currentZone = HeartRateZone.Max;
-            }else if (currentBPM <= rest.upper){
-                currentZone = HeartRateZone.Rest;
-            }
-    
-            speechArray.append("In \(currentZone.rawValue)")
-
-            speakAllUtterences();
-        }
+        speechArray.append("Heart rate is \(self.CurrentBPM) beats per minute");
         
+        speechArray.append("Currently in zone \(user.CurrentZone.rawValue)")
+
+        speakAllUtterences();
     }
     
     
@@ -211,8 +201,16 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         var values = [UInt8](count:data.length, repeatedValue: 0)
         data.getBytes(&values, length: data.length);
         
-        currentBPM = Int(values[1]);
-
+        self.CurrentBPM = Int(values[1]);
+        
+        var newZone = user.getZoneforBPM(self.CurrentBPM)
+        
+        if (newZone != user.CurrentZone){
+            speechArray.append("Zones Changed from \(user.CurrentZone.rawValue) to \(newZone.rawValue)")
+            user.CurrentZone = newZone
+        }
+        println(user.CurrentZone.rawValue)
+        
     }
     
     func getManufacturerName(characteristic: CBCharacteristic){

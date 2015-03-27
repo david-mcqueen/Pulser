@@ -14,8 +14,12 @@
 		5597BE4A1A681A0900A59921 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5597BE491A681A0900A59921 /* Images.xcassets */; };
 		5597BE4D1A681A0900A59921 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5597BE4B1A681A0900A59921 /* LaunchScreen.xib */; };
 		5597BE591A681A0900A59921 /* Heart_Rate_Monitor___AudioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597BE581A681A0900A59921 /* Heart_Rate_Monitor___AudioTests.swift */; };
+		55BFBC4B1AC5F5D800890CA1 /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979851AC57E4700E19DBF /* Zone.swift */; };
+		55BFBC4C1AC5F5DA00890CA1 /* UserHeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979831AC57D7600E19DBF /* UserHeartRate.swift */; };
+		55BFBC4D1AC5F5DE00890CA1 /* HeartRateZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D43741AC54CD600AFA827 /* HeartRateZones.swift */; };
 		55E979821AC57D4700E19DBF /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979811AC57D4700E19DBF /* Utilities.swift */; };
 		55E979841AC57D7600E19DBF /* UserHeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979831AC57D7600E19DBF /* UserHeartRate.swift */; };
+		55E979861AC57E4700E19DBF /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979851AC57E4700E19DBF /* Zone.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,7 @@
 		5597BE581A681A0900A59921 /* Heart_Rate_Monitor___AudioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Heart_Rate_Monitor___AudioTests.swift"; sourceTree = "<group>"; };
 		55E979811AC57D4700E19DBF /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		55E979831AC57D7600E19DBF /* UserHeartRate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeartRate.swift; sourceTree = "<group>"; };
+		55E979851AC57E4700E19DBF /* Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zone.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +97,7 @@
 				553D43741AC54CD600AFA827 /* HeartRateZones.swift */,
 				55E979811AC57D4700E19DBF /* Utilities.swift */,
 				55E979831AC57D7600E19DBF /* UserHeartRate.swift */,
+				55E979851AC57E4700E19DBF /* Zone.swift */,
 			);
 			path = "Heart Rate Monitor - Audio";
 			sourceTree = "<group>";
@@ -226,6 +232,7 @@
 				55E979841AC57D7600E19DBF /* UserHeartRate.swift in Sources */,
 				55E979821AC57D4700E19DBF /* Utilities.swift in Sources */,
 				5597BE431A681A0800A59921 /* AppDelegate.swift in Sources */,
+				55E979861AC57E4700E19DBF /* Zone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +241,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5597BE591A681A0900A59921 /* Heart_Rate_Monitor___AudioTests.swift in Sources */,
+				55BFBC4B1AC5F5D800890CA1 /* Zone.swift in Sources */,
+				55BFBC4D1AC5F5DE00890CA1 /* HeartRateZones.swift in Sources */,
+				55BFBC4C1AC5F5DA00890CA1 /* UserHeartRate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

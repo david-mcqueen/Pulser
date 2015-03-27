@@ -10,10 +10,12 @@ import Foundation
 
 enum HeartRateZone: String {
     case Rest = "Rest";
-    case ZoneOne = "Zone one";
-    case ZoneTwo = "Zone two";
-    case ZoneThree = "Zone three";
-    case ZoneFour = "Zone four";
-    case ZoneFive = "Zone five";
+    case ZoneOne = "One";
+    case ZoneTwo = "Two";
+    case ZoneThree = "Three";
+    case ZoneFour = "Four";
+    case ZoneFive = "Five";
     case Max = "Max";
+    
+    case Unknown = "Unknown";
 }
