@@ -11,9 +11,9 @@ import CoreBluetooth;
 import QuartzCore;
 import AVFoundation;
 import CoreLocation;
+import HealthKit;
 
-class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
-
+class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, AVSpeechSynthesizerDelegate {
 
     
     let HRM_DEVICE_INFO_SERVICE_UUID = CBUUID(string: "180A");
@@ -27,6 +27,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     var HRMPeripheral: CBPeripheral!;
 
     var connected: Bool = false;
+    var healthStore: HKHealthStore? = nil;
     
     var user = UserHeartRate();
     
@@ -39,10 +40,23 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     var mySpeechSynthesizer:AVSpeechSynthesizer = AVSpeechSynthesizer()
     
+    var error: NSError?;
+    var session =  AVAudioSession.sharedInstance();
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mySpeechSynthesizer.delegate = self;
         
+        //        session.setCategory(AVAudioSessionCategoryPlayback, error: &error)
+        session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers, error: &error)
+        if((error) != nil){
+            println("Error");
+        }
+        
+        
+        if((error) != nil){
+            println("Error");
+        }
         
         //Get all the users zones
         var rest = Zone(_lower: nil, _upper: 99, _zone: HeartRateZone.Rest);
@@ -64,7 +78,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
         centralManager = CBCentralManager(delegate: self, queue: nil);
         
-        let intervalTimer = 30.0;
+        let intervalTimer = 10.0;
         //Start a timer for X seconds, to announce BPM changes
         var timer = NSTimer.scheduledTimerWithTimeInterval(intervalTimer, target: self, selector: Selector("speakData"), userInfo: nil, repeats: true);
         
@@ -137,7 +151,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     //MARK:- CBPeripheralDelegate
     //Called when you discover the peripherals available services
     func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
-        for service in peripheral.services{
+        for service  in peripheral.services as [CBService] {
             NSLog("Discovered service: \(service.UUID)")
             peripheral.discoverCharacteristics(nil, forService: service as CBService)
         }
@@ -146,7 +160,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     //When you discover the characteristics of a specified service
     func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
         if (service.UUID == HRM_HEART_RATE_SERVICE_UUID){
-            for char in service.characteristics{
+            for char in service.characteristics as [CBCharacteristic] {
                 if (char.UUID == HRM_MEASUREMENT_CHARACTERISTIC_UUID){
                     self.HRMPeripheral.setNotifyValue(true, forCharacteristic: char as CBCharacteristic);
                     NSLog("Found heart rate measurement characteristic");
@@ -158,7 +172,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         }
         
         if (service.UUID == HRM_DEVICE_INFO_SERVICE_UUID){
-            for char in service.characteristics{
+            for char in service.characteristics as [CBCharacteristic]{
+                print(char.UUID)
                 if (char.UUID == HRM_MANUFACTURER_NAME_CHARACTERISTIC_UUID){
                     self.HRMPeripheral.readValueForCharacteristic(char as CBCharacteristic);
                     NSLog("Found a device manufacturer name characteristic");
@@ -191,6 +206,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         speechArray.append("Currently in zone \(user.CurrentZone.rawValue)")
 
         speakAllUtterences();
+        writeBPM(Double(self.CurrentBPM));
     }
     
     
@@ -208,6 +224,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         if (newZone != user.CurrentZone){
             speechArray.append("Zones Changed from \(user.CurrentZone.rawValue) to \(newZone.rawValue)")
             user.CurrentZone = newZone
+            speakAllUtterences();
         }
         println(user.CurrentZone.rawValue)
         
@@ -232,6 +249,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             var nextUtterence: AVSpeechUtterance = AVSpeechUtterance(string:speechArray[0]);
             speechArray.removeAtIndex(0);
             nextUtterence.rate = 0.15;
+//            nextUtterence.voice(AVSpeechSynthesisVoice(language:"en-GB"))
             self.mySpeechSynthesizer.speakUtterance(nextUtterence);
         }
     }
@@ -241,6 +259,73 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             speakNextUtterence();
         }
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
+        
+        //Check we are able to access healthkit
+        if(!HKHealthStore.isHealthDataAvailable()){
+            dispatch_async(dispatch_get_main_queue(), {
+                var alert = UIAlertController(title: "Alert", message: "Healthkit is not supported on this device", preferredStyle: UIAlertControllerStyle.Alert);
+                self.presentViewController(alert, animated: true, completion: nil);
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil));
+                NSLog("Temp was saved OK");
+                NSLog("Healthkit is not supported on this device");
+            })
+            return;
+        }
+        
+        self.healthStore = HKHealthStore();
+        
+        let dataTypesToWrite = [
+            HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
+        ]
+        let dataTypesToRead = [
+            HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
+        ]
+        
+        self.healthStore?.requestAuthorizationToShareTypes(NSSet(array: dataTypesToWrite), readTypes: NSSet(array: dataTypesToRead), completion: {
+            (success, error) in
+            if success {
+                NSLog("User completed authorisation request");
+                dispatch_async(dispatch_get_main_queue(), {
+                    //Call to write information
+                    //self.writeBodyTemperature();
+                    //self.writeBMI();
+                    NSLog("Ready to go!");
+                })
+            }else{
+                dispatch_async(dispatch_get_main_queue(), {
+                    var alert = UIAlertController(title: "Alert", message: "You cancelled the authorisation request", preferredStyle: UIAlertControllerStyle.Alert);
+                    self.presentViewController(alert, animated: true, completion: nil);
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil));
+                    NSLog("The user cancelled the authorisation request \(error)");
+                    
+                })
+            }
+        })
+    }
+    
+    
+    func speechSynthesizer(synthesizer: AVSpeechSynthesizer!, didStartSpeechUtterance utterance: AVSpeechUtterance!) {
+        session.setActive(true, error: &error)
+    }
+    
+    func speechSynthesizer(synthesizer: AVSpeechSynthesizer!, didFinishSpeechUtterance utterance: AVSpeechUtterance!) {
+        session.setActive(false, error: &error)
+    }
+    
+    func speechSynthesizer(synthesizer: AVSpeechSynthesizer!, didPauseSpeechUtterance utterance: AVSpeechUtterance!) {
+        session.setActive(false, error: &error)
+    }
+    
+    func speechSynthesizer(synthesizer: AVSpeechSynthesizer!, didContinueSpeechUtterance utterance: AVSpeechUtterance!) {
+        session.setActive(true, error: &error)
+    }
+    
+    func speechSynthesizer(synthesizer: AVSpeechSynthesizer!, didCancelSpeechUtterance utterance: AVSpeechUtterance!) {
+        session.setActive(false, error: &error)
+    }
+   
 }
 

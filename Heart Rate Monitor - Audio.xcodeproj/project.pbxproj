@@ -17,6 +17,7 @@
 		55BFBC4B1AC5F5D800890CA1 /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979851AC57E4700E19DBF /* Zone.swift */; };
 		55BFBC4C1AC5F5DA00890CA1 /* UserHeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979831AC57D7600E19DBF /* UserHeartRate.swift */; };
 		55BFBC4D1AC5F5DE00890CA1 /* HeartRateZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D43741AC54CD600AFA827 /* HeartRateZones.swift */; };
+		55D5DF4C1AC6ABC1008386D4 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D5DF4B1AC6ABC1008386D4 /* HealthKit.framework */; };
 		55E979821AC57D4700E19DBF /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979811AC57D4700E19DBF /* Utilities.swift */; };
 		55E979841AC57D7600E19DBF /* UserHeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979831AC57D7600E19DBF /* UserHeartRate.swift */; };
 		55E979861AC57E4700E19DBF /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979851AC57E4700E19DBF /* Zone.swift */; };
@@ -44,6 +45,8 @@
 		5597BE521A681A0900A59921 /* Heart Rate Monitor - AudioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Heart Rate Monitor - AudioTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5597BE571A681A0900A59921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5597BE581A681A0900A59921 /* Heart_Rate_Monitor___AudioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Heart_Rate_Monitor___AudioTests.swift"; sourceTree = "<group>"; };
+		55D5DF4A1AC6ABC1008386D4 /* Heart Rate Monitor - Audio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Heart Rate Monitor - Audio.entitlements"; sourceTree = "<group>"; };
+		55D5DF4B1AC6ABC1008386D4 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		55E979811AC57D4700E19DBF /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		55E979831AC57D7600E19DBF /* UserHeartRate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeartRate.swift; sourceTree = "<group>"; };
 		55E979851AC57E4700E19DBF /* Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zone.swift; sourceTree = "<group>"; };
@@ -54,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55D5DF4C1AC6ABC1008386D4 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +74,7 @@
 		5597BE341A681A0800A59921 = {
 			isa = PBXGroup;
 			children = (
+				55D5DF4B1AC6ABC1008386D4 /* HealthKit.framework */,
 				5597BE3F1A681A0800A59921 /* Heart Rate Monitor - Audio */,
 				5597BE551A681A0900A59921 /* Heart Rate Monitor - AudioTests */,
 				5597BE3E1A681A0800A59921 /* Products */,
@@ -88,6 +93,7 @@
 		5597BE3F1A681A0800A59921 /* Heart Rate Monitor - Audio */ = {
 			isa = PBXGroup;
 			children = (
+				55D5DF4A1AC6ABC1008386D4 /* Heart Rate Monitor - Audio.entitlements */,
 				5597BE421A681A0800A59921 /* AppDelegate.swift */,
 				5597BE441A681A0800A59921 /* ViewController.swift */,
 				5597BE461A681A0800A59921 /* Main.storyboard */,
@@ -176,6 +182,15 @@
 				TargetAttributes = {
 					5597BE3C1A681A0800A59921 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 9YA6YF2Y4R;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					5597BE511A681A0900A59921 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -360,9 +375,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Heart Rate Monitor - Audio/Heart Rate Monitor - Audio.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Heart Rate Monitor - Audio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7b286a44-bdb8-482a-a24c-f43fef948826";
 			};
 			name = Debug;
 		};
@@ -370,9 +389,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Heart Rate Monitor - Audio/Heart Rate Monitor - Audio.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Heart Rate Monitor - Audio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7b286a44-bdb8-482a-a24c-f43fef948826";
 			};
 			name = Release;
 		};
