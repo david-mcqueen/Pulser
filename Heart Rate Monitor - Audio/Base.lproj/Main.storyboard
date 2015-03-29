@@ -53,6 +53,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s4T-rN-tym">
                                                     <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="audioSwitchChanged:" destination="PJP-Ey-dyv" eventType="valueChanged" id="BBW-Rz-mOE"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -109,6 +112,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MEW-9t-bcv">
                                                     <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="healthkitSwitchChanged:" destination="PJP-Ey-dyv" eventType="valueChanged" id="lK3-z4-R7i"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Save to HealthKit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFm-73-M9d">
                                                     <rect key="frame" x="8" y="12" width="153" height="21"/>
@@ -197,7 +203,7 @@
                     <navigationItem key="navigationItem" id="3AS-ev-ien">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="WLW-4M-xbF">
                             <connections>
-                                <segue destination="PJP-Ey-dyv" kind="show" id="j7g-9c-jNc"/>
+                                <segue destination="PJP-Ey-dyv" kind="show" identifier="showSettings" id="j7g-9c-jNc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

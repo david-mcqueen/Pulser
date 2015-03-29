@@ -19,6 +19,9 @@
 		55BFBC4D1AC5F5DE00890CA1 /* HeartRateZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D43741AC54CD600AFA827 /* HeartRateZones.swift */; };
 		55D5DF4C1AC6ABC1008386D4 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D5DF4B1AC6ABC1008386D4 /* HealthKit.framework */; };
 		55D5DF4E1AC71BB6008386D4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D5DF4D1AC71BB6008386D4 /* SettingsViewController.swift */; };
+		55D5DF551AC72989008386D4 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D5DF541AC72989008386D4 /* UserSettings.swift */; };
+		55D5DF581AC72AD2008386D4 /* SegueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D5DF571AC72AD2008386D4 /* SegueIdentifier.swift */; };
+		55D5DF5A1AC72C43008386D4 /* UserSettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D5DF591AC72C43008386D4 /* UserSettingsDelegate.swift */; };
 		55E979821AC57D4700E19DBF /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979811AC57D4700E19DBF /* Utilities.swift */; };
 		55E979841AC57D7600E19DBF /* UserHeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979831AC57D7600E19DBF /* UserHeartRate.swift */; };
 		55E979861AC57E4700E19DBF /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979851AC57E4700E19DBF /* Zone.swift */; };
@@ -49,6 +52,9 @@
 		55D5DF4A1AC6ABC1008386D4 /* Heart Rate Monitor - Audio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Heart Rate Monitor - Audio.entitlements"; sourceTree = "<group>"; };
 		55D5DF4B1AC6ABC1008386D4 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		55D5DF4D1AC71BB6008386D4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		55D5DF541AC72989008386D4 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSettings.swift; path = Classes/UserSettings.swift; sourceTree = "<group>"; };
+		55D5DF571AC72AD2008386D4 /* SegueIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueIdentifier.swift; path = Enums/SegueIdentifier.swift; sourceTree = "<group>"; };
+		55D5DF591AC72C43008386D4 /* UserSettingsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSettingsDelegate.swift; path = Protocols/UserSettingsDelegate.swift; sourceTree = "<group>"; };
 		55E979811AC57D4700E19DBF /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		55E979831AC57D7600E19DBF /* UserHeartRate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeartRate.swift; sourceTree = "<group>"; };
 		55E979851AC57E4700E19DBF /* Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zone.swift; sourceTree = "<group>"; };
@@ -95,6 +101,9 @@
 		5597BE3F1A681A0800A59921 /* Heart Rate Monitor - Audio */ = {
 			isa = PBXGroup;
 			children = (
+				55D5DF561AC72ABA008386D4 /* Enums */,
+				55D5DF531AC72978008386D4 /* Classes */,
+				55D5DF4F1AC72921008386D4 /* Protocols */,
 				55D5DF4A1AC6ABC1008386D4 /* Heart Rate Monitor - Audio.entitlements */,
 				5597BE421A681A0800A59921 /* AppDelegate.swift */,
 				5597BE441A681A0800A59921 /* ViewController.swift */,
@@ -102,10 +111,7 @@
 				5597BE491A681A0900A59921 /* Images.xcassets */,
 				5597BE4B1A681A0900A59921 /* LaunchScreen.xib */,
 				5597BE401A681A0800A59921 /* Supporting Files */,
-				553D43741AC54CD600AFA827 /* HeartRateZones.swift */,
 				55E979811AC57D4700E19DBF /* Utilities.swift */,
-				55E979831AC57D7600E19DBF /* UserHeartRate.swift */,
-				55E979851AC57E4700E19DBF /* Zone.swift */,
 				55D5DF4D1AC71BB6008386D4 /* SettingsViewController.swift */,
 			);
 			path = "Heart Rate Monitor - Audio";
@@ -134,6 +140,33 @@
 				5597BE571A681A0900A59921 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		55D5DF4F1AC72921008386D4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				55D5DF591AC72C43008386D4 /* UserSettingsDelegate.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		55D5DF531AC72978008386D4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				55E979851AC57E4700E19DBF /* Zone.swift */,
+				55E979831AC57D7600E19DBF /* UserHeartRate.swift */,
+				55D5DF541AC72989008386D4 /* UserSettings.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		55D5DF561AC72ABA008386D4 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				553D43741AC54CD600AFA827 /* HeartRateZones.swift */,
+				55D5DF571AC72AD2008386D4 /* SegueIdentifier.swift */,
+			);
+			name = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,9 +279,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				553D43751AC54CD600AFA827 /* HeartRateZones.swift in Sources */,
+				55D5DF5A1AC72C43008386D4 /* UserSettingsDelegate.swift in Sources */,
 				5597BE451A681A0800A59921 /* ViewController.swift in Sources */,
+				55D5DF581AC72AD2008386D4 /* SegueIdentifier.swift in Sources */,
 				55D5DF4E1AC71BB6008386D4 /* SettingsViewController.swift in Sources */,
 				55E979841AC57D7600E19DBF /* UserHeartRate.swift in Sources */,
+				55D5DF551AC72989008386D4 /* UserSettings.swift in Sources */,
 				55E979821AC57D4700E19DBF /* Utilities.swift in Sources */,
 				5597BE431A681A0800A59921 /* AppDelegate.swift in Sources */,
 				55E979861AC57E4700E19DBF /* Zone.swift in Sources */,

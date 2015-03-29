@@ -13,7 +13,7 @@ import AVFoundation;
 import CoreLocation;
 import HealthKit;
 
-class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, AVSpeechSynthesizerDelegate {
+class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, AVSpeechSynthesizerDelegate, UserSettingsDelegate {
 
     
     let HRM_DEVICE_INFO_SERVICE_UUID = CBUUID(string: "180A");
@@ -30,9 +30,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     var healthStore: HKHealthStore? = nil;
     
     var user = UserHeartRate();
+    var currentUserSettings: UserSettings?;
     
     var CurrentBPM:Int = 0;
-    
     
     var speechArray:[String] = [];
     
@@ -45,18 +45,21 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Default user settings values
+        currentUserSettings = UserSettings(
+            _audio: true,
+            _audioInterval: Int(1),
+            _healthkit: true,
+            _healthkitInterval: Int(1)
+        );
+        
+        
         mySpeechSynthesizer.delegate = self;
         
-        //        session.setCategory(AVAudioSessionCategoryPlayback, error: &error)
+        //Setup the Speech Synthesizer to annouce over the top of other playing audio (reduces other volume whilst uttering)
         session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers, error: &error)
-        if((error) != nil){
-            println("Error");
-        }
         
-        
-        if((error) != nil){
-            println("Error");
-        }
         
         //Get all the users zones
         var rest = Zone(_lower: nil, _upper: 99, _zone: HeartRateZone.Rest);
@@ -78,9 +81,25 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
         centralManager = CBCentralManager(delegate: self, queue: nil);
         
-        let intervalTimer = 10.0;
-        //Start a timer for X seconds, to announce BPM changes
-        var timer = NSTimer.scheduledTimerWithTimeInterval(intervalTimer, target: self, selector: Selector("speakData"), userInfo: nil, repeats: true);
+        
+        //TODO:- Get the switch values from the user settings.
+        var announceAudio = true;
+        var saveHealthkit = true;
+        
+        
+        if (announceAudio){
+            //Start a repeating timer for X seconds, to announce BPM changes
+            var audioIntervalTimer = 120.0;
+            //TODO:- get the interval time from the user settings
+            var audioTimer = NSTimer.scheduledTimerWithTimeInterval(audioIntervalTimer, target: self, selector: Selector("speakData"), userInfo: nil, repeats: true);
+        }
+       
+        if(saveHealthkit){
+            //Start a repeating timer for X seconds, to save BPM to healthkit
+            var healthkitIntervalTimer = 120.0;
+            //TODO:- get the interval time from the user settings
+            var healthkitTimer = NSTimer.scheduledTimerWithTimeInterval(healthkitIntervalTimer, target: self, selector: Selector("saveData"), userInfo: nil, repeats: true);
+        }
         
     }
 
@@ -206,6 +225,10 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         speechArray.append("Currently in zone \(user.CurrentZone.rawValue)")
 
         speakAllUtterences();
+        
+    }
+    
+    func saveData(){
         writeBPM(Double(self.CurrentBPM));
     }
     
@@ -306,7 +329,18 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         })
     }
     
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueIdentifier.ShowSettings.rawValue{
+            let settingsViewController = segue.destinationViewController as SettingsViewController
+            settingsViewController.delegate = self;
+            //TODO:- Pass the current values
+            settingsViewController.setUserSettings = currentUserSettings!
+        }
+    }
     
+    
+    //MARK:- AVSpeechSynthesizerDelegate
     func speechSynthesizer(synthesizer: AVSpeechSynthesizer!, didStartSpeechUtterance utterance: AVSpeechUtterance!) {
         session.setActive(true, error: &error)
     }
@@ -325,6 +359,11 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func speechSynthesizer(synthesizer: AVSpeechSynthesizer!, didCancelSpeechUtterance utterance: AVSpeechUtterance!) {
         session.setActive(false, error: &error)
+    }
+    
+    //MARK:- UpdateSettingsDelegate
+     func didUpdateUserSettings(newSettings: UserSettings) {
+        currentUserSettings = newSettings;
     }
    
 }
