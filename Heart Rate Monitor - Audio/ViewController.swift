@@ -165,7 +165,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     
     
-    
+    //MARK:- CentralManager Delegate
 
     //called with the CBPeripheral class as its main input parameter. This contains most of the information there is to know about a BLE peripheral.
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
@@ -183,15 +183,36 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             self.centralManager.connectPeripheral(peripheral, options: nil);
         }
         
-        
     }
     
+    func centralManager(central: CBCentralManager!, didFailToConnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
+        println("Failed to connect")
+        self.running = false;
+        connectedToHRM(false);
+        runningHRM(false);
+        displayAlert("Error", "Failed to connect to Heart Rate Monitor")
+    }
+    
+    
+    func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
+        println("Lost Connection");
+        self.running = false;
+        connectedToHRM(false);
+        runningHRM(false);
+        displayAlert("Error", "Lost connection to Heart Rate Monitor")
+    }
+    
+    
+    //TODO:- Check that bluetooth is activated
     //Called whenever the device state changes
     func centralManagerDidUpdateState(central: CBCentralManager!) {
         //Determine the state of the peripheral
         switch(central.state){
         case .PoweredOff:
             NSLog("CoreBluetooth BLE hardware is powered off");
+            self.running = false;
+            connectedToHRM(false);
+            runningHRM(false);
             
         case .PoweredOn:
             NSLog("CoreBluetooth BLE hardware is powered on and ready");
@@ -200,12 +221,21 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             
         case .Unauthorized:
             NSLog("CoreBluetooth BLE state is unauthorized");
+            self.running = false;
+            connectedToHRM(false);
+            runningHRM(false);
             
         case .Unknown:
             NSLog("CoreBluetooth BLE state is unknown");
+            self.running = false;
+            connectedToHRM(false);
+            runningHRM(false);
 
         case .Unsupported:
             NSLog("CoreBluetooth BLE hardware is unsupported on this platform");
+            self.running = false;
+            connectedToHRM(false);
+            runningHRM(false);
             
         default:
             NSLog("Fuck knows mate")
@@ -213,9 +243,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
     }
     
-    func centralManager(central: CBCentralManager!, didFailToConnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
-        println("Failed to connect")
-    }
+    
+    
     
     //MARK:- CBPeripheralDelegate
     //Called when you discover the peripherals available services
