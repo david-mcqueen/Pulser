@@ -15,7 +15,12 @@ import HealthKit;
 
 class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, AVSpeechSynthesizerDelegate, UserSettingsDelegate {
 
+    @IBOutlet weak var connectButton: UIButton!
+    @IBOutlet weak var startStopButton: UIButton!
+    @IBOutlet weak var BPMLabel: UILabel!
+    @IBOutlet weak var zoneLabel: UILabel!
     
+   
     let HRM_DEVICE_INFO_SERVICE_UUID = CBUUID(string: "180A");
     let HRM_HEART_RATE_SERVICE_UUID = CBUUID(string: "180D");
     
@@ -27,14 +32,18 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     var HRMPeripheral: CBPeripheral!;
 
     var connected: Bool = false;
+    var running: Bool = false;
     var healthStore: HKHealthStore? = nil;
     
     var user = UserHeartRate();
-    var currentUserSettings: UserSettings?;
+    var currentUserSettings: UserSettings = UserSettings();
     
     var CurrentBPM:Int = 0;
     
     var speechArray:[String] = [];
+    
+    var audioTimer: NSTimer?;
+    var healthkitTimer :NSTimer?
     
     var uttenenceCounter = 0;
     
@@ -46,16 +55,10 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Default user settings values
-        currentUserSettings = UserSettings(
-            _audio: true,
-            _audioInterval: Int(1),
-            _healthkit: true,
-            _healthkitInterval: Int(1)
-        );
-        
-        
         mySpeechSynthesizer.delegate = self;
+        
+        connectedToHRM(false);
+        runningHRM(running);
         
         //Setup the Speech Synthesizer to annouce over the top of other playing audio (reduces other volume whilst uttering)
         session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers, error: &error)
@@ -78,30 +81,67 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         user.Zones.append(zone4);
         user.Zones.append(zone5);
         user.Zones.append(max);
+
+    }
+    
+    func runningHRM(isRunning:Bool){
+        self.BPMLabel.hidden = !isRunning;
+        self.zoneLabel.hidden = !isRunning;
         
-        centralManager = CBCentralManager(delegate: self, queue: nil);
         
         
-        //TODO:- Get the switch values from the user settings.
-        var announceAudio = true;
-        var saveHealthkit = true;
-        
-        
-        if (announceAudio){
-            //Start a repeating timer for X seconds, to announce BPM changes
-            var audioIntervalTimer = 120.0;
-            //TODO:- get the interval time from the user settings
-            var audioTimer = NSTimer.scheduledTimerWithTimeInterval(audioIntervalTimer, target: self, selector: Selector("speakData"), userInfo: nil, repeats: true);
+        if(isRunning){
+            //Start a timer
+            if (currentUserSettings.AnnounceAudio){
+                //Start a repeating timer for X seconds, to announce BPM changes
+                audioTimer = NSTimer.scheduledTimerWithTimeInterval(currentUserSettings.getAudioIntervalSeconds(), target: self, selector: Selector("speakData"), userInfo: nil, repeats: true);
+                println("Starting audio timer");
+            }
+            
+            if(currentUserSettings.SaveHealthkit){
+                //Start a repeating timer for X seconds, to save BPM to healthkit
+                healthkitTimer = NSTimer.scheduledTimerWithTimeInterval(currentUserSettings.getHealthkitIntervalSeconds(), target: self, selector: Selector("saveData"), userInfo: nil, repeats: true);
+                println("Starting healthkit timer");
+            }
+            
+            changeButtonText(self.startStopButton, _buttonText: "Stop");
+            
+        }else{
+            println("End Timers")
+            //End the timers
+            println(audioTimer);
+            if(audioTimer != nil){
+                audioTimer?.invalidate()
+                println("End Audio")
+            }
+            
+            if(healthkitTimer != nil){
+                healthkitTimer?.invalidate()
+                println("End Audio")
+            }
+            
+            changeButtonText(self.startStopButton, _buttonText: "Start");
+            
         }
-       
-        if(saveHealthkit){
-            //Start a repeating timer for X seconds, to save BPM to healthkit
-            var healthkitIntervalTimer = 120.0;
-            //TODO:- get the interval time from the user settings
-            var healthkitTimer = NSTimer.scheduledTimerWithTimeInterval(healthkitIntervalTimer, target: self, selector: Selector("saveData"), userInfo: nil, repeats: true);
-        }
+    }
+    
+    
+    @IBAction func startStopPressed(sender: AnyObject) {
+        
+        running = !running;
+        runningHRM(running);
         
     }
+    
+    func changeButtonText(_button: UIButton, _buttonText: String){
+        _button.setTitle(_buttonText, forState: UIControlState.Normal);
+    }
+    
+    @IBAction func connectPressed(sender: AnyObject) {
+        centralManager = CBCentralManager(delegate: self, queue: nil);
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -114,8 +154,18 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         peripheral.delegate = self;
         peripheral.discoverServices(nil);
         self.connected = (peripheral.state == CBPeripheralState.Connected ? true : false);
+        connectedToHRM(self.connected);
         NSLog("Connected: \(self.connected)");
     }
+    
+    func connectedToHRM(connected:Bool){
+        self.connectButton.hidden = connected;
+        self.startStopButton.hidden = !connected;
+    }
+    
+    
+    
+    
 
     //called with the CBPeripheral class as its main input parameter. This contains most of the information there is to know about a BLE peripheral.
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
@@ -205,8 +255,11 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
         println("didUpdateValueForCharacteristic")
         if (characteristic!.UUID == HRM_MEASUREMENT_CHARACTERISTIC_UUID){
-            println("BPM")
-            self.getHeartBPMData(characteristic, error: error)
+            if(running){
+                println("BPM")
+                self.getHeartBPMData(characteristic, error: error)
+            }
+            
         }
         if (characteristic!.UUID == HRM_MANUFACTURER_NAME_CHARACTERISTIC_UUID){
             println("name")
@@ -219,10 +272,16 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     func speakData(){
-            
-        speechArray.append("Heart rate is \(self.CurrentBPM) beats per minute");
         
-        speechArray.append("Currently in zone \(user.CurrentZone.rawValue)")
+        if(self.CurrentBPM > 0){
+            speechArray.append("Heart rate is \(self.CurrentBPM) beats per minute");
+            
+            speechArray.append("Currently in zone \(user.CurrentZone.rawValue)")
+        }else{
+            speechArray.append("Unable to get Heart Rate")
+            //TODO:- Display an error message
+        }
+        
 
         speakAllUtterences();
         
@@ -249,8 +308,13 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             user.CurrentZone = newZone
             speakAllUtterences();
         }
-        println(user.CurrentZone.rawValue)
+        displayCurrentHeartRate(self.CurrentBPM, _zone: user.CurrentZone);
         
+    }
+    
+    func displayCurrentHeartRate(_bpm: Int, _zone: HeartRateZone){
+        BPMLabel.text = String(_bpm);
+        zoneLabel.text = _zone.rawValue
     }
     
     func getManufacturerName(characteristic: CBCharacteristic){
@@ -334,8 +398,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         if segue.identifier == SegueIdentifier.ShowSettings.rawValue{
             let settingsViewController = segue.destinationViewController as SettingsViewController
             settingsViewController.delegate = self;
-            //TODO:- Pass the current values
-            settingsViewController.setUserSettings = currentUserSettings!
+            settingsViewController.isRunning = running;
+            settingsViewController.setUserSettings = currentUserSettings
         }
     }
     

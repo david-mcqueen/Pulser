@@ -11,6 +11,8 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     
+   
+    
     @IBOutlet weak var audioAnnouncementSwitch: UISwitch!
     @IBOutlet weak var audioSlider: UISlider!
     @IBOutlet weak var audioMinutes: UILabel!
@@ -21,6 +23,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var healthkitMinutes: UILabel!
     
     weak var delegate: UserSettingsDelegate?;
+    var isRunning: Bool?;
     
     var setUserSettings: UserSettings?;
     
@@ -29,7 +32,6 @@ class SettingsViewController: UITableViewController {
         self.navigationItem.hidesBackButton = true;
         var backBtn: UIBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Done, target: self, action: Selector("saveSettings"));
         self.navigationItem.leftBarButtonItem = backBtn;
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -47,6 +49,22 @@ class SettingsViewController: UITableViewController {
         populateSliderFields(audioSlider, _text: audioMinutes);
         populateSliderFields(healthkitSlider, _text: healthkitMinutes);
         
+        toggleReadOnly(isRunning!);
+        
+    }
+    
+    func toggleReadOnly(_readOnly: Bool){
+        audioAnnouncementSwitch.userInteractionEnabled = !_readOnly;
+        audioSlider.userInteractionEnabled = !_readOnly;
+        audioMinutes.userInteractionEnabled = !_readOnly;
+        
+        healthkitSwitch.userInteractionEnabled = !_readOnly;
+        healthkitSlider.userInteractionEnabled = !_readOnly;
+        healthkitMinutes.userInteractionEnabled = !_readOnly;
+        
+        if(_readOnly){
+            displayAlert("Restricted", "Unable to modify settings when running the monitor");
+        }
     }
 
     //TODO:- Only display the sliders when the relevant switches are on
@@ -54,12 +72,12 @@ class SettingsViewController: UITableViewController {
     
     @IBAction func audioSliderChanged(sender: AnyObject) {
         populateSliderFields(self.audioSlider, _text: self.audioMinutes);
-        setUserSettings?.AnnounceInterval = Int(self.audioSlider.value);
+        setUserSettings?.AudioIntervalMinutes = Double(self.audioSlider.value);
     }
     
     @IBAction func healthkitSliderChange(sender: AnyObject) {
         populateSliderFields(self.healthkitSlider, _text: self.healthkitMinutes);
-        setUserSettings?.HealthkitInterval = Int(self.healthkitSlider.value);
+        setUserSettings?.HealthkitIntervalMinutes = Double(self.healthkitSlider.value);
     }
     
     @IBAction func audioSwitchChanged(sender: AnyObject) {

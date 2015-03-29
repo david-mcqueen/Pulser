@@ -11,27 +11,41 @@ import Foundation
 
 class UserSettings {
     var AnnounceAudio: Bool;
-    var AnnounceInterval: Int;
+    var AudioIntervalMinutes: Double;
     var SaveHealthkit: Bool;
-    var HealthkitInterval: Int;
+    var HealthkitIntervalMinutes: Double;
     
-    init(_audio: Bool, _audioInterval: Int, _healthkit: Bool, _healthkitInterval: Int){
-        AnnounceAudio = _audio;
-        AnnounceInterval = _audioInterval;
-        SaveHealthkit = _healthkit;
-        HealthkitInterval = _healthkitInterval;
+    init(){
+        //Default user settings
+        AnnounceAudio = true;
+        AudioIntervalMinutes = 1.0;
+        SaveHealthkit = false;
+        HealthkitIntervalMinutes = 1.0;
     }
     
+    
     func getAudioIntervalasFloat()->Float{
-        return convertIntToFloat(self.AnnounceInterval);
+        return convertDoubleToFloat(self.AudioIntervalMinutes);
     }
     
     func getHealthkitIntervalasFloat()->Float{
-        return convertIntToFloat(self.HealthkitInterval);
+        return convertDoubleToFloat(self.HealthkitIntervalMinutes);
     }
     
-    private func convertIntToFloat(input: Int)->Float{
-    
+    private func convertDoubleToFloat(input: Double)->Float{
         return Float(input);
+    }
+    
+    
+    func getAudioIntervalSeconds()->Double{
+        return convertMinuteToSeconds(self.AudioIntervalMinutes)
+    }
+    
+    func getHealthkitIntervalSeconds()->Double{
+        return convertMinuteToSeconds(self.HealthkitIntervalMinutes)
+    }
+    
+    private func convertMinuteToSeconds(minutes: Double)->Double{
+        return minutes * 60;
     }
 }

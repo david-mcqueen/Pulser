@@ -101,18 +101,17 @@
 		5597BE3F1A681A0800A59921 /* Heart Rate Monitor - Audio */ = {
 			isa = PBXGroup;
 			children = (
+				55D5DF5B1AC83969008386D4 /* ViewControllers */,
 				55D5DF561AC72ABA008386D4 /* Enums */,
 				55D5DF531AC72978008386D4 /* Classes */,
 				55D5DF4F1AC72921008386D4 /* Protocols */,
 				55D5DF4A1AC6ABC1008386D4 /* Heart Rate Monitor - Audio.entitlements */,
 				5597BE421A681A0800A59921 /* AppDelegate.swift */,
-				5597BE441A681A0800A59921 /* ViewController.swift */,
 				5597BE461A681A0800A59921 /* Main.storyboard */,
 				5597BE491A681A0900A59921 /* Images.xcassets */,
 				5597BE4B1A681A0900A59921 /* LaunchScreen.xib */,
 				5597BE401A681A0800A59921 /* Supporting Files */,
 				55E979811AC57D4700E19DBF /* Utilities.swift */,
-				55D5DF4D1AC71BB6008386D4 /* SettingsViewController.swift */,
 			);
 			path = "Heart Rate Monitor - Audio";
 			sourceTree = "<group>";
@@ -167,6 +166,15 @@
 				55D5DF571AC72AD2008386D4 /* SegueIdentifier.swift */,
 			);
 			name = Enums;
+			sourceTree = "<group>";
+		};
+		55D5DF5B1AC83969008386D4 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				55D5DF4D1AC71BB6008386D4 /* SettingsViewController.swift */,
+				5597BE441A681A0800A59921 /* ViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

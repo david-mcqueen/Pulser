@@ -185,7 +185,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="riC-R1-jfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1803" y="233"/>
+            <point key="canvasLocation" x="1804" y="240"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -198,7 +198,65 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWC-pV-7eo">
+                                <rect key="frame" x="235" y="125" width="131" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="gJ3-wh-OWN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Connect"/>
+                                <connections>
+                                    <action selector="connectPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lf0-jW-hnD"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current BPM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yA1-GA-0iK">
+                                <rect key="frame" x="238" y="235" width="124" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="124" id="LCa-T8-XDQ"/>
+                                    <constraint firstAttribute="height" constant="48" id="qJm-k5-8KT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Zone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G58-49-zVu">
+                                <rect key="frame" x="235" y="303" width="130" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="bx2-pg-1HS"/>
+                                    <constraint firstAttribute="height" constant="61" id="dSt-6a-VQq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOG-oq-dn4">
+                                <rect key="frame" x="256" y="403" width="88" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="8qu-2H-pUR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startStopPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AB9-2y-yXY"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yA1-GA-0iK" firstAttribute="centerX" secondItem="JWC-pV-7eo" secondAttribute="centerX" id="2Oo-eA-Pls"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WOG-oq-dn4" secondAttribute="bottom" constant="130" id="Azv-Cq-Czc"/>
+                            <constraint firstItem="G58-49-zVu" firstAttribute="top" secondItem="yA1-GA-0iK" secondAttribute="bottom" constant="20" id="KCL-eg-6F3"/>
+                            <constraint firstItem="WOG-oq-dn4" firstAttribute="top" secondItem="G58-49-zVu" secondAttribute="bottom" constant="39" id="POj-bR-gjY"/>
+                            <constraint firstItem="JWC-pV-7eo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="61" id="PS1-Ng-nOZ"/>
+                            <constraint firstItem="WOG-oq-dn4" firstAttribute="centerX" secondItem="G58-49-zVu" secondAttribute="centerX" id="QjP-D1-NfM"/>
+                            <constraint firstItem="yA1-GA-0iK" firstAttribute="top" secondItem="JWC-pV-7eo" secondAttribute="bottom" constant="74" id="mPk-cC-Fkt"/>
+                            <constraint firstItem="yA1-GA-0iK" firstAttribute="centerX" secondItem="G58-49-zVu" secondAttribute="centerX" id="nhz-CG-s7y"/>
+                            <constraint firstItem="yA1-GA-0iK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qkD-eg-X9a"/>
+                            <constraint firstItem="G58-49-zVu" firstAttribute="leading" secondItem="JWC-pV-7eo" secondAttribute="leading" id="vxL-Vo-p2W"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3AS-ev-ien">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="WLW-4M-xbF">
@@ -207,6 +265,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="BPMLabel" destination="yA1-GA-0iK" id="VDQ-X7-T5K"/>
+                        <outlet property="connectButton" destination="JWC-pV-7eo" id="gx7-Xu-eQ2"/>
+                        <outlet property="startStopButton" destination="WOG-oq-dn4" id="9dE-FB-QLr"/>
+                        <outlet property="zoneLabel" destination="G58-49-zVu" id="CnS-s0-f9y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

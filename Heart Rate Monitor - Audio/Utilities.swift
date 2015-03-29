@@ -8,6 +8,7 @@
 
 import Foundation
 import HealthKit;
+import UIKit;
 
 func writeBPM(BPMInput: Double){
     var healthStore: HKHealthStore? = nil;
@@ -48,4 +49,11 @@ func writeBPM(BPMInput: Double){
         }
     })
     
+}
+
+
+
+func displayAlert(title: String, message: String){
+    var alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "OK")
+    alert.show();
 }
