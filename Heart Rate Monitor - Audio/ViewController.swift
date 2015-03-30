@@ -21,6 +21,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     @IBOutlet weak var zoneLabel: UILabel!
     @IBOutlet weak var currentDisplayView: UIView!
     
+    @IBOutlet weak var connectedLabel: UILabel!
     @IBOutlet weak var tickDisplayView: UIView!
     @IBOutlet weak var HKTick: UIImageView!
     @IBOutlet weak var AudioTick: UIImageView!
@@ -122,6 +123,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     func runningHRM(isRunning:Bool){
         self.currentDisplayView.hidden = !isRunning;
         
+        if(connected){
+            self.connectedLabel.hidden = isRunning;
+        }
         
         if(isRunning){
             //Start a timer
@@ -193,7 +197,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     func connectedToHRM(connected:Bool){
         self.connectButton.hidden = connected;
         self.startStopButton.hidden = !connected;
-        
+        connectedLabel.hidden = !connected;
         updateDisplaySettings();
     }
     
