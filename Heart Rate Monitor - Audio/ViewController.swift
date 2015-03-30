@@ -19,7 +19,11 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     @IBOutlet weak var startStopButton: UIButton!
     @IBOutlet weak var BPMLabel: UILabel!
     @IBOutlet weak var zoneLabel: UILabel!
+    @IBOutlet weak var currentDisplayView: UIView!
     
+    @IBOutlet weak var tickDisplayView: UIView!
+    @IBOutlet weak var HKTick: UIImageView!
+    @IBOutlet weak var AudioTick: UIImageView!
    
     let HRM_DEVICE_INFO_SERVICE_UUID = CBUUID(string: "180A");
     let HRM_HEART_RATE_SERVICE_UUID = CBUUID(string: "180D");
@@ -59,10 +63,16 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
         connectedToHRM(false);
         runningHRM(running);
+        updateDisplaySettings();
         
         //Setup the Speech Synthesizer to annouce over the top of other playing audio (reduces other volume whilst uttering)
         session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers, error: &error)
         
+        
+//        var settingsImage: UIImage = UIImage(named: "Cog.png")!;
+//        var settingsBarItem: UIBarButtonItem = UIBarButtonItem(image: settingsImage, style: UIBarButtonItemStyle.Plain, target: self, action: "showSettings");
+//        
+//        self.navigationItem.rightBarButtonItem = settingsBarItem;
         
         //Get all the users zones
         var rest = Zone(_lower: nil, _upper: 99, _zone: HeartRateZone.Rest);
@@ -84,10 +94,33 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
 
     }
     
-    func runningHRM(isRunning:Bool){
-        self.BPMLabel.hidden = !isRunning;
-        self.zoneLabel.hidden = !isRunning;
+    func showSettings(){
+        displayAlert("Test", "Test")
+    }
+    
+    func updateDisplaySettings(){
+        let activeImage: UIImage = UIImage(named: "TickCircle_Active.png")!
+        let notActiveImage: UIImage = UIImage(named: "TickCircle.png")!;
+        if (currentUserSettings.AnnounceAudio){
+            AudioTick.image = activeImage;
+        }else{
+            AudioTick.image = notActiveImage;
+        }
         
+        if (currentUserSettings.SaveHealthkit){
+            HKTick.image = activeImage;
+        }else{
+            HKTick.image = notActiveImage;
+        }
+        
+        
+        tickDisplayView.hidden = !connected;
+        
+    }
+
+    
+    func runningHRM(isRunning:Bool){
+        self.currentDisplayView.hidden = !isRunning;
         
         
         if(isRunning){
@@ -121,7 +154,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             }
             
             changeButtonText(self.startStopButton, _buttonText: "Start");
-            
         }
     }
     
@@ -161,6 +193,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     func connectedToHRM(connected:Bool){
         self.connectButton.hidden = connected;
         self.startStopButton.hidden = !connected;
+        
+        updateDisplaySettings();
     }
     
     
@@ -457,6 +491,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     //MARK:- UpdateSettingsDelegate
      func didUpdateUserSettings(newSettings: UserSettings) {
         currentUserSettings = newSettings;
+        updateDisplaySettings();
     }
 }
 
