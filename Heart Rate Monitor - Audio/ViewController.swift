@@ -21,6 +21,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     @IBOutlet weak var zoneLabel: UILabel!
     @IBOutlet weak var currentDisplayView: UIView!
     
+    @IBOutlet weak var connectingLabel: UILabel!
     @IBOutlet weak var connectedLabel: UILabel!
     @IBOutlet weak var tickDisplayView: UIView!
     @IBOutlet weak var HKTick: UIImageView!
@@ -65,6 +66,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         connectedToHRM(false);
         runningHRM(running);
         updateDisplaySettings();
+        
+        self.connectingLabel.hidden = true;
         
         //Setup the Speech Synthesizer to annouce over the top of other playing audio (reduces other volume whilst uttering)
         session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers, error: &error)
@@ -175,6 +178,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     @IBAction func connectPressed(sender: AnyObject) {
         centralManager = CBCentralManager(delegate: self, queue: nil);
+        connectingLabel.hidden = false;
     }
     
     
@@ -198,7 +202,12 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         self.connectButton.hidden = connected;
         self.startStopButton.hidden = !connected;
         connectedLabel.hidden = !connected;
+        self.connected = connected;
         updateDisplaySettings();
+        
+        if(connected){
+            connectingLabel.hidden = true;
+        }
     }
     
     
@@ -229,6 +238,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         connectedToHRM(false);
         runningHRM(false);
         displayAlert("Error", "Failed to connect to Heart Rate Monitor")
+        
+        //TODO:- Implement a max time for searching
     }
     
     

@@ -206,7 +206,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="pUI-no-fuc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="35"/>
                                 <state key="normal" title="Start">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -216,6 +216,9 @@
                                         <integer key="value" value="9"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="16" y="253" width="368" height="25"/>
+                                </variation>
                                 <connections>
                                     <action selector="startStopPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LBT-We-MCj"/>
                                 </connections>
@@ -226,7 +229,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="5le-Sb-CDB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="35"/>
                                 <state key="normal" title="Connect">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -245,6 +248,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kIR-bf-mzj" secondAttribute="height" multiplier="1:1" id="c0S-zW-oqe"/>
                                 </constraints>
+                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="-312" y="214" width="1024" height="0.0"/>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="100" y="363" width="200" height="200"/>
                                 </variation>
@@ -327,9 +333,18 @@
                                     <constraint firstAttribute="width" constant="212" id="RVc-cy-0zG"/>
                                     <constraint firstAttribute="height" constant="80" id="WSV-px-KSY"/>
                                 </constraints>
+                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="94" y="103" width="212" height="80"/>
+                                </variation>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Connected" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8y-fL-rGO">
                                 <rect key="frame" x="237" y="180" width="126" height="49"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Connecting..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reE-Q6-TbR">
+                                <rect key="frame" x="409" y="118" width="152" height="49"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -348,6 +363,8 @@
                             <constraint firstItem="JhH-Mn-1qp" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Qu5-3h-GgP"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JhH-Mn-1qp" secondAttribute="bottom" constant="122" id="STj-Gq-KwZ"/>
                             <constraint firstItem="JhH-Mn-1qp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="bwe-eV-R56"/>
+                            <constraint firstItem="reE-Q6-TbR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="54" id="cd9-SI-JIk"/>
+                            <constraint firstAttribute="centerX" secondItem="reE-Q6-TbR" secondAttribute="centerX" id="hC5-5X-mhD"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5Bx-Dk-Vkb" secondAttribute="bottom" constant="122" id="hmm-q0-Ctp"/>
                             <constraint firstItem="nb7-oA-D7p" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="39" id="oMd-b8-Qud"/>
                             <constraint firstItem="JhH-Mn-1qp" firstAttribute="top" secondItem="kIR-bf-mzj" secondAttribute="bottom" constant="39" id="rCO-gv-bZf"/>
@@ -367,6 +384,7 @@
                         <outlet property="HKTick" destination="PXE-8w-Hl7" id="Mci-kk-J2a"/>
                         <outlet property="connectButton" destination="5Bx-Dk-Vkb" id="Oj4-3b-w1J"/>
                         <outlet property="connectedLabel" destination="g8y-fL-rGO" id="JSk-J9-mS6"/>
+                        <outlet property="connectingLabel" destination="reE-Q6-TbR" id="f7D-4t-R8o"/>
                         <outlet property="currentDisplayView" destination="nb7-oA-D7p" id="gtX-C1-x74"/>
                         <outlet property="startStopButton" destination="JhH-Mn-1qp" id="1Wu-kS-WAv"/>
                         <outlet property="tickDisplayView" destination="qgC-tJ-rcO" id="rNV-vf-B4w"/>
