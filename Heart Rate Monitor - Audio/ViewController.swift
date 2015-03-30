@@ -172,7 +172,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     @IBAction func connectPressed(sender: AnyObject) {
         centralManager = CBCentralManager(delegate: self, queue: nil);
-        connectingLabel.hidden = false;
     }
     
     
@@ -256,29 +255,34 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             self.running = false;
             connectedToHRM(false);
             runningHRM(false);
+            connectingLabel.hidden = true;
             
         case .PoweredOn:
             NSLog("CoreBluetooth BLE hardware is powered on and ready");
             var services = [HRM_HEART_RATE_SERVICE_UUID, HRM_DEVICE_INFO_SERVICE_UUID];
             centralManager.scanForPeripheralsWithServices(services, options: nil);
+            connectingLabel.hidden = false;
             
         case .Unauthorized:
             NSLog("CoreBluetooth BLE state is unauthorized");
             self.running = false;
             connectedToHRM(false);
             runningHRM(false);
+            connectingLabel.hidden = true;
             
         case .Unknown:
             NSLog("CoreBluetooth BLE state is unknown");
             self.running = false;
             connectedToHRM(false);
             runningHRM(false);
+            connectingLabel.hidden = true;
 
         case .Unsupported:
             NSLog("CoreBluetooth BLE hardware is unsupported on this platform");
             self.running = false;
             connectedToHRM(false);
             runningHRM(false);
+            connectingLabel.hidden = true;
             
         default:
             NSLog("Fuck knows mate")

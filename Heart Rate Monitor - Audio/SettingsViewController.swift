@@ -71,13 +71,9 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
         healthkitMinutes.userInteractionEnabled = !_readOnly;
         
         if(_readOnly){
-            displayAlert("Restricted", "Unable to modify settings when running the monitor");
+            displayAlert("Restricted", "Unable to modify settings when the monitor is running");
         }
     }
-
-    //TODO:- Only display the sliders when the relevant switches are on
-    // Look at project example for showing & hiding the table rows
-    
     @IBAction func audioSliderChanged(sender: AnyObject) {
         populateSliderFields(self.audioSlider, _text: self.audioMinutes);
         setUserSettings?.AudioIntervalMinutes = Double(self.audioSlider.value);
