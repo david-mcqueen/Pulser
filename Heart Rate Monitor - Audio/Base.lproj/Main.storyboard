@@ -41,7 +41,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Audio" id="D2S-5m-xqp">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aay-tX-Wbr">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="aay-tX-Wbr">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aay-tX-Wbr" id="YIx-W5-VeP">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -67,13 +67,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5Hy-Bl-PH3">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="5Hy-Bl-PH3">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Hy-Bl-PH3" id="twZ-fg-w3z">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="X8G-gT-gnb">
                                                     <rect key="frame" x="81" y="7" width="463" height="31"/>
+                                                    <color key="tintColor" red="0.82352941176470584" green="0.25490196078431371" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="audioSliderChanged:" destination="PJP-Ey-dyv" eventType="valueChanged" id="W3v-nB-JUL"/>
                                                     </connections>
@@ -106,7 +107,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Health Kit" id="AlC-BD-etM">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kQQ-gr-fqL">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="kQQ-gr-fqL">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kQQ-gr-fqL" id="cPp-mx-y6N">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -132,7 +133,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ASI-M2-EXO">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ASI-M2-EXO">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ASI-M2-EXO" id="YDh-wG-Rq1">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -151,6 +152,7 @@
                                                 </label>
                                                 <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="1WA-rz-oDI">
                                                     <rect key="frame" x="75" y="9" width="469" height="31"/>
+                                                    <color key="tintColor" red="0.82352941180000006" green="0.25490196079999999" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="healthkitSliderChange:" destination="PJP-Ey-dyv" eventType="valueChanged" id="0rt-EY-vcB"/>
                                                     </connections>
@@ -372,7 +374,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3AS-ev-ien">
-                        <barButtonItem key="rightBarButtonItem" image="Cog.png" style="plain" id="WLW-4M-xbF">
+                        <barButtonItem key="rightBarButtonItem" tag="1" title="Settings" style="plain" id="WLW-4M-xbF">
+                            <color key="tintColor" red="0.82352941176470584" green="0.25490196078431371" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="PJP-Ey-dyv" kind="show" identifier="showSettings" id="j7g-9c-jNc"/>
                             </connections>
@@ -403,6 +406,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="O31-Tk-8gB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.82352941176470584" green="0.25490196078431371" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -415,7 +419,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Cog.png" width="53" height="53"/>
         <image name="Logo.gif" width="1024" height="1024"/>
         <image name="TickCircle.png" width="49" height="49"/>
     </resources>

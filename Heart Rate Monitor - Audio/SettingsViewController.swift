@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: UITableViewController, UITableViewDelegate {
     
    
     
@@ -90,10 +90,12 @@ class SettingsViewController: UITableViewController {
     
     @IBAction func audioSwitchChanged(sender: AnyObject) {
         setUserSettings?.AnnounceAudio = audioAnnouncementSwitch.on;
+        self.tableView.reloadData()
     }
     
     @IBAction func healthkitSwitchChanged(sender: AnyObject) {
         setUserSettings?.SaveHealthkit = healthkitSwitch.on;
+        self.tableView.reloadData()
     }
     
     func populateSliderFields(_slider: UISlider, _text: UILabel){
@@ -106,6 +108,35 @@ class SettingsViewController: UITableViewController {
             self.delegate?.didUpdateUserSettings(setUserSettings!);
         }
         self.navigationController?.popViewControllerAnimated(true);
+    }
+    
+    
+    //MARK:- UITableViewDelegate
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section{
+        case 0:
+            return 1
+        case 1:
+            if (audioAnnouncementSwitch.on){
+                return 2
+            }else{
+                return 1
+            }
+        case 2:
+            if(healthkitSwitch.on){
+                return 2
+            }else{
+                return 1
+            }
+        default:
+            return 1;
+        }
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as UITableViewHeaderFooterView;
+        
+        header.textLabel.textColor = redColour;
     }
     
 }

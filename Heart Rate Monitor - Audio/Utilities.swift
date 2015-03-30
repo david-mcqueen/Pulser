@@ -10,6 +10,8 @@ import Foundation
 import HealthKit;
 import UIKit;
 
+var redColour:UIColor = UIColor(red: 0.824, green: 0.255, blue: 0.122, alpha: 1);
+
 func writeBPM(BPMInput: Double){
     var healthStore: HKHealthStore? = nil;
     

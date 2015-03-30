@@ -72,12 +72,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         //Setup the Speech Synthesizer to annouce over the top of other playing audio (reduces other volume whilst uttering)
         session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers, error: &error)
         
-        
-//        var settingsImage: UIImage = UIImage(named: "Cog.png")!;
-//        var settingsBarItem: UIBarButtonItem = UIBarButtonItem(image: settingsImage, style: UIBarButtonItemStyle.Plain, target: self, action: "showSettings");
-//        
-//        self.navigationItem.rightBarButtonItem = settingsBarItem;
-        
         //Get all the users zones
         var rest = Zone(_lower: nil, _upper: 99, _zone: HeartRateZone.Rest);
         var zone1 = Zone(_lower: 100, _upper: 119, _zone: HeartRateZone.ZoneOne);
