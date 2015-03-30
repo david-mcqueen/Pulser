@@ -29,9 +29,17 @@ class SettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.hidesBackButton = true;
-        var backBtn: UIBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Done, target: self, action: Selector("saveSettings"));
-        self.navigationItem.leftBarButtonItem = backBtn;
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        
+        //Check if the back button has been pressed
+        for stackedView in self.navigationController!.viewControllers{
+            if stackedView as NSObject == self{
+                return
+            }
+        }
+        saveSettings();
     }
     
     override func viewWillAppear(animated: Bool) {

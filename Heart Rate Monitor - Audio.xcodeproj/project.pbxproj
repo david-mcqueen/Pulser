@@ -11,8 +11,8 @@
 		5539316B1AC96C370096B218 /* Cog.png in Resources */ = {isa = PBXBuildFile; fileRef = 5539316A1AC96C370096B218 /* Cog.png */; };
 		5539316E1AC973C70096B218 /* TickCircle_Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 5539316C1AC973C70096B218 /* TickCircle_Active.png */; };
 		5539316F1AC973C70096B218 /* TickCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5539316D1AC973C70096B218 /* TickCircle.png */; };
-		553931771AC9996F0096B218 /* SettingsScript.pl in Resources */ = {isa = PBXBuildFile; fileRef = 553931761AC9996F0096B218 /* SettingsScript.pl */; };
 		5539317F1AC9AA530096B218 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5539317E1AC9AA530096B218 /* Settings.bundle */; };
+		553931821AC9AE050096B218 /* script.py in Resources */ = {isa = PBXBuildFile; fileRef = 553931811AC9AE050096B218 /* script.py */; };
 		553D43751AC54CD600AFA827 /* HeartRateZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D43741AC54CD600AFA827 /* HeartRateZones.swift */; };
 		5597BE431A681A0800A59921 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597BE421A681A0800A59921 /* AppDelegate.swift */; };
 		5597BE451A681A0800A59921 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597BE441A681A0800A59921 /* ViewController.swift */; };
@@ -48,8 +48,8 @@
 		5539316A1AC96C370096B218 /* Cog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cog.png; sourceTree = "<group>"; };
 		5539316C1AC973C70096B218 /* TickCircle_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TickCircle_Active.png; sourceTree = "<group>"; };
 		5539316D1AC973C70096B218 /* TickCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TickCircle.png; sourceTree = "<group>"; };
-		553931761AC9996F0096B218 /* SettingsScript.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = SettingsScript.pl; sourceTree = "<group>"; };
 		5539317E1AC9AA530096B218 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		553931811AC9AE050096B218 /* script.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = script.py; path = License/script.py; sourceTree = "<group>"; };
 		553D43741AC54CD600AFA827 /* HeartRateZones.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateZones.swift; sourceTree = "<group>"; };
 		5597BE3D1A681A0800A59921 /* Heart Rate Monitor - Audio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Heart Rate Monitor - Audio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5597BE411A681A0800A59921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 		5597BE3F1A681A0800A59921 /* Heart Rate Monitor - Audio */ = {
 			isa = PBXGroup;
 			children = (
-				553931761AC9996F0096B218 /* SettingsScript.pl */,
+				553931811AC9AE050096B218 /* script.py */,
 				553931701AC9968D0096B218 /* License */,
 				55D5DF5B1AC83969008386D4 /* ViewControllers */,
 				55D5DF561AC72ABA008386D4 /* Enums */,
@@ -293,11 +293,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5539316E1AC973C70096B218 /* TickCircle_Active.png in Resources */,
+				553931821AC9AE050096B218 /* script.py in Resources */,
 				5597BE481A681A0800A59921 /* Main.storyboard in Resources */,
 				553931671AC955DC0096B218 /* Logo.gif in Resources */,
 				5597BE4D1A681A0900A59921 /* LaunchScreen.xib in Resources */,
 				5539316B1AC96C370096B218 /* Cog.png in Resources */,
-				553931771AC9996F0096B218 /* SettingsScript.pl in Resources */,
 				5597BE4A1A681A0900A59921 /* Images.xcassets in Resources */,
 				5539317F1AC9AA530096B218 /* Settings.bundle in Resources */,
 				5539316F1AC973C70096B218 /* TickCircle.png in Resources */,
