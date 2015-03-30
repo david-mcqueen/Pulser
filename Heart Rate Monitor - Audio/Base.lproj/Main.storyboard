@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FDN-aC-WIY">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -242,8 +243,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo.gif" translatesAutoresizingMaskIntoConstraints="NO" id="kIR-bf-mzj">
                                 <rect key="frame" x="225" y="214" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="EVG-1B-bfS"/>
-                                    <constraint firstAttribute="height" constant="150" id="Tmt-Kl-f06"/>
+                                    <constraint firstAttribute="width" secondItem="kIR-bf-mzj" secondAttribute="height" multiplier="1:1" id="c0S-zW-oqe"/>
                                 </constraints>
                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="100" y="363" width="200" height="200"/>
@@ -334,6 +334,7 @@
                             <constraint firstAttribute="centerX" secondItem="kIR-bf-mzj" secondAttribute="centerX" id="5FC-2X-ahi"/>
                             <constraint firstItem="5Bx-Dk-Vkb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="61n-vf-ANk"/>
                             <constraint firstItem="5Bx-Dk-Vkb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7kp-tc-ozq"/>
+                            <constraint firstItem="kIR-bf-mzj" firstAttribute="top" secondItem="nb7-oA-D7p" secondAttribute="bottom" constant="31" id="IHV-bU-pTU"/>
                             <constraint firstItem="JhH-Mn-1qp" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Qu5-3h-GgP"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JhH-Mn-1qp" secondAttribute="bottom" constant="122" id="STj-Gq-KwZ"/>
                             <constraint firstItem="JhH-Mn-1qp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="bwe-eV-R56"/>
