@@ -422,7 +422,7 @@
 		5597BE5D1A681A0900A59921 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Logo;
 				CODE_SIGN_ENTITLEMENTS = "Heart Rate Monitor - Audio/Heart Rate Monitor - Audio.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -436,7 +436,7 @@
 		5597BE5E1A681A0900A59921 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Logo;
 				CODE_SIGN_ENTITLEMENTS = "Heart Rate Monitor - Audio/Heart Rate Monitor - Audio.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

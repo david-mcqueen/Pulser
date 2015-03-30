@@ -458,6 +458,19 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
      func didUpdateUserSettings(newSettings: UserSettings) {
         currentUserSettings = newSettings;
     }
-   
 }
+
+extension UIView {
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
+        }
+    }
+}
+
+
 
