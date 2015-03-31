@@ -69,7 +69,6 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
     func saveZones(){
         //Validate that all the zones are OK
         var (allZonesValid, validatedZones, zoneErrors) = validateZones();
-        //TODO:- Implement bound checking between zones
         
         if(allZonesValid){
             userSettings!.UserZones = validatedZones;
@@ -154,10 +153,6 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
         return (valid, validatedZones, errorMessage);
     }
     
-    
-    
-    
-    //TODO:- Handle the "Next" and "Done" buttons on the keyboard
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as UITableViewHeaderFooterView;

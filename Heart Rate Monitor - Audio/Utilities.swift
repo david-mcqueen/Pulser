@@ -53,6 +53,15 @@ func writeBPM(BPMInput: Double){
     
 }
 
+func saveUserSettings(userSettings: UserSettings){
+    NSUserDefaults.standardUserDefaults().setObject(userSettings.AnnounceAudio, forKey: "SettingsAnnounceAudio");
+    NSUserDefaults.standardUserDefaults().setObject(userSettings.SaveHealthkit, forKey: "SettingsSaveHealthkit");
+    NSUserDefaults.standardUserDefaults().setObject(userSettings.getAudioIntervalasFloat(), forKey: "SettingsAudioInterval");
+    NSUserDefaults.standardUserDefaults().setObject(userSettings.getHealthkitIntervalasFloat(), forKey: "SettingsHealthkitInterval");
+    NSUserDefaults.standardUserDefaults().synchronize();
+
+}
+
 
 //Check that the input string is a valid BPM
 func isValidBPM(_inputBPM: String)->Bool{

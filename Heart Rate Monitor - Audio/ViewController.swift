@@ -80,6 +80,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         let zone5 = Zone(_lower: 180, _upper: 199, _zone: HeartRateZone.ZoneFive);
         let max = Zone(_lower: 200, _upper: 999, _zone: HeartRateZone.Max);
         
+                
 
         currentUserSettings.UserZones.append(rest);
         currentUserSettings.UserZones.append(zone1);
@@ -244,7 +245,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     
-    //TODO:- Check that bluetooth is activated
     //Called whenever the device state changes
     func centralManagerDidUpdateState(central: CBCentralManager!) {
         //Determine the state of the peripheral
@@ -354,7 +354,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             speechArray.append("Currently in zone \(currentUserSettings.CurrentZone.rawValue)")
         }else{
             speechArray.append("Unable to get Heart Rate")
-            //TODO:- Display an error message
         }
         
 
@@ -504,6 +503,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
      func didUpdateUserSettings(newSettings: UserSettings) {
         currentUserSettings = newSettings;
         updateDisplaySettings();
+        
+        //Save the settings to NSUserDefaults
+        saveUserSettings(newSettings);
     }
 }
 
