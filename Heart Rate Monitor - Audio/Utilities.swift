@@ -95,6 +95,7 @@ func loadUserSettings()->UserSettings{
 
 private func loadUserZones()->UserSettings{
     var savedUserZones: UserSettings = UserSettings();
+    
     //All the zone keys, and correspoing types to be retrieved
     var zoneDictionary: [UserDefaultKeys: HeartRateZone] = [
         UserDefaultKeys.ZoneRest : HeartRateZone.Rest,
@@ -110,7 +111,6 @@ private func loadUserZones()->UserSettings{
         if let savedZone: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(key.rawValue) {
             var zoneValues = savedZone as [NSString];
             savedUserZones.UserZones.append(createZone(zoneValues as [String], zone))
-            println(zoneValues)
         }
     }
     
