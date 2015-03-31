@@ -14,6 +14,8 @@ class UserSettings {
     var AudioIntervalMinutes: Double;
     var SaveHealthkit: Bool;
     var HealthkitIntervalMinutes: Double;
+    var UserZones: [Zone];
+    var CurrentZone: HeartRateZone;
     
     init(){
         //Default user settings
@@ -21,6 +23,8 @@ class UserSettings {
         AudioIntervalMinutes = 1.0;
         SaveHealthkit = false;
         HealthkitIntervalMinutes = 1.0;
+        UserZones = [];
+        CurrentZone = HeartRateZone.Rest;
     }
     
     
@@ -47,5 +51,17 @@ class UserSettings {
     
     private func convertMinuteToSeconds(minutes: Double)->Double{
         return minutes * 60;
+    }
+    
+    func getZoneforBPM(BPM:Int) -> HeartRateZone{
+        
+        //Loop all the zones to find the correct one.
+        for zone in UserZones {
+            if ((BPM >= zone.Lower || zone.Lower == nil) && (BPM <= zone.Upper || zone.Upper == nil)){
+                return zone.ZoneType;
+            }
+        }
+        
+        return HeartRateZone.Unknown;
     }
 }

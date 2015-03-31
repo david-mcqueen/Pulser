@@ -20,4 +20,7 @@ class Zone{
         ZoneType = _zone;
     }
     
+    func getZoneValuesAsArray()->[Int]{
+        return [Lower!, Upper!];
+    }
 }

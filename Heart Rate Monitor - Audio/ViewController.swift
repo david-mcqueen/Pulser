@@ -41,7 +41,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     var running: Bool = false;
     var healthStore: HKHealthStore? = nil;
     
-    var user = UserHeartRate();
     var currentUserSettings: UserSettings = UserSettings();
     
     var CurrentBPM:Int = 0;
@@ -82,13 +81,13 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         let max = Zone(_lower: 200, _upper: nil, _zone: HeartRateZone.Max);
         
 
-        user.Zones.append(rest);
-        user.Zones.append(zone1);
-        user.Zones.append(zone2);
-        user.Zones.append(zone3);
-        user.Zones.append(zone4);
-        user.Zones.append(zone5);
-        user.Zones.append(max);
+        currentUserSettings.UserZones.append(rest);
+        currentUserSettings.UserZones.append(zone1);
+        currentUserSettings.UserZones.append(zone2);
+        currentUserSettings.UserZones.append(zone3);
+        currentUserSettings.UserZones.append(zone4);
+        currentUserSettings.UserZones.append(zone5);
+        currentUserSettings.UserZones.append(max);
 
     }
     
@@ -352,7 +351,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         if(self.CurrentBPM > 0){
             speechArray.append("Heart rate is \(self.CurrentBPM) beats per minute");
             
-            speechArray.append("Currently in zone \(user.CurrentZone.rawValue)")
+            speechArray.append("Currently in zone \(currentUserSettings.CurrentZone.rawValue)")
         }else{
             speechArray.append("Unable to get Heart Rate")
             //TODO:- Display an error message
@@ -377,14 +376,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
         self.CurrentBPM = Int(values[1]);
         
-        var newZone = user.getZoneforBPM(self.CurrentBPM)
+        var newZone = currentUserSettings.getZoneforBPM(self.CurrentBPM)
         
-        if (newZone != user.CurrentZone){
-            speechArray.append("Zones Changed from \(user.CurrentZone.rawValue) to \(newZone.rawValue)")
-            user.CurrentZone = newZone
+        if (newZone != currentUserSettings.CurrentZone){
+            speechArray.append("Zones Changed from \(currentUserSettings.CurrentZone.rawValue) to \(newZone.rawValue)")
+            currentUserSettings.CurrentZone = newZone
             speakAllUtterences();
         }
-        displayCurrentHeartRate(self.CurrentBPM, _zone: user.CurrentZone);
+        displayCurrentHeartRate(self.CurrentBPM, _zone: currentUserSettings.CurrentZone);
         
     }
     

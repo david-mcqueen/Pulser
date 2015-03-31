@@ -53,6 +53,11 @@ func writeBPM(BPMInput: Double){
     
 }
 
+func isValidBPM(_inputBPM: String)->Bool{
+    let validBPMRegex = "^([0-9]{1,3})$";
+    var bpmTest = NSPredicate(format:"SELF MATCHES %@", validBPMRegex);
+    return bpmTest!.evaluateWithObject(_inputBPM);
+}
 
 
 func displayAlert(title: String, message: String){

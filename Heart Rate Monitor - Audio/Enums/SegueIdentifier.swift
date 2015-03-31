@@ -10,4 +10,5 @@ import Foundation
 
 enum SegueIdentifier: String {
     case ShowSettings = "showSettings";
+    case ModifyUserZones = "modifyUserZones";
 }

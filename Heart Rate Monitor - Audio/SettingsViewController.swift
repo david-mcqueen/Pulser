@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SettingsViewController: UITableViewController, UITableViewDelegate {
+class SettingsViewController: UITableViewController, UITableViewDelegate, UserZonesDelegate {
     
    
     
@@ -106,6 +106,14 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
         self.navigationController?.popViewControllerAnimated(true);
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueIdentifier.ModifyUserZones.rawValue{
+            let zonesViewController = segue.destinationViewController as EnterZonesViewController
+            zonesViewController.delegate = self;
+            zonesViewController.userSettings = setUserSettings!
+        }
+    }
+    
     
     //MARK:- UITableViewDelegate
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -119,7 +127,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
                 return 1
             }
         case 2:
-            if(healthkitSwitch.on){
+            if(healthkitSwitch.on){s
                 return 2
             }else{
                 return 1
@@ -133,6 +141,10 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
         let header: UITableViewHeaderFooterView = view as UITableViewHeaderFooterView;
         
         header.textLabel.textColor = redColour;
+    }
+    
+    func didUpdateUserZones(_newSettings: UserSettings) {
+        setUserSettings = _newSettings;
     }
     
 }

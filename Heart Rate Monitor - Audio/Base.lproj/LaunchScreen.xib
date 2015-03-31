@@ -23,13 +23,21 @@
                         <constraint firstAttribute="width" secondItem="PbA-yi-8nS" secondAttribute="height" multiplier="1:1" id="UrG-gC-kdh"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="AnnouncHR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MU8-xg-Knp">
+                    <rect key="frame" x="165" y="26" width="151" height="21"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
+                    <color key="textColor" red="0.82352941180000006" green="0.25490196079999999" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="4Um-k6-bYL"/>
                 <constraint firstAttribute="trailing" secondItem="8ie-xW-0ye" secondAttribute="trailing" constant="19" id="5cx-DS-I8z"/>
+                <constraint firstAttribute="centerX" secondItem="MU8-xg-Knp" secondAttribute="centerX" constant="-0.5" id="WJy-NZ-gnQ"/>
                 <constraint firstItem="PbA-yi-8nS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="56" id="Z1F-9E-guL"/>
                 <constraint firstAttribute="centerY" secondItem="PbA-yi-8nS" secondAttribute="centerY" constant="0.5" id="bgZ-RF-3IV"/>
+                <constraint firstItem="PbA-yi-8nS" firstAttribute="top" secondItem="MU8-xg-Knp" secondAttribute="bottom" constant="8" id="maK-pc-QC8"/>
                 <constraint firstAttribute="centerX" secondItem="PbA-yi-8nS" secondAttribute="centerX" constant="-0.5" id="qGj-KE-0TV"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="xMl-l5-PFs"/>
             </constraints>
