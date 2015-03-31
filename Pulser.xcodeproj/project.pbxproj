@@ -70,7 +70,7 @@
 		554D81C61AC9C29400DD958A /* Cog.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Cog.gif; sourceTree = "<group>"; };
 		554D81C81AC9CCD500DD958A /* Cog2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cog2.png; sourceTree = "<group>"; };
 		554D81CA1AC9E3F200DD958A /* EnterZonesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterZonesViewController.swift; path = ViewControllers/EnterZonesViewController.swift; sourceTree = "<group>"; };
-		5597BE3D1A681A0800A59921 /* Heart Rate Monitor - Audio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Heart Rate Monitor - Audio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5597BE3D1A681A0800A59921 /* Pulser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pulser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5597BE411A681A0800A59921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5597BE421A681A0800A59921 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5597BE441A681A0800A59921 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 		5597BE3E1A681A0800A59921 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5597BE3D1A681A0800A59921 /* Heart Rate Monitor - Audio.app */,
+				5597BE3D1A681A0800A59921 /* Pulser.app */,
 				5597BE521A681A0900A59921 /* Heart Rate Monitor - AudioTests.xctest */,
 			);
 			name = Products;
@@ -244,7 +244,7 @@
 			);
 			name = "Heart Rate Monitor - Audio";
 			productName = "Heart Rate Monitor - Audio";
-			productReference = 5597BE3D1A681A0800A59921 /* Heart Rate Monitor - Audio.app */;
+			productReference = 5597BE3D1A681A0800A59921 /* Pulser.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5597BE511A681A0900A59921 /* Heart Rate Monitor - AudioTests */ = {
@@ -292,7 +292,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5597BE381A681A0800A59921 /* Build configuration list for PBXProject "Heart Rate Monitor - Audio" */;
+			buildConfigurationList = 5597BE381A681A0800A59921 /* Build configuration list for PBXProject "Pulser" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -498,7 +498,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Heart Rate Monitor - Audio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Pulser;
 				PROVISIONING_PROFILE = "7b286a44-bdb8-482a-a24c-f43fef948826";
 			};
 			name = Debug;
@@ -512,7 +512,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Heart Rate Monitor - Audio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Pulser;
 				PROVISIONING_PROFILE = "7b286a44-bdb8-482a-a24c-f43fef948826";
 			};
 			name = Release;
@@ -532,7 +532,7 @@
 				INFOPLIST_FILE = "Heart Rate Monitor - AudioTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Heart Rate Monitor - Audio.app/Heart Rate Monitor - Audio";
+				TEST_HOST = "";
 			};
 			name = Debug;
 		};
@@ -547,14 +547,14 @@
 				INFOPLIST_FILE = "Heart Rate Monitor - AudioTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Heart Rate Monitor - Audio.app/Heart Rate Monitor - Audio";
+				TEST_HOST = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5597BE381A681A0800A59921 /* Build configuration list for PBXProject "Heart Rate Monitor - Audio" */ = {
+		5597BE381A681A0800A59921 /* Build configuration list for PBXProject "Pulser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5597BE5A1A681A0900A59921 /* Debug */,

@@ -17,7 +17,7 @@
                BlueprintIdentifier = "5597BE3C1A681A0800A59921"
                BuildableName = "Heart Rate Monitor - Audio.app"
                BlueprintName = "Heart Rate Monitor - Audio"
-               ReferencedContainer = "container:Heart Rate Monitor - Audio.xcodeproj">
+               ReferencedContainer = "container:Pulser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "5597BE511A681A0900A59921"
                BuildableName = "Heart Rate Monitor - AudioTests.xctest"
                BlueprintName = "Heart Rate Monitor - AudioTests"
-               ReferencedContainer = "container:Heart Rate Monitor - Audio.xcodeproj">
+               ReferencedContainer = "container:Pulser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -49,7 +49,7 @@
                BlueprintIdentifier = "5597BE511A681A0900A59921"
                BuildableName = "Heart Rate Monitor - AudioTests.xctest"
                BlueprintName = "Heart Rate Monitor - AudioTests"
-               ReferencedContainer = "container:Heart Rate Monitor - Audio.xcodeproj">
+               ReferencedContainer = "container:Pulser.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -59,7 +59,7 @@
             BlueprintIdentifier = "5597BE3C1A681A0800A59921"
             BuildableName = "Heart Rate Monitor - Audio.app"
             BlueprintName = "Heart Rate Monitor - Audio"
-            ReferencedContainer = "container:Heart Rate Monitor - Audio.xcodeproj">
+            ReferencedContainer = "container:Pulser.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -72,13 +72,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5597BE3C1A681A0800A59921"
             BuildableName = "Heart Rate Monitor - Audio.app"
             BlueprintName = "Heart Rate Monitor - Audio"
-            ReferencedContainer = "container:Heart Rate Monitor - Audio.xcodeproj">
+            ReferencedContainer = "container:Pulser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -90,13 +91,14 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5597BE3C1A681A0800A59921"
             BuildableName = "Heart Rate Monitor - Audio.app"
             BlueprintName = "Heart Rate Monitor - Audio"
-            ReferencedContainer = "container:Heart Rate Monitor - Audio.xcodeproj">
+            ReferencedContainer = "container:Pulser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

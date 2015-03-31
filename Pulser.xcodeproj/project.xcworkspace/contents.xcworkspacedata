@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:AnnounceHR.xcodeproj">
+      location = "self:Pulser.xcodeproj">
    </FileRef>
 </Workspace>

@@ -5,9 +5,9 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>7DEE5999-2104-4305-8B49-6E0337853A4B</string>
+	<string>C71C6BC9-E5D8-48D8-BD56-E66C2CDFC426</string>
 	<key>IDESourceControlProjectName</key>
-	<string>AnnounceHR</string>
+	<string>Pulser</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>3810A386E5FEC0296224D592FAFE69EED1B91AEC</key>
@@ -16,7 +16,7 @@
 		<string>https://github.com/david-mcqueen/Swift.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>AnnounceHR.xcodeproj</string>
+	<string>Pulser.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>3810A386E5FEC0296224D592FAFE69EED1B91AEC</key>
