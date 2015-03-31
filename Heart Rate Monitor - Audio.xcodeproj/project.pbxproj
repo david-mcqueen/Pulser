@@ -17,6 +17,8 @@
 		550523071ACAE27A00446352 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979811AC57D4700E19DBF /* Utilities.swift */; };
 		550523081ACAE2A400446352 /* SegueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D5DF571AC72AD2008386D4 /* SegueIdentifier.swift */; };
 		5505230A1ACAE86300446352 /* Boundary_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550523091ACAE86300446352 /* Boundary_Tests.swift */; };
+		5505230C1ACAF7E800446352 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5505230B1ACAF7E800446352 /* UserDefaultKeys.swift */; };
+		5505230D1ACAF7E800446352 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5505230B1ACAF7E800446352 /* UserDefaultKeys.swift */; };
 		553931671AC955DC0096B218 /* Logo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 553931661AC955DC0096B218 /* Logo.gif */; };
 		5539316E1AC973C70096B218 /* TickCircle_Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 5539316C1AC973C70096B218 /* TickCircle_Active.png */; };
 		5539316F1AC973C70096B218 /* TickCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5539316D1AC973C70096B218 /* TickCircle.png */; };
@@ -58,6 +60,7 @@
 /* Begin PBXFileReference section */
 		550522FF1ACAC93400446352 /* UserZonesDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserZonesDelegate.swift; path = Protocols/UserZonesDelegate.swift; sourceTree = "<group>"; };
 		550523091ACAE86300446352 /* Boundary_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Boundary_Tests.swift; sourceTree = "<group>"; };
+		5505230B1ACAF7E800446352 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaultKeys.swift; path = Enums/UserDefaultKeys.swift; sourceTree = "<group>"; };
 		553931661AC955DC0096B218 /* Logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = Logo.gif; path = Designs/Logo.gif; sourceTree = SOURCE_ROOT; };
 		5539316C1AC973C70096B218 /* TickCircle_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TickCircle_Active.png; sourceTree = "<group>"; };
 		5539316D1AC973C70096B218 /* TickCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TickCircle.png; sourceTree = "<group>"; };
@@ -209,6 +212,7 @@
 			children = (
 				553D43741AC54CD600AFA827 /* HeartRateZones.swift */,
 				55D5DF571AC72AD2008386D4 /* SegueIdentifier.swift */,
+				5505230B1ACAF7E800446352 /* UserDefaultKeys.swift */,
 			);
 			name = Enums;
 			sourceTree = "<group>";
@@ -342,6 +346,7 @@
 				553D43751AC54CD600AFA827 /* HeartRateZones.swift in Sources */,
 				55D5DF5A1AC72C43008386D4 /* UserSettingsDelegate.swift in Sources */,
 				5597BE451A681A0800A59921 /* ViewController.swift in Sources */,
+				5505230C1ACAF7E800446352 /* UserDefaultKeys.swift in Sources */,
 				554D81CB1AC9E3F200DD958A /* EnterZonesViewController.swift in Sources */,
 				55D5DF581AC72AD2008386D4 /* SegueIdentifier.swift in Sources */,
 				55D5DF4E1AC71BB6008386D4 /* SettingsViewController.swift in Sources */,
@@ -370,6 +375,7 @@
 				550523041ACAE24500446352 /* EnterZonesViewController.swift in Sources */,
 				550523051ACAE26700446352 /* UserSettingsDelegate.swift in Sources */,
 				55BFBC4C1AC5F5DA00890CA1 /* UserHeartRate.swift in Sources */,
+				5505230D1ACAF7E800446352 /* UserDefaultKeys.swift in Sources */,
 				550523021ACAE23F00446352 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -44,6 +44,8 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
     
     override func viewWillAppear(animated: Bool) {
         
+        setUserSettings = loadUserSettings();
+        
         var audioAnnounce = setUserSettings?.AnnounceAudio;
         var healthkitSave = setUserSettings?.SaveHealthkit;
         var audioInterval = setUserSettings?.getAudioIntervalasFloat();
@@ -145,6 +147,8 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
     
     func didUpdateUserZones(_newSettings: UserSettings) {
         setUserSettings = _newSettings;
+        //Save the settings to NSUserDefaults
+        saveUserSettings(setUserSettings!);
     }
     
 }

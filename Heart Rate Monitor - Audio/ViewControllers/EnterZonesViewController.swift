@@ -39,7 +39,7 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
     
     func displayZones(){
         for userZone in userSettings!.UserZones{
-            switch userZone.ZoneType{
+            switch userZone.getZoneType(){
             case HeartRateZone.Rest:
                 displayZonesValues([userZone.Upper], [restZone]);
             case HeartRateZone.ZoneOne:

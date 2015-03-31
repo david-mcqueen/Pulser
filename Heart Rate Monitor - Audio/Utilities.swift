@@ -53,13 +53,68 @@ func writeBPM(BPMInput: Double){
     
 }
 
-func saveUserSettings(userSettings: UserSettings){
-    NSUserDefaults.standardUserDefaults().setObject(userSettings.AnnounceAudio, forKey: "SettingsAnnounceAudio");
-    NSUserDefaults.standardUserDefaults().setObject(userSettings.SaveHealthkit, forKey: "SettingsSaveHealthkit");
-    NSUserDefaults.standardUserDefaults().setObject(userSettings.getAudioIntervalasFloat(), forKey: "SettingsAudioInterval");
-    NSUserDefaults.standardUserDefaults().setObject(userSettings.getHealthkitIntervalasFloat(), forKey: "SettingsHealthkitInterval");
+func saveUserSettings(newUserSettings: UserSettings){
+    NSUserDefaults.standardUserDefaults().setObject(newUserSettings.AnnounceAudio, forKey: UserDefaultKeys.SaveAudio.rawValue);
+    NSUserDefaults.standardUserDefaults().setObject(newUserSettings.SaveHealthkit, forKey: UserDefaultKeys.SaveHealthKit.rawValue);
+    NSUserDefaults.standardUserDefaults().setObject(newUserSettings.getAudioIntervalasFloat(), forKey: UserDefaultKeys.AudioInterval.rawValue);
+    NSUserDefaults.standardUserDefaults().setObject(newUserSettings.getHealthkitIntervalasFloat(), forKey: UserDefaultKeys.HealthKitInterval.rawValue);
     NSUserDefaults.standardUserDefaults().synchronize();
+    saveUserZones(newUserSettings);
+}
 
+private func saveUserZones(userSettings: UserSettings){
+    
+    //Save each of the zones
+    for zone in userSettings.UserZones{
+        NSUserDefaults.standardUserDefaults().setObject(zone.getZoneForSaving(), forKey: zone.getZoneKey().rawValue);
+    }
+    NSUserDefaults.standardUserDefaults().synchronize();
+    
+}
+
+func loadUserSettings()->UserSettings{
+    var savedUser:UserSettings = UserSettings();
+    
+    if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.SaveAudio.rawValue) {
+        savedUser.AnnounceAudio = savedValue as Bool;
+    }
+    if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.SaveHealthKit.rawValue) {
+        savedUser.SaveHealthkit = savedValue as Bool;
+    }
+    if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.AudioInterval.rawValue) {
+        savedUser.AudioIntervalMinutes = savedValue as Double;
+    }
+    if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.HealthKitInterval.rawValue) {
+        savedUser.HealthkitIntervalMinutes = savedValue as Double;
+    }
+    
+    savedUser.UserZones = loadUserZones().UserZones;
+    
+    return savedUser;
+}
+
+private func loadUserZones()->UserSettings{
+    var savedUserZones: UserSettings = UserSettings();
+    //All the zone keys, and correspoing types to be retrieved
+    var zoneDictionary: [UserDefaultKeys: HeartRateZone] = [
+        UserDefaultKeys.ZoneRest : HeartRateZone.Rest,
+        UserDefaultKeys.ZoneOne : HeartRateZone.ZoneOne,
+        UserDefaultKeys.ZoneTwo : HeartRateZone.ZoneTwo,
+        UserDefaultKeys.ZoneThree : HeartRateZone.ZoneThree,
+        UserDefaultKeys.ZoneFour : HeartRateZone.ZoneFour,
+        UserDefaultKeys.ZoneFive : HeartRateZone.ZoneFive,
+        UserDefaultKeys.ZoneMax : HeartRateZone.Max
+    ];
+    
+    for (key, zone) in zoneDictionary{
+        if let savedZone: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(key.rawValue) {
+            var zoneValues = savedZone as [NSString];
+            savedUserZones.UserZones.append(createZone(zoneValues as [String], zone))
+            println(zoneValues)
+        }
+    }
+    
+    return savedUserZones;
 }
 
 
@@ -78,7 +133,7 @@ func validateZoneBoundaries(_inputZones: [Zone])->(Bool, String){
     for zone in _inputZones{
         if(zone.Lower > zone.Upper || (getAllZonesforBPM(zone.Lower, _inputZones).count > 1 || getAllZonesforBPM(zone.Upper, _inputZones).count > 1)){
             valid = false;
-            errorMessage += "\n - Zone \(zone.ZoneType.rawValue) incorrect"
+            errorMessage += "\n - Zone \(zone.getZoneType().rawValue) incorrect"
         }
     }
     return (valid, errorMessage);
@@ -111,7 +166,7 @@ func getAllZonesforBPM(BPM:Int, _zones:[Zone]) -> [HeartRateZone]{
     //Loop all the zones to find the correct one.
     for zone in _zones {
         if ((BPM >= zone.Lower) && (BPM <= zone.Upper)){
-            matchedZones.append(zone.ZoneType);
+            matchedZones.append(zone.getZoneType());
         }
     }
     if (matchedZones.count > 1){

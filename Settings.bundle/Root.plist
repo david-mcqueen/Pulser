@@ -8,15 +8,25 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Tutorial</string>
+			<string>Settings</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Show Tutorial on Launch</string>
+			<string>Announce Audio</string>
 			<key>Key</key>
-			<string>SettingsShowTutorialOnLaunch</string>
+			<string>SettingsAnnounceAudio</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Save BPM to HealthKit</string>
+			<key>Key</key>
+			<string>SettingsSaveHealthkit</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>

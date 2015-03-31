@@ -70,26 +70,10 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
         //Setup the Speech Synthesizer to annouce over the top of other playing audio (reduces other volume whilst uttering)
         session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers, error: &error)
-        
-        //Get all the users zones
-        var rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
-        var zone1 = Zone(_lower: 100, _upper: 119, _zone: HeartRateZone.ZoneOne);
-        let zone2 = Zone(_lower: 120, _upper: 139, _zone: HeartRateZone.ZoneTwo);
-        let zone3 = Zone(_lower: 140, _upper: 159, _zone: HeartRateZone.ZoneThree);
-        let zone4 = Zone(_lower: 160, _upper: 179, _zone: HeartRateZone.ZoneFour);
-        let zone5 = Zone(_lower: 180, _upper: 199, _zone: HeartRateZone.ZoneFive);
-        let max = Zone(_lower: 200, _upper: 999, _zone: HeartRateZone.Max);
-        
-                
-
-        currentUserSettings.UserZones.append(rest);
-        currentUserSettings.UserZones.append(zone1);
-        currentUserSettings.UserZones.append(zone2);
-        currentUserSettings.UserZones.append(zone3);
-        currentUserSettings.UserZones.append(zone4);
-        currentUserSettings.UserZones.append(zone5);
-        currentUserSettings.UserZones.append(max);
-
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        //Load user settings
     }
     
     func showSettings(){
