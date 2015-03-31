@@ -53,10 +53,86 @@ func writeBPM(BPMInput: Double){
     
 }
 
+
+//Check that the input string is a valid BPM
 func isValidBPM(_inputBPM: String)->Bool{
     let validBPMRegex = "^([0-9]{1,3})$";
     var bpmTest = NSPredicate(format:"SELF MATCHES %@", validBPMRegex);
     return bpmTest!.evaluateWithObject(_inputBPM);
+}
+
+//Check the zone boundaries dont overlap
+func validateZoneBoundaries(_inputZones: [Zone])->(Bool, String){
+    var valid = true;
+    var errorMessage = "\nZone boundaries invalid:";
+    
+    for zone in _inputZones{
+        if(zone.Lower > zone.Upper || (getAllZonesforBPM(zone.Lower, _inputZones).count > 1 || getAllZonesforBPM(zone.Upper, _inputZones).count > 1)){
+            valid = false;
+            errorMessage += "\n - Zone \(zone.ZoneType.rawValue) incorrect"
+        }
+    }
+    return (valid, errorMessage);
+}
+
+//Create a new zone
+func createZone(_zoneInputs: [String], _type: HeartRateZone)->Zone{
+    return Zone(_lower: _zoneInputs[0].toInt()!, _upper: _zoneInputs[1].toInt()!, _zone: _type);
+}
+
+//Return the input values for the provided UITextField collection
+func getZoneInputValues(_zoneInputGroup: [UITextField])->[String]{
+    var zoneBPM: [String] = [];
+    
+    for inputBPM in _zoneInputGroup{
+        zoneBPM.append(inputBPM.text);
+    }
+    return zoneBPM;
+}
+
+func getZoneforBPM(BPM:Int, _zones:[Zone]) -> HeartRateZone{
+    return getAllZonesforBPM(BPM, _zones)[0];
+}
+
+//Return all zones that the BPM falls into
+//Should only return one. Is also used for validating hence the possibility to return more than 1
+func getAllZonesforBPM(BPM:Int, _zones:[Zone]) -> [HeartRateZone]{
+    
+    var matchedZones:[HeartRateZone] = [];
+    //Loop all the zones to find the correct one.
+    for zone in _zones {
+        if ((BPM >= zone.Lower) && (BPM <= zone.Upper)){
+            matchedZones.append(zone.ZoneType);
+        }
+    }
+    if (matchedZones.count > 1){
+        matchedZones.append(HeartRateZone.Unknown)
+    }
+    
+    return matchedZones;
+}
+
+//Check each of the inputs are a valid BPM
+func allZoneInputsValid(_inputStrings: [String])->Bool{
+    for input in _inputStrings{
+        if (!isValidBPM(input)){
+            return false;
+        }
+    }
+    return true;
+}
+
+//Displays the corresponding zone value in the relevant text field
+func displayZonesValues(_zoneValues:[Int], _zoneFields: [UITextField]){
+    
+    if(_zoneValues.count == _zoneFields.count){
+        var loopCounter = 0;
+        for zoneField in _zoneFields{
+            zoneField.text = String(_zoneValues[loopCounter]);
+            loopCounter++;
+        }
+    }
+    
 }
 
 

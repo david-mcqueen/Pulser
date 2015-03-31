@@ -127,7 +127,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
                 return 1
             }
         case 2:
-            if(healthkitSwitch.on){s
+            if(healthkitSwitch.on){
                 return 2
             }else{
                 return 1

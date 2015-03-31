@@ -22,7 +22,7 @@ class UserHeartRate {
         
         //Loop all the zones to find the correct one.
         for zone in Zones {
-            if ((BPM >= zone.Lower || zone.Lower == nil) && (BPM <= zone.Upper || zone.Upper == nil)){
+            if ((BPM >= zone.Lower) && (BPM <= zone.Upper)){
                 return zone.ZoneType;
             }
         }

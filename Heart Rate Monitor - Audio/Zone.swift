@@ -10,17 +10,17 @@ import Foundation
 
 
 class Zone{
-    var Lower:Int?;
-    var Upper:Int?;
+    var Lower:Int;
+    var Upper:Int;
     var ZoneType:HeartRateZone;
     
-    init(_lower: Int?, _upper:Int?, _zone:HeartRateZone){
+    init(_lower: Int, _upper:Int, _zone:HeartRateZone){
         Lower = _lower;
         Upper = _upper;
         ZoneType = _zone;
     }
     
     func getZoneValuesAsArray()->[Int]{
-        return [Lower!, Upper!];
+        return [Lower, Upper];
     }
 }

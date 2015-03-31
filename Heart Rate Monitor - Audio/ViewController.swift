@@ -72,13 +72,13 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers, error: &error)
         
         //Get all the users zones
-        var rest = Zone(_lower: nil, _upper: 99, _zone: HeartRateZone.Rest);
+        var rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
         var zone1 = Zone(_lower: 100, _upper: 119, _zone: HeartRateZone.ZoneOne);
         let zone2 = Zone(_lower: 120, _upper: 139, _zone: HeartRateZone.ZoneTwo);
         let zone3 = Zone(_lower: 140, _upper: 159, _zone: HeartRateZone.ZoneThree);
         let zone4 = Zone(_lower: 160, _upper: 179, _zone: HeartRateZone.ZoneFour);
         let zone5 = Zone(_lower: 180, _upper: 199, _zone: HeartRateZone.ZoneFive);
-        let max = Zone(_lower: 200, _upper: nil, _zone: HeartRateZone.Max);
+        let max = Zone(_lower: 200, _upper: 999, _zone: HeartRateZone.Max);
         
 
         currentUserSettings.UserZones.append(rest);
@@ -376,7 +376,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
         self.CurrentBPM = Int(values[1]);
         
-        var newZone = currentUserSettings.getZoneforBPM(self.CurrentBPM)
+        var newZone = getZoneforBPM(self.CurrentBPM, self.currentUserSettings.UserZones)
         
         if (newZone != currentUserSettings.CurrentZone){
             speechArray.append("Zones Changed from \(currentUserSettings.CurrentZone.rawValue) to \(newZone.rawValue)")

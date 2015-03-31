@@ -53,15 +53,4 @@ class UserSettings {
         return minutes * 60;
     }
     
-    func getZoneforBPM(BPM:Int) -> HeartRateZone{
-        
-        //Loop all the zones to find the correct one.
-        for zone in UserZones {
-            if ((BPM >= zone.Lower || zone.Lower == nil) && (BPM <= zone.Upper || zone.Upper == nil)){
-                return zone.ZoneType;
-            }
-        }
-        
-        return HeartRateZone.Unknown;
-    }
 }

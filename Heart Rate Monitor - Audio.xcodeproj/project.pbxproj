@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		550523001ACAC93400446352 /* UserZonesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550522FF1ACAC93400446352 /* UserZonesDelegate.swift */; };
+		550523011ACAE20F00446352 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D5DF541AC72989008386D4 /* UserSettings.swift */; };
+		550523021ACAE23F00446352 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D5DF4D1AC71BB6008386D4 /* SettingsViewController.swift */; };
+		550523031ACAE24200446352 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597BE441A681A0800A59921 /* ViewController.swift */; };
+		550523041ACAE24500446352 /* EnterZonesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554D81CA1AC9E3F200DD958A /* EnterZonesViewController.swift */; };
+		550523051ACAE26700446352 /* UserSettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D5DF591AC72C43008386D4 /* UserSettingsDelegate.swift */; };
+		550523061ACAE26A00446352 /* UserZonesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550522FF1ACAC93400446352 /* UserZonesDelegate.swift */; };
+		550523071ACAE27A00446352 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979811AC57D4700E19DBF /* Utilities.swift */; };
+		550523081ACAE2A400446352 /* SegueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D5DF571AC72AD2008386D4 /* SegueIdentifier.swift */; };
+		5505230A1ACAE86300446352 /* Boundary_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550523091ACAE86300446352 /* Boundary_Tests.swift */; };
 		553931671AC955DC0096B218 /* Logo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 553931661AC955DC0096B218 /* Logo.gif */; };
 		5539316E1AC973C70096B218 /* TickCircle_Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 5539316C1AC973C70096B218 /* TickCircle_Active.png */; };
 		5539316F1AC973C70096B218 /* TickCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5539316D1AC973C70096B218 /* TickCircle.png */; };
@@ -48,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		550522FF1ACAC93400446352 /* UserZonesDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserZonesDelegate.swift; path = Protocols/UserZonesDelegate.swift; sourceTree = "<group>"; };
+		550523091ACAE86300446352 /* Boundary_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Boundary_Tests.swift; sourceTree = "<group>"; };
 		553931661AC955DC0096B218 /* Logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = Logo.gif; path = Designs/Logo.gif; sourceTree = SOURCE_ROOT; };
 		5539316C1AC973C70096B218 /* TickCircle_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TickCircle_Active.png; sourceTree = "<group>"; };
 		5539316D1AC973C70096B218 /* TickCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TickCircle.png; sourceTree = "<group>"; };
@@ -162,6 +172,7 @@
 			children = (
 				5597BE581A681A0900A59921 /* Heart_Rate_Monitor___AudioTests.swift */,
 				5597BE561A681A0900A59921 /* Supporting Files */,
+				550523091ACAE86300446352 /* Boundary_Tests.swift */,
 			);
 			path = "Heart Rate Monitor - AudioTests";
 			sourceTree = "<group>";
@@ -349,8 +360,17 @@
 			files = (
 				5597BE591A681A0900A59921 /* Heart_Rate_Monitor___AudioTests.swift in Sources */,
 				55BFBC4B1AC5F5D800890CA1 /* Zone.swift in Sources */,
+				550523071ACAE27A00446352 /* Utilities.swift in Sources */,
 				55BFBC4D1AC5F5DE00890CA1 /* HeartRateZones.swift in Sources */,
+				550523081ACAE2A400446352 /* SegueIdentifier.swift in Sources */,
+				550523061ACAE26A00446352 /* UserZonesDelegate.swift in Sources */,
+				550523011ACAE20F00446352 /* UserSettings.swift in Sources */,
+				5505230A1ACAE86300446352 /* Boundary_Tests.swift in Sources */,
+				550523031ACAE24200446352 /* ViewController.swift in Sources */,
+				550523041ACAE24500446352 /* EnterZonesViewController.swift in Sources */,
+				550523051ACAE26700446352 /* UserSettingsDelegate.swift in Sources */,
 				55BFBC4C1AC5F5DA00890CA1 /* UserHeartRate.swift in Sources */,
+				550523021ACAE23F00446352 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
