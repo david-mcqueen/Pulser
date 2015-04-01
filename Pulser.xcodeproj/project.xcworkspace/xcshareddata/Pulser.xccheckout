@@ -22,7 +22,7 @@
 		<key>3810A386E5FEC0296224D592FAFE69EED1B91AEC</key>
 		<string>../..</string>
 		<key>89DEA3F5F9568CF75855BA588A653ED890DBDD26</key>
-		<string>../../../..</string>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/david-mcqueen/Heart-Rate-Monitor.git</string>
@@ -38,7 +38,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>89DEA3F5F9568CF75855BA588A653ED890DBDD26</string>
 			<key>IDESourceControlWCCName</key>
-			<string>..</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

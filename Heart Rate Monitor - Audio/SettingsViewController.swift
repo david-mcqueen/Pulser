@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import HealthKit
 
 class SettingsViewController: UITableViewController, UITableViewDelegate, UserZonesDelegate {
     
@@ -26,6 +27,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
     var isRunning: Bool?;
     
     var setUserSettings: UserSettings?;
+    var healthStore: HKHealthStore? = nil;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +65,12 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
+        
+        
+    }
+    
     func toggleReadOnly(_readOnly: Bool){
         audioAnnouncementSwitch.userInteractionEnabled = !_readOnly;
         audioSlider.userInteractionEnabled = !_readOnly;
@@ -92,8 +100,53 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
     }
     
     @IBAction func healthkitSwitchChanged(sender: AnyObject) {
-        setUserSettings?.SaveHealthkit = healthkitSwitch.on;
-        self.tableView.reloadData()
+        
+        if(!deviceSupportsHealthKitAccess()){
+            displayAlert("Error", "Healthkit not supported on this device");
+            return;
+        }
+        
+        self.healthStore = HKHealthStore();
+        
+        let dataTypesToWrite = [
+            HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
+        ]
+        let dataTypesToRead = [];
+        
+        self.healthStore?.requestAuthorizationToShareTypes(NSSet(array: dataTypesToWrite), readTypes: NSSet(array: dataTypesToRead), completion: {
+            (success, error) in
+            if success {
+                dispatch_async(dispatch_get_main_queue(), {
+                    if(!havePermissionToSaveHealthKit()){
+                        displayAlert("Error", "Permission not received to save HealthKit data. Grant permission from iPhone settings to allow Pulser to save to HealthKit")
+                        self.setUserSettings?.SaveHealthkit = false
+                        self.healthkitSwitch.on = false;
+                    }else{
+                        self.setUserSettings?.SaveHealthkit = self.healthkitSwitch.on
+                    }
+                    self.tableView.reloadData()
+                    
+                })
+            }else{
+                dispatch_async(dispatch_get_main_queue(), {
+                    displayAlert("Error", "Permission not received to save HealthKit data. Grant permission from iPhone settings to allow Pulser to save to HealthKit")
+                    self.setUserSettings?.SaveHealthkit = false
+                    self.healthkitSwitch.on = false;
+                    self.tableView.reloadData()
+                })
+            }
+        })
+        
+    }
+    
+    func deviceSupportsHealthKitAccess()->Bool{
+        //Check we are able to access healthkit
+        if(!HKHealthStore.isHealthDataAvailable()){
+            return false;
+            
+        }else{
+            return true;
+        }
     }
     
     func populateSliderFields(_slider: UISlider, _text: UILabel){
@@ -112,6 +165,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
         if segue.identifier == SegueIdentifier.ModifyUserZones.rawValue{
             let zonesViewController = segue.destinationViewController as EnterZonesViewController
             zonesViewController.delegate = self;
+            zonesViewController.isRunning = isRunning!;
             zonesViewController.userSettings = setUserSettings!
         }
     }

@@ -12,9 +12,8 @@ import UIKit;
 
 var redColour:UIColor = UIColor(red: 0.824, green: 0.255, blue: 0.122, alpha: 1);
 
-func writeBPM(BPMInput: Double){
+func havePermissionToSaveHealthKit()->Bool{
     var healthStore: HKHealthStore? = nil;
-    
     //TODO:- If no Healthkit store this WILL crash.
     //Need to consolidate the request and write into one file.
     healthStore = HKHealthStore();
@@ -24,8 +23,22 @@ func writeBPM(BPMInput: Double){
     let authorisationStatus = healthStore?.authorizationStatusForType(quantityType);
     
     if (authorisationStatus != HKAuthorizationStatus.SharingAuthorized){
-        NSLog("Not authorised to write BPM");
-        return;
+        return false;
+    }else{
+        return true;
+    }
+}
+
+
+
+func writeBPM(BPMInput: Double){
+    var healthStore: HKHealthStore? = nil;
+    //TODO:- If no Healthkit store this WILL crash.
+    //Need to consolidate the request and write into one file.
+    healthStore = HKHealthStore();
+    
+    if(!havePermissionToSaveHealthKit()){
+        displayAlert("Error", "Permission not received to save HealthKit. Grant permission from iPhone settings to allow Pulser to save to HealthKit")
     }
     
     let startDate = NSDate();

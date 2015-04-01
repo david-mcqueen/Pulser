@@ -15,6 +15,7 @@ import HealthKit;
 
 class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, AVSpeechSynthesizerDelegate, UserSettingsDelegate {
 
+    //MARK:- View Variables
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var startStopButton: UIButton!
     @IBOutlet weak var BPMLabel: UILabel!
@@ -27,22 +28,20 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     @IBOutlet weak var HKTick: UIImageView!
     @IBOutlet weak var AudioTick: UIImageView!
    
+    //MARK:- Bluetooth Constants
     let HRM_DEVICE_INFO_SERVICE_UUID = CBUUID(string: "180A");
     let HRM_HEART_RATE_SERVICE_UUID = CBUUID(string: "180D");
-    
     let HRM_MEASUREMENT_CHARACTERISTIC_UUID = CBUUID(string:"2A37");
     let HRM_BODY_LOCATION_CHARACTERISTIC_UUID = CBUUID(string:"2A38");
     let HRM_MANUFACTURER_NAME_CHARACTERISTIC_UUID = CBUUID(string:"2A29");
     
+    //MARK:- Variables
     var centralManager: CBCentralManager!;
     var HRMPeripheral: CBPeripheral!;
 
     var connected: Bool = false;
     var running: Bool = false;
-    var healthStore: HKHealthStore? = nil;
-    
     var currentUserSettings: UserSettings = UserSettings();
-    
     var CurrentBPM:Int = 0;
     
     var speechArray:[String] = [];
@@ -57,11 +56,12 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     var error: NSError?;
     var session =  AVAudioSession.sharedInstance();
     
+    //MARK:- View methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mySpeechSynthesizer.delegate = self;
-        
+        currentUserSettings = loadUserSettings()
         connectedToHRM(false);
         runningHRM(running);
         updateDisplaySettings();
@@ -76,94 +76,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         //Load user settings
     }
     
-    func showSettings(){
-        displayAlert("Test", "Test")
-    }
-    
-    func updateDisplaySettings(){
-        let activeImage: UIImage = UIImage(named: "TickCircle_Active.png")!
-        let notActiveImage: UIImage = UIImage(named: "TickCircle.png")!;
-        if (currentUserSettings.AnnounceAudio){
-            AudioTick.image = activeImage;
-        }else{
-            AudioTick.image = notActiveImage;
-        }
-        
-        if (currentUserSettings.SaveHealthkit){
-            HKTick.image = activeImage;
-        }else{
-            HKTick.image = notActiveImage;
-        }
-        
-        
-        tickDisplayView.hidden = !connected;
-        
-    }
-
-    
-    func runningHRM(isRunning:Bool){
-        self.currentDisplayView.hidden = !isRunning;
-        
-        if(connected){
-            self.connectedLabel.hidden = isRunning;
-        }
-        
-        if(isRunning){
-            //Start a timer
-            if (currentUserSettings.AnnounceAudio){
-                //Start a repeating timer for X seconds, to announce BPM changes
-                audioTimer = NSTimer.scheduledTimerWithTimeInterval(currentUserSettings.getAudioIntervalSeconds(), target: self, selector: Selector("speakData"), userInfo: nil, repeats: true);
-                println("Starting audio timer");
-            }
-            
-            if(currentUserSettings.SaveHealthkit){
-                //Start a repeating timer for X seconds, to save BPM to healthkit
-                healthkitTimer = NSTimer.scheduledTimerWithTimeInterval(currentUserSettings.getHealthkitIntervalSeconds(), target: self, selector: Selector("saveData"), userInfo: nil, repeats: true);
-                println("Starting healthkit timer");
-            }
-            
-            changeButtonText(self.startStopButton, _buttonText: "Stop");
-            
-        }else{
-            println("End Timers")
-            //End the timers
-            println(audioTimer);
-            if(audioTimer != nil){
-                audioTimer?.invalidate()
-                println("End Audio")
-            }
-            
-            if(healthkitTimer != nil){
-                healthkitTimer?.invalidate()
-                println("End Audio")
-            }
-            
-            changeButtonText(self.startStopButton, _buttonText: "Start");
-        }
-    }
-    
-    
-    @IBAction func startStopPressed(sender: AnyObject) {
-        
-        running = !running;
-        runningHRM(running);
-        
-    }
-    
-    func changeButtonText(_button: UIButton, _buttonText: String){
-        _button.setTitle(_buttonText, forState: UIControlState.Normal);
-    }
-    
-    @IBAction func connectPressed(sender: AnyObject) {
-        centralManager = CBCentralManager(delegate: self, queue: nil);
-    }
-    
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
+   
     
     //MARK:- CBCentralManagerDelegate
     //Called when a peripheral is successfully connected
@@ -190,7 +110,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     
     //MARK:- CentralManager Delegate
-
     //called with the CBPeripheral class as its main input parameter. This contains most of the information there is to know about a BLE peripheral.
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
         println("Discovered \(peripheral.name)")
@@ -268,11 +187,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             connectingLabel.hidden = true;
             
         default:
-            NSLog("Fuck knows mate")
+            self.running = false;
+            connectedToHRM(false);
+            runningHRM(false);
+            connectingLabel.hidden = true;
+            break;
         }
         
     }
-    
     
     
     
@@ -315,23 +237,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         println("didUpdateValueForCharacteristic")
         if (characteristic!.UUID == HRM_MEASUREMENT_CHARACTERISTIC_UUID){
             if(running){
-                println("BPM")
                 self.getHeartBPMData(characteristic, error: error)
             }
             
         }
-        if (characteristic!.UUID == HRM_MANUFACTURER_NAME_CHARACTERISTIC_UUID){
-            println("name")
-            self.getManufacturerName(characteristic!);
-        }
-        if (characteristic!.UUID == HRM_BODY_LOCATION_CHARACTERISTIC_UUID){
-            println("location")
-            self.getBodyLocation(characteristic!);
-        }
     }
     
+    
     func speakData(){
-        
         if(self.CurrentBPM > 0){
             speechArray.append("Heart rate is \(self.CurrentBPM) beats per minute");
             
@@ -339,10 +252,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         }else{
             speechArray.append("Unable to get Heart Rate")
         }
-        
-
         speakAllUtterences();
-        
     }
     
     func saveData(){
@@ -358,7 +268,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         data.getBytes(&values, length: data.length);
         
         self.CurrentBPM = Int(values[1]);
-        
+        println(self.currentUserSettings)
         var newZone = getZoneforBPM(self.CurrentBPM, self.currentUserSettings.UserZones)
         
         if (newZone != currentUserSettings.CurrentZone){
@@ -375,14 +285,88 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         zoneLabel.text = _zone.rawValue
     }
     
-    func getManufacturerName(characteristic: CBCharacteristic){
+    
+    //MARK:- Methods
+    func updateDisplaySettings(){
+        let activeImage: UIImage = UIImage(named: "TickCircle_Active.png")!
+        let notActiveImage: UIImage = UIImage(named: "TickCircle.png")!;
+        if (currentUserSettings.AnnounceAudio){
+            AudioTick.image = activeImage;
+        }else{
+            AudioTick.image = notActiveImage;
+        }
+        
+        if (currentUserSettings.SaveHealthkit){
+            HKTick.image = activeImage;
+        }else{
+            HKTick.image = notActiveImage;
+        }
+        
+        
+        tickDisplayView.hidden = !connected;
         
     }
     
-    func getBodyLocation(characteristic: CBCharacteristic){
+    func runningHRM(isRunning:Bool){
+        self.currentDisplayView.hidden = !isRunning;
+        
+        if(connected){
+            self.connectedLabel.hidden = isRunning;
+        }
+        
+        if(isRunning){
+            //Start a timer
+            if (currentUserSettings.AnnounceAudio){
+                //Start a repeating timer for X seconds, to announce BPM changes
+                audioTimer = NSTimer.scheduledTimerWithTimeInterval(currentUserSettings.getAudioIntervalSeconds(), target: self, selector: Selector("speakData"), userInfo: nil, repeats: true);
+                println("Starting audio timer");
+            }
+            
+            if(currentUserSettings.SaveHealthkit){
+                //Start a repeating timer for X seconds, to save BPM to healthkit
+                healthkitTimer = NSTimer.scheduledTimerWithTimeInterval(currentUserSettings.getHealthkitIntervalSeconds(), target: self, selector: Selector("saveData"), userInfo: nil, repeats: true);
+                println("Starting healthkit timer");
+            }
+            
+            changeButtonText(self.startStopButton, _buttonText: "Stop");
+            
+        }else{
+            println("End Timers")
+            //End the timers
+            println(audioTimer);
+            if(audioTimer != nil){
+                audioTimer?.invalidate()
+                println("End Audio")
+            }
+            
+            if(healthkitTimer != nil){
+                healthkitTimer?.invalidate()
+                println("End Audio")
+            }
+            
+            changeButtonText(self.startStopButton, _buttonText: "Start");
+        }
+    }
+    
+    
+    @IBAction func startStopPressed(sender: AnyObject) {
+        if(currentUserSettings.UserZones.count > 0){
+            running = !running;
+            runningHRM(running);
+        }else{
+            displayAlert("Error", "Please setup heart rate zones first")
+        }
+        
         
     }
     
+    func changeButtonText(_button: UIButton, _buttonText: String){
+        _button.setTitle(_buttonText, forState: UIControlState.Normal);
+    }
+    
+    @IBAction func connectPressed(sender: AnyObject) {
+        centralManager = CBCentralManager(delegate: self, queue: nil);
+    }
     
  
     func startSpeaking(){
@@ -404,53 +388,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             speakNextUtterence();
         }
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated);
-        
-        //Check we are able to access healthkit
-        if(!HKHealthStore.isHealthDataAvailable()){
-            dispatch_async(dispatch_get_main_queue(), {
-                var alert = UIAlertController(title: "Alert", message: "Healthkit is not supported on this device", preferredStyle: UIAlertControllerStyle.Alert);
-                self.presentViewController(alert, animated: true, completion: nil);
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil));
-                NSLog("Temp was saved OK");
-                NSLog("Healthkit is not supported on this device");
-            })
-            return;
-        }
-        
-        self.healthStore = HKHealthStore();
-        
-        let dataTypesToWrite = [
-            HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
-        ]
-        let dataTypesToRead = [
-            HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
-        ]
-        
-        self.healthStore?.requestAuthorizationToShareTypes(NSSet(array: dataTypesToWrite), readTypes: NSSet(array: dataTypesToRead), completion: {
-            (success, error) in
-            if success {
-                NSLog("User completed authorisation request");
-                dispatch_async(dispatch_get_main_queue(), {
-                    //Call to write information
-                    //self.writeBodyTemperature();
-                    //self.writeBMI();
-                    NSLog("Ready to go!");
-                })
-            }else{
-                dispatch_async(dispatch_get_main_queue(), {
-                    var alert = UIAlertController(title: "Alert", message: "You cancelled the authorisation request", preferredStyle: UIAlertControllerStyle.Alert);
-                    self.presentViewController(alert, animated: true, completion: nil);
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil));
-                    NSLog("The user cancelled the authorisation request \(error)");
-                    
-                })
-            }
-        })
-    }
-    
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.ShowSettings.rawValue{

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5597BE3C1A681A0800A59921"
-               BuildableName = "Heart Rate Monitor - Audio.app"
+               BuildableName = "Pulser.app"
                BlueprintName = "Heart Rate Monitor - Audio"
                ReferencedContainer = "container:Pulser.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5597BE3C1A681A0800A59921"
-            BuildableName = "Heart Rate Monitor - Audio.app"
+            BuildableName = "Pulser.app"
             BlueprintName = "Heart Rate Monitor - Audio"
             ReferencedContainer = "container:Pulser.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5597BE3C1A681A0800A59921"
-            BuildableName = "Heart Rate Monitor - Audio.app"
+            BuildableName = "Pulser.app"
             BlueprintName = "Heart Rate Monitor - Audio"
             ReferencedContainer = "container:Pulser.xcodeproj">
          </BuildableReference>
@@ -96,7 +96,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5597BE3C1A681A0800A59921"
-            BuildableName = "Heart Rate Monitor - Audio.app"
+            BuildableName = "Pulser.app"
             BlueprintName = "Heart Rate Monitor - Audio"
             ReferencedContainer = "container:Pulser.xcodeproj">
          </BuildableReference>

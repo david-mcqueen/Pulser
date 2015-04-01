@@ -23,16 +23,20 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
     
     weak var delegate: UserZonesDelegate?
     var userSettings: UserSettings?;
+    var isRunning: Bool = false;
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //TODO:- Add a zone caluclator
         
+        if(!isRunning){
+            //Add a save button to the nav bar
+            var saveButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("saveZones"));
+            self.navigationItem.rightBarButtonItem = saveButtonItem;
+        }
         
-        //Add a save button to the nav bar
-        var saveButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("saveZones"));
-        self.navigationItem.rightBarButtonItem = saveButtonItem;
+        
         
         displayZones();
     }
