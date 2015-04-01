@@ -13,8 +13,9 @@ import AVFoundation;
 import CoreLocation;
 import HealthKit;
 
-class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, AVSpeechSynthesizerDelegate, UserSettingsDelegate {
+class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeripheralDelegate, AVSpeechSynthesizerDelegate, UserSettingsDelegate {
 
+    
     //MARK:- View Variables
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var startStopButton: UIButton!
@@ -59,6 +60,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     //MARK:- View methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //The screen name for Google Analytics
+        self.screenName = "Main";
         
         mySpeechSynthesizer.delegate = self;
         currentUserSettings = loadUserSettings()
@@ -268,7 +272,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         data.getBytes(&values, length: data.length);
         
         self.CurrentBPM = Int(values[1]);
-        println(self.currentUserSettings)
         var newZone = getZoneforBPM(self.CurrentBPM, self.currentUserSettings.UserZones)
         
         if (newZone != currentUserSettings.CurrentZone){
@@ -330,7 +333,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             
         }else{
             //End the timers
-            println(audioTimer);
             if(audioTimer != nil){
                 audioTimer?.invalidate()
             }

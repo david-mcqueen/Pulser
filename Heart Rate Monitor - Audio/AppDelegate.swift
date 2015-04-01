@@ -15,7 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        if true {
+            GAI.sharedInstance().trackUncaughtExceptions = true
+            GAI.sharedInstance().dispatchInterval = 20
+            GAI.sharedInstance().trackerWithTrackingId("UA-61448308-1")
+            GAI.sharedInstance().defaultTracker.allowIDFACollection = true
+            GAI.sharedInstance().logger.logLevel = GAILogLevel.Error
+            GAI.sharedInstance().defaultTracker.send(GAIDictionaryBuilder.createAppView().build());
+            GAI.sharedInstance().defaultTracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "app_launched",label:"launch",value:nil).build())
+        }
         return true
     }
 

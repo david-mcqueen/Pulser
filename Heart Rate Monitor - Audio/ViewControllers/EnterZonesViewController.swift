@@ -12,6 +12,8 @@ import UIKit
 
 class EnterZonesViewController: UITableViewController, UITableViewDelegate{
     
+    var tracker: GAITracker = GAI.sharedInstance().defaultTracker;
+    
     @IBOutlet weak var restZone: UITextField!
     @IBOutlet weak var maxZone: UITextField!
     
@@ -27,6 +29,8 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tracker.set(kGAIScreenName, value: "Zones");
+        tracker.send(GAIDictionaryBuilder.createScreenView().build());
         
         //TODO:- Add a zone caluclator
         
@@ -77,6 +81,7 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
         if(allZonesValid){
             userSettings!.UserZones = validatedZones;
             if delegate != nil{
+                tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "button_press", label: "Save_Zones", value: nil).build());
                 delegate?.didUpdateUserZones(userSettings!);
                 self.navigationController?.popViewControllerAnimated(true);
             }
