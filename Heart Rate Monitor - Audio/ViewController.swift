@@ -49,6 +49,7 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
     
     var audioTimer: NSTimer?;
     var healthkitTimer :NSTimer?
+    var connectTimer: NSTimer?
     
     var uttenenceCounter = 0;
     
@@ -126,8 +127,6 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         connectedToHRM(false);
         runningHRM(false);
         displayAlert("Error", "Failed to connect to Heart Rate Monitor")
-        
-        //TODO:- Implement a max time for searching
     }
     
     
@@ -137,6 +136,10 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         connectedToHRM(false);
         runningHRM(false);
         displayAlert("Error", "Lost connection to Heart Rate Monitor")
+        if (running){
+            speechArray.append("Pulser lost connection to heart Rrate monitor")
+            speakAllUtterences()
+        }
     }
     
     
@@ -154,14 +157,9 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         case .PoweredOn:
             NSLog("CoreBluetooth BLE hardware is powered on and ready");
             var services = [HRM_HEART_RATE_SERVICE_UUID, HRM_DEVICE_INFO_SERVICE_UUID];
-            var connectedDevice = centralManager.retrieveConnectedPeripheralsWithServices(services);
             
             //Add a peripheral that has connected via another app
-            if (connectedDevice.count > 0){
-                let device = connectedDevice.last as CBPeripheral;
-                centralManager.connectPeripheral(device, options: nil)
-                connectedToHRM(true)
-            }else{
+            if (!alreadyConnectedDevice()){
                 centralManager.scanForPeripheralsWithServices(services, options: nil);
                 connectingLabel.hidden = false;
             }
@@ -363,6 +361,7 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
             runningHRM(running);
             var action = running ? "Starting" : "Stopping"
             speechArray.append("\(action) Pulser");
+            speakAllUtterences();
         }else{
             displayAlert("Error", "Please setup heart rate zones first")
         }
@@ -376,6 +375,30 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
     
     @IBAction func connectPressed(sender: AnyObject) {
         centralManager = CBCentralManager(delegate: self, queue: nil);
+        //Check every 2 seconds if the device is connected via another app
+        connectTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("alreadyConnectedDevice"), userInfo: nil, repeats: true);
+       
+    }
+    
+    func alreadyConnectedDevice()->Bool{
+        if(self.HRMPeripheral != nil){
+            connectTimer?.invalidate();
+            return true
+        }
+        
+        var services = [HRM_HEART_RATE_SERVICE_UUID, HRM_DEVICE_INFO_SERVICE_UUID];
+        var connectedDevice = centralManager.retrieveConnectedPeripheralsWithServices(services);
+        
+        //Add a peripheral that has connected via another app
+        if (connectedDevice.count > 0){
+            let device = connectedDevice.last as CBPeripheral;
+            self.HRMPeripheral = device;
+            device.delegate = self;
+            centralManager.connectPeripheral(device, options: nil)
+            connectedToHRM(true)
+            return true;
+        }
+        return false;
     }
     
  
