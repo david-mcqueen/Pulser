@@ -180,7 +180,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             connectingLabel.hidden = true;
 
         case .Unsupported:
-            NSLog("CoreBluetooth BLE hardware is unsupported on this platform");
+            displayAlert("Error", "CoreBluetooth BLE hardware is unsupported on this platform");
             self.running = false;
             connectedToHRM(false);
             runningHRM(false);
@@ -319,29 +319,24 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             if (currentUserSettings.AnnounceAudio){
                 //Start a repeating timer for X seconds, to announce BPM changes
                 audioTimer = NSTimer.scheduledTimerWithTimeInterval(currentUserSettings.getAudioIntervalSeconds(), target: self, selector: Selector("speakData"), userInfo: nil, repeats: true);
-                println("Starting audio timer");
             }
             
             if(currentUserSettings.SaveHealthkit){
                 //Start a repeating timer for X seconds, to save BPM to healthkit
                 healthkitTimer = NSTimer.scheduledTimerWithTimeInterval(currentUserSettings.getHealthkitIntervalSeconds(), target: self, selector: Selector("saveData"), userInfo: nil, repeats: true);
-                println("Starting healthkit timer");
             }
             
             changeButtonText(self.startStopButton, _buttonText: "Stop");
             
         }else{
-            println("End Timers")
             //End the timers
             println(audioTimer);
             if(audioTimer != nil){
                 audioTimer?.invalidate()
-                println("End Audio")
             }
             
             if(healthkitTimer != nil){
                 healthkitTimer?.invalidate()
-                println("End Audio")
             }
             
             changeButtonText(self.startStopButton, _buttonText: "Start");
