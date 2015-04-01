@@ -132,14 +132,15 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
     
     func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
         println("Lost Connection");
-        self.running = false;
-        connectedToHRM(false);
-        runningHRM(false);
-        displayAlert("Error", "Lost connection to Heart Rate Monitor")
         if (running){
             speechArray.append("Pulser lost connection to heart Rrate monitor")
             speakAllUtterences()
         }
+        self.running = false;
+        connectedToHRM(false);
+        runningHRM(false);
+        displayAlert("Error", "Lost connection to Heart Rate Monitor")
+       
     }
     
     

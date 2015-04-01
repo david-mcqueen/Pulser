@@ -559,6 +559,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Heart Rate Monitor - Audio/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -567,6 +568,7 @@
 				PRODUCT_NAME = Pulser;
 				PROVISIONING_PROFILE = "7b286a44-bdb8-482a-a24c-f43fef948826";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Dave/MEGA/iOS_Applications/Pulser/Pulser-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -578,6 +580,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Heart Rate Monitor - Audio/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -586,6 +589,7 @@
 				PRODUCT_NAME = Pulser;
 				PROVISIONING_PROFILE = "7b286a44-bdb8-482a-a24c-f43fef948826";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Dave/MEGA/iOS_Applications/Pulser/Pulser-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
