@@ -99,18 +99,6 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         NSLog("Connected: \(self.connected)");
     }
     
-    func connectedToHRM(connected:Bool){
-        self.connectButton.hidden = connected;
-        self.startStopButton.hidden = !connected;
-        connectedLabel.hidden = !connected;
-        self.connected = connected;
-        updateDisplaySettings();
-        
-        if(connected){
-            connectingLabel.hidden = true;
-        }
-    }
-    
     
     
     //MARK:- CentralManager Delegate
@@ -166,8 +154,17 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         case .PoweredOn:
             NSLog("CoreBluetooth BLE hardware is powered on and ready");
             var services = [HRM_HEART_RATE_SERVICE_UUID, HRM_DEVICE_INFO_SERVICE_UUID];
-            centralManager.scanForPeripheralsWithServices(services, options: nil);
-            connectingLabel.hidden = false;
+            var connectedDevice = centralManager.retrieveConnectedPeripheralsWithServices(services);
+            
+            //Add a peripheral that has connected via another app
+            if (connectedDevice.count > 0){
+                let device = connectedDevice.last as CBPeripheral;
+                centralManager.connectPeripheral(device, options: nil)
+                connectedToHRM(true)
+            }else{
+                centralManager.scanForPeripheralsWithServices(services, options: nil);
+                connectingLabel.hidden = false;
+            }
             
         case .Unauthorized:
             NSLog("CoreBluetooth BLE state is unauthorized");
@@ -290,6 +287,20 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
     
     
     //MARK:- Methods
+    
+    func connectedToHRM(connected:Bool){
+        self.connectButton.hidden = connected;
+        self.startStopButton.hidden = !connected;
+        connectedLabel.hidden = !connected;
+        self.connected = connected;
+        updateDisplaySettings();
+        
+        if(connected){
+            connectingLabel.hidden = true;
+        }
+    }
+    
+    
     func updateDisplaySettings(){
         let activeImage: UIImage = UIImage(named: "TickCircle_Active.png")!
         let notActiveImage: UIImage = UIImage(named: "TickCircle.png")!;
@@ -350,6 +361,8 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         if(currentUserSettings.UserZones.count > 0){
             running = !running;
             runningHRM(running);
+            var action = running ? "Starting" : "Stopping"
+            speechArray.append("\(action) Pulser");
         }else{
             displayAlert("Error", "Please setup heart rate zones first")
         }
