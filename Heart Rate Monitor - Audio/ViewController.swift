@@ -133,7 +133,7 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
     func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
         println("Lost Connection");
         if (running){
-            speechArray.append("Pulser lost connection to heart Rrate monitor")
+            speechArray.append("Pulser lost connection to heart rate monitor")
             speakAllUtterences()
         }
         self.running = false;
@@ -413,7 +413,9 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
             speechArray.removeAtIndex(0);
             nextUtterence.rate = 0.15;
 //            nextUtterence.voice(AVSpeechSynthesisVoice(language:"en-GB"))
-            self.mySpeechSynthesizer.speakUtterance(nextUtterence);
+            if(self.currentUserSettings.AnnounceAudio){
+                self.mySpeechSynthesizer.speakUtterance(nextUtterence);
+            }
         }
     }
     
