@@ -31,7 +31,8 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
     
     override func viewDidLoad() {
         tracker.set(kGAIScreenName, value: "Settings");
-        tracker.send(GAIDictionaryBuilder.createScreenView().build());
+        var build = GAIDictionaryBuilder.createAppView().build() as [NSObject : AnyObject]
+        tracker.send(build);
         
         super.viewDidLoad()
     }
@@ -40,7 +41,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
         
         //Check if the back button has been pressed
         for stackedView in self.navigationController!.viewControllers{
-            if stackedView as NSObject == self{
+            if stackedView as! NSObject == self{
                 return
             }
         }
@@ -116,7 +117,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
         ]
         let dataTypesToRead = [];
         
-        self.healthStore?.requestAuthorizationToShareTypes(NSSet(array: dataTypesToWrite), readTypes: NSSet(array: dataTypesToRead), completion: {
+        self.healthStore?.requestAuthorizationToShareTypes(NSSet(array: dataTypesToWrite) as Set<NSObject>, readTypes: NSSet(array: dataTypesToRead as [AnyObject]) as Set<NSObject>, completion: {
             (success, error) in
             if success {
                 dispatch_async(dispatch_get_main_queue(), {
@@ -166,7 +167,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.ModifyUserZones.rawValue{
-            let zonesViewController = segue.destinationViewController as EnterZonesViewController
+            let zonesViewController = segue.destinationViewController as! EnterZonesViewController
             zonesViewController.delegate = self;
             zonesViewController.isRunning = isRunning!;
             zonesViewController.userSettings = setUserSettings!
@@ -197,7 +198,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header: UITableViewHeaderFooterView = view as UITableViewHeaderFooterView;
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView;
         
         header.textLabel.textColor = redColour;
     }

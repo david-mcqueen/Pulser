@@ -30,7 +30,8 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         tracker.set(kGAIScreenName, value: "Zones");
-        tracker.send(GAIDictionaryBuilder.createScreenView().build());
+        var build = GAIDictionaryBuilder.createAppView().build() as [NSObject : AnyObject]
+        tracker.send(build);
         
         //TODO:- Add a zone caluclator
         
@@ -81,7 +82,8 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
         if(allZonesValid){
             userSettings!.UserZones = validatedZones;
             if delegate != nil{
-                tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "button_press", label: "Save_Zones", value: nil).build());
+                var build = GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "button_press", label: "Save_Zones", value: nil).build() as [NSObject : AnyObject];
+                tracker.send(build);
                 delegate?.didUpdateUserZones(userSettings!);
                 self.navigationController?.popViewControllerAnimated(true);
             }
@@ -164,7 +166,7 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
     
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header: UITableViewHeaderFooterView = view as UITableViewHeaderFooterView;
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView;
         
         header.textLabel.textColor = redColour;
     }

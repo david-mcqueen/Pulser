@@ -21,8 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             GAI.sharedInstance().trackerWithTrackingId("UA-61448308-1")
             GAI.sharedInstance().defaultTracker.allowIDFACollection = true
             GAI.sharedInstance().logger.logLevel = GAILogLevel.Error
-            GAI.sharedInstance().defaultTracker.send(GAIDictionaryBuilder.createAppView().build());
-            GAI.sharedInstance().defaultTracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "app_launched",label:"launch",value:nil).build())
+            var build = GAIDictionaryBuilder.createAppView().build() as [NSObject : AnyObject]
+            GAI.sharedInstance().defaultTracker.send(build);
+            build = GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "app_launched",label:"launch",value:nil).build() as [NSObject : AnyObject]
+            GAI.sharedInstance().defaultTracker.send(build);
         }
         return true
     }

@@ -201,7 +201,7 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
     //MARK:- CBPeripheralDelegate
     //Called when you discover the peripherals available services
     func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
-        for service  in peripheral.services as [CBService] {
+        for service  in peripheral.services as! [CBService] {
             NSLog("Discovered service: \(service.UUID)")
             peripheral.discoverCharacteristics(nil, forService: service as CBService)
         }
@@ -210,7 +210,7 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
     //When you discover the characteristics of a specified service
     func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
         if (service.UUID == HRM_HEART_RATE_SERVICE_UUID){
-            for char in service.characteristics as [CBCharacteristic] {
+            for char in service.characteristics as! [CBCharacteristic] {
                 if (char.UUID == HRM_MEASUREMENT_CHARACTERISTIC_UUID){
                     self.HRMPeripheral.setNotifyValue(true, forCharacteristic: char as CBCharacteristic);
                     NSLog("Found heart rate measurement characteristic");
@@ -222,7 +222,7 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         }
         
         if (service.UUID == HRM_DEVICE_INFO_SERVICE_UUID){
-            for char in service.characteristics as [CBCharacteristic]{
+            for char in service.characteristics as! [CBCharacteristic]{
                 print(char.UUID)
                 if (char.UUID == HRM_MANUFACTURER_NAME_CHARACTERISTIC_UUID){
                     self.HRMPeripheral.readValueForCharacteristic(char as CBCharacteristic);
@@ -392,7 +392,7 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         
         //Add a peripheral that has connected via another app
         if (connectedDevice.count > 0){
-            let device = connectedDevice.last as CBPeripheral;
+            let device = connectedDevice.last as! CBPeripheral;
             self.HRMPeripheral = device;
             device.delegate = self;
             centralManager.connectPeripheral(device, options: nil)
@@ -427,7 +427,7 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.ShowSettings.rawValue{
-            let settingsViewController = segue.destinationViewController as SettingsViewController
+            let settingsViewController = segue.destinationViewController as! SettingsViewController
             settingsViewController.delegate = self;
             settingsViewController.isRunning = running;
             settingsViewController.setUserSettings = currentUserSettings

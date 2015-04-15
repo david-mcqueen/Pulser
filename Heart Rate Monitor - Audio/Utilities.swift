@@ -33,8 +33,6 @@ func havePermissionToSaveHealthKit()->Bool{
 
 func writeBPM(BPMInput: Double){
     var healthStore: HKHealthStore? = nil;
-    //TODO:- If no Healthkit store this WILL crash.
-    //Need to consolidate the request and write into one file.
     healthStore = HKHealthStore();
     
     if(!havePermissionToSaveHealthKit()){
@@ -89,16 +87,16 @@ func loadUserSettings()->UserSettings{
     var savedUser:UserSettings = UserSettings();
     
     if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.SaveAudio.rawValue) {
-        savedUser.AnnounceAudio = savedValue as Bool;
+        savedUser.AnnounceAudio = savedValue as! Bool;
     }
     if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.SaveHealthKit.rawValue) {
-        savedUser.SaveHealthkit = savedValue as Bool;
+        savedUser.SaveHealthkit = savedValue as! Bool;
     }
     if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.AudioInterval.rawValue) {
-        savedUser.AudioIntervalMinutes = savedValue as Double;
+        savedUser.AudioIntervalMinutes = savedValue as! Double;
     }
     if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.HealthKitInterval.rawValue) {
-        savedUser.HealthkitIntervalMinutes = savedValue as Double;
+        savedUser.HealthkitIntervalMinutes = savedValue as! Double;
     }
     
     savedUser.UserZones = loadUserZones().UserZones;
@@ -122,8 +120,8 @@ private func loadUserZones()->UserSettings{
     
     for (key, zone) in zoneDictionary{
         if let savedZone: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(key.rawValue) {
-            var zoneValues = savedZone as [NSString];
-            savedUserZones.UserZones.append(createZone(zoneValues as [String], zone))
+            var zoneValues = savedZone as! [NSString];
+            savedUserZones.UserZones.append(createZone(zoneValues as! [String], zone))
         }
     }
     
@@ -135,7 +133,7 @@ private func loadUserZones()->UserSettings{
 func isValidBPM(_inputBPM: String)->Bool{
     let validBPMRegex = "^([0-9]{1,3})$";
     var bpmTest = NSPredicate(format:"SELF MATCHES %@", validBPMRegex);
-    return bpmTest!.evaluateWithObject(_inputBPM);
+    return bpmTest.evaluateWithObject(_inputBPM);
 }
 
 //Check the zone boundaries dont overlap
