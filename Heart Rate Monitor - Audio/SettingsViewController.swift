@@ -167,6 +167,8 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.ModifyUserZones.rawValue{
+            //Save the current settings before moving to a new screen
+            saveUserSettings(setUserSettings!)
             let zonesViewController = segue.destinationViewController as! EnterZonesViewController
             zonesViewController.delegate = self;
             zonesViewController.isRunning = isRunning!;
