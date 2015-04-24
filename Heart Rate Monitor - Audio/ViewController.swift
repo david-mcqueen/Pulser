@@ -39,9 +39,12 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
     //MARK:- Variables
     var centralManager: CBCentralManager!;
     var HRMPeripheral: CBPeripheral!;
+    
+    var services = [];
 
     var connected: Bool = false;
     var running: Bool = false;
+    var attemptReconnect: Bool = false;
     var currentUserSettings: UserSettings = UserSettings();
     var CurrentBPM:Int = 0;
     
@@ -75,6 +78,8 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         
         //Setup the Speech Synthesizer to annouce over the top of other playing audio (reduces other volume whilst uttering)
         session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers, error: &error)
+        
+        services = [HRM_HEART_RATE_SERVICE_UUID, HRM_DEVICE_INFO_SERVICE_UUID];
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -97,12 +102,16 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         peripheral.discoverServices(nil);
         self.connected = (peripheral.state == CBPeripheralState.Connected ? true : false);
         connectedToHRM(self.connected);
+        if (attemptReconnect){
+            runningHRM(attemptReconnect);
+            running = true;
+            speechArray.append("Pulser regained connection to heart rate monitor")
+            speakAllUtterences()
+            
+        }
         NSLog("Connected: \(self.connected)");
     }
     
-    
-    
-    //MARK:- CentralManager Delegate
     //called with the CBPeripheral class as its main input parameter. This contains most of the information there is to know about a BLE peripheral.
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
         println("Discovered \(peripheral.name)")
@@ -132,15 +141,23 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
     
     func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
         println("Lost Connection");
+
+        
         if (running){
             speechArray.append("Pulser lost connection to heart rate monitor")
             speakAllUtterences()
+            
+            //Attempt to reconnect to HRM
+            attemptReconnect = true;
+            centralManager.scanForPeripheralsWithServices(services as [AnyObject], options: nil)
+        }else{
+            displayAlert("Error", "Lost connection to Heart Rate Monitor")
         }
-        self.running = false;
+        
+        HRMPeripheral = nil;
+        running = false;
         connectedToHRM(false);
         runningHRM(false);
-        displayAlert("Error", "Lost connection to Heart Rate Monitor")
-       
     }
     
     
@@ -157,11 +174,11 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
             
         case .PoweredOn:
             NSLog("CoreBluetooth BLE hardware is powered on and ready");
-            var services = [HRM_HEART_RATE_SERVICE_UUID, HRM_DEVICE_INFO_SERVICE_UUID];
+            
             
             //Add a peripheral that has connected via another app
             if (!alreadyConnectedDevice()){
-                centralManager.scanForPeripheralsWithServices(services, options: nil);
+                centralManager.scanForPeripheralsWithServices(services as [AnyObject], options: nil);
                 connectingLabel.hidden = false;
             }
             
@@ -245,7 +262,7 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
     
     
     func speakData(){
-        if(self.CurrentBPM > 0){
+        if(self.CurrentBPM > 0 && connected){
             speechArray.append("Heart rate is \(self.CurrentBPM) beats per minute");
             
             speechArray.append("Currently in zone \(currentUserSettings.CurrentZone.rawValue)")
@@ -270,7 +287,7 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         self.CurrentBPM = Int(values[1]);
         var newZone = getZoneforBPM(self.CurrentBPM, self.currentUserSettings.UserZones)
         
-        if (newZone != currentUserSettings.CurrentZone){
+        if (newZone != currentUserSettings.CurrentZone && connected){
             speechArray.append("Zones Changed from \(currentUserSettings.CurrentZone.rawValue) to \(newZone.rawValue)")
             currentUserSettings.CurrentZone = newZone
             speakAllUtterences();
@@ -359,12 +376,13 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
     @IBAction func startStopPressed(sender: AnyObject) {
         if(currentUserSettings.UserZones.count > 0){
             running = !running;
+            attemptReconnect = !running;
             runningHRM(running);
             var action = running ? "Starting" : "Stopping"
             speechArray.append("\(action) Pulser");
             speakAllUtterences();
         }else{
-            displayAlert("Error", "Please setup heart rate zones first")
+            displayAlert("Error", "Please setup heart rate zones first");
         }
         
         
@@ -375,8 +393,10 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
     }
     
     @IBAction func connectPressed(sender: AnyObject) {
+        attemptReconnect = false; //Manually connect
         centralManager = CBCentralManager(delegate: self, queue: nil);
         //Check every 2 seconds if the device is connected via another app
+        centralManager.scanForPeripheralsWithServices(services as [AnyObject], options: nil);
         connectTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("alreadyConnectedDevice"), userInfo: nil, repeats: true);
        
     }
