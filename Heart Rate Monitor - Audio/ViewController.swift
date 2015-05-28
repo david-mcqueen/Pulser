@@ -287,7 +287,7 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         self.CurrentBPM = Int(values[1]);
         var newZone = getZoneforBPM(self.CurrentBPM, self.currentUserSettings.UserZones)
         
-        if (newZone != currentUserSettings.CurrentZone && connected){
+        if (newZone != currentUserSettings.CurrentZone && connected && currentUserSettings.AnnounceAudioZoneChange){
             speechArray.append("Zones Changed from \(currentUserSettings.CurrentZone.rawValue) to \(newZone.rawValue)")
             currentUserSettings.CurrentZone = newZone
             speakAllUtterences();
@@ -433,7 +433,7 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
             speechArray.removeAtIndex(0);
             nextUtterence.rate = 0.15;
 //            nextUtterence.voice(AVSpeechSynthesisVoice(language:"en-GB"))
-            if(self.currentUserSettings.shouldAnnounceAudio()){
+            if(self.currentUserSettings.AnnounceAudio){
                 self.mySpeechSynthesizer.speakUtterance(nextUtterence);
             }
         }
