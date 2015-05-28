@@ -40,7 +40,7 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
         for userZone in userSettings!.UserZones{
             switch userZone.getZoneType(){
             case HeartRateZone.Rest:
-                displayZonesValues([userZone.Upper], [restZone]);
+                displayZonesValues([userZone.Lower], [restZone]);
             case HeartRateZone.ZoneOne:
                 displayZonesValues(userZone.getZoneValuesAsArray(), zoneInput1);
             case HeartRateZone.ZoneTwo:
@@ -72,8 +72,6 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
         if(allZonesValid){
             userSettings!.UserZones = validatedZones;
             if delegate != nil{
-                var build = GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "button_press", label: "Save_Zones", value: nil).build() as [NSObject : AnyObject];
-                tracker.send(build);
                 delegate?.didUpdateUserZones(userSettings!);
                 self.navigationController?.popViewControllerAnimated(true);
             }
@@ -86,7 +84,7 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
         var validatedZones: [Zone] = [];
         var valid = true;
         var errorMessage:String = "Please check the zone values and try again:";
-        var restBPM: [String] = ["0", restZone.text];
+        var restBPM: [String] = [restZone.text, zoneInput1[0].text];
         var zoneOneBPM: [String] = getZoneInputValues(zoneInput1);
         var zoneTwoBPM: [String] = getZoneInputValues(zoneInput2);
         var zoneThreeBPM: [String] = getZoneInputValues(zoneInput3);
@@ -96,7 +94,9 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
         
         //Check each of the inputs is a vaid BPM, and create a new zone
         if(allZoneInputsValid(restBPM)){
-            validatedZones.append(createZone(restBPM, HeartRateZone.Rest));
+            var restZone = createZone(restBPM, HeartRateZone.Rest);
+            restZone.Upper = restZone.Upper - 1; //Remove 1 to not overlap with Zone1
+            validatedZones.append(restZone);
         }else{
             valid = false;
             errorMessage += "\n - Zone \(HeartRateZone.Rest.rawValue) invalid"

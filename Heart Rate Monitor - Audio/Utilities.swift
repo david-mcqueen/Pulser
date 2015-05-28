@@ -228,14 +228,14 @@ func calculateHeartRateZones(_maxBPM: Double, _restBPM: Double)->[Zone]{
     var allZones: [Zone] = [];
     
     var rest: Zone = Zone(
-        _lower: 0,
-        _upper: Int(_restBPM),
+        _lower: Int(_restBPM),
+        _upper: calculateBPMForZone(heartRateReserve, 0.50, _restBPM)-1,
         _zone: HeartRateZone.Rest
     );
     
     var zone1: Zone = Zone(
         _lower: calculateBPMForZone(heartRateReserve, 0.50, _restBPM),
-        _upper: calculateBPMForZone(heartRateReserve, 0.59, _restBPM),
+        _upper: calculateBPMForZone(heartRateReserve, 0.599999, _restBPM),
         _zone: HeartRateZone.ZoneOne
     );
     
@@ -259,7 +259,7 @@ func calculateHeartRateZones(_maxBPM: Double, _restBPM: Double)->[Zone]{
     
     var zone5: Zone = Zone(
         _lower: calculateBPMForZone(heartRateReserve, 0.94, _restBPM),
-        _upper: calculateBPMForZone(heartRateReserve, 1.0, _restBPM)-1,
+        _upper: calculateBPMForZone(heartRateReserve, 1.0, _restBPM) - 1,
         _zone: HeartRateZone.ZoneFive
     );
     

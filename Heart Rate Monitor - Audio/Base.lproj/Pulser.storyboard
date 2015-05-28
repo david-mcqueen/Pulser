@@ -599,7 +599,7 @@
                         <sections>
                             <tableViewSection headerTitle="Calculator" id="S3k-d3-6Lu">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="MOf-j6-M2Y" style="IBUITableViewCellStyleDefault" id="dwg-pX-WUe">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="MOf-j6-M2Y" style="IBUITableViewCellStyleDefault" id="dwg-pX-WUe">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dwg-pX-WUe" id="uqN-zQ-UmF">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -620,7 +620,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Manual" id="Wxq-wn-mLy">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bVZ-zG-tSb" style="IBUITableViewCellStyleDefault" id="WU9-6R-YDI">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bVZ-zG-tSb" style="IBUITableViewCellStyleDefault" id="WU9-6R-YDI">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WU9-6R-YDI" id="8Uv-kb-nh4">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -661,7 +661,7 @@
                         <sections>
                             <tableViewSection headerTitle="Calculator" id="GHW-V6-jII">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aYn-T2-AtN">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="aYn-T2-AtN">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aYn-T2-AtN" id="wcU-1F-d4Y">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -687,7 +687,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="4cO-hP-4vx">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="4cO-hP-4vx">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4cO-hP-4vx" id="Tid-WZ-vEp">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -713,7 +713,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Oc7-XZ-L8s">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Oc7-XZ-L8s">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oc7-XZ-L8s" id="uZU-lw-emZ">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -736,7 +736,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="pfg-01-7ir">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="pfg-01-7ir">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pfg-01-7ir" id="2v1-M4-zDK">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -775,10 +775,10 @@
             </objects>
             <point key="canvasLocation" x="4062" y="-118"/>
         </scene>
-        <!--View Controller-->
+        <!--Disclaimer-->
         <scene sceneID="TWh-gj-td0">
             <objects>
-                <viewController id="zko-ne-Bkg" sceneMemberID="viewController">
+                <viewController title="Disclaimer" id="zko-ne-Bkg" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="il3-De-7Xk"/>
                         <viewControllerLayoutGuide type="bottom" id="aom-WX-Fx6"/>
@@ -787,17 +787,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Discliamer!" translatesAutoresizingMaskIntoConstraints="NO" id="lo2-AM-zEo">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lo2-AM-zEo">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
                                 </accessibility>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Pulser provides heart rate zones for guidelines only. You are responsible for ensuring you train within your own limits, and if you start to experience discomfort you should seek professional advice. Pulser accepts no liability for individuals who suffer injury as a result of the heart rate zone recommendations provided in this application.  Pulser uses common calculations to determine user heart rate zones. There are multiple variations of calculation, as such you may have different zones to those calculated by Pulser. More information about the calculation method used by Pulser can be found at RunnersWorld http://www.runnersworld.com/running-tips/heart-rate-training-is-it-right-for-you  Pulser has no affiliation of any kind with RunnersWorld.</string>
+                                        <attributes>
+                                            <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aom-WX-Fx6" firstAttribute="top" secondItem="lo2-AM-zEo" secondAttribute="bottom" id="B9q-J1-e32"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lo2-AM-zEo" secondAttribute="trailing" constant="-16" id="G6d-DJ-de7"/>
+                            <constraint firstItem="lo2-AM-zEo" firstAttribute="leading" secondItem="yHb-9j-7oU" secondAttribute="leadingMargin" constant="-16" id="NF5-Mc-SZO"/>
+                            <constraint firstItem="lo2-AM-zEo" firstAttribute="top" secondItem="yHb-9j-7oU" secondAttribute="topMargin" id="uqI-Vg-2jW"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9S-mZ-6KK" userLabel="First Responder" sceneMemberID="firstResponder"/>

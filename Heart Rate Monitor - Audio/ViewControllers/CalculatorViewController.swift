@@ -27,7 +27,7 @@ class CalculatorViewController: UITableViewController, UITableViewDelegate, User
     
     @IBAction func calculatePressed(sender: AnyObject) {
         
-        let warningTitle = "Guidance Only!";
+        let warningTitle = "Guidlines Only!";
         let warningMessage = "Pulser provides these heart rate zones for guidance only. By continuing you indicate you accept the disclaimer detailed under the calculator information";
         
         var alert = UIAlertController(title: warningTitle, message: warningMessage, preferredStyle: UIAlertControllerStyle.Alert)
