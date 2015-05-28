@@ -347,29 +347,54 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         if(isRunning){
             //Start a timer
             if (currentUserSettings.AnnounceAudio){
-                //Start a repeating timer for X seconds, to announce BPM changes
-                audioTimer = NSTimer.scheduledTimerWithTimeInterval(currentUserSettings.getAudioIntervalSeconds(), target: self, selector: Selector("speakData"), userInfo: nil, repeats: true);
+                toggleAudioTimer(true);
             }
             
             if(currentUserSettings.SaveHealthkit){
-                //Start a repeating timer for X seconds, to save BPM to healthkit
-                healthkitTimer = NSTimer.scheduledTimerWithTimeInterval(currentUserSettings.getHealthkitIntervalSeconds(), target: self, selector: Selector("saveData"), userInfo: nil, repeats: true);
+                toggleHealthKitTimer(false);
             }
             
             changeButtonText(self.startStopButton, _buttonText: "Stop");
             
         }else{
             //End the timers
-            if(audioTimer != nil){
-                audioTimer?.invalidate()
-            }
-            
-            if(healthkitTimer != nil){
-                healthkitTimer?.invalidate()
-            }
+            toggleAudioTimer(false)
+            toggleHealthKitTimer(false);
             
             changeButtonText(self.startStopButton, _buttonText: "Start");
         }
+    }
+    
+    func toggleAudioTimer(shouldStart: Bool){
+        if (shouldStart){
+            //Start a repeating timer for X seconds, to announce BPM changes
+            audioTimer = NSTimer.scheduledTimerWithTimeInterval(currentUserSettings.getAudioIntervalSeconds(), target: self, selector: Selector("speakData"), userInfo: nil, repeats: true);
+        }else{
+            if(audioTimer != nil){
+                audioTimer?.invalidate();
+            }
+        }
+    }
+    
+    func resetAudioTimer(){
+        toggleAudioTimer(false); //First invalidate
+        toggleAudioTimer(true); //Then start
+    }
+    
+    func toggleHealthKitTimer(shouldStart:Bool){
+        if(shouldStart){
+            //Start a repeating timer for X seconds, to save BPM to healthkit
+            healthkitTimer = NSTimer.scheduledTimerWithTimeInterval(currentUserSettings.getHealthkitIntervalSeconds(), target: self, selector: Selector("saveData"), userInfo: nil, repeats: true);
+        }else{
+            if(healthkitTimer != nil){
+                healthkitTimer?.invalidate()
+            }
+        }
+    }
+    
+    func resetHKTimer(){
+        toggleHealthKitTimer(false); //First invalidate
+        toggleHealthKitTimer(true); //Then start
     }
     
     
@@ -449,7 +474,6 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         if segue.identifier == SegueIdentifier.ShowSettings.rawValue{
             let settingsViewController = segue.destinationViewController as! SettingsViewController
             settingsViewController.delegate = self;
-            settingsViewController.isRunning = running;
             settingsViewController.setUserSettings = currentUserSettings
         }
     }
@@ -483,6 +507,10 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         
         //Save the settings to NSUserDefaults
         saveUserSettings(newSettings);
+        
+        //reset the timers, as the interval could have changed
+        resetAudioTimer();
+        resetHKTimer();
     }
 }
 

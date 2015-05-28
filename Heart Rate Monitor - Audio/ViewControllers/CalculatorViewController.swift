@@ -56,7 +56,6 @@ class CalculatorViewController: UITableViewController, UITableViewDelegate, User
         
         //Finished with calculator, navigate to view the zones
         let zonesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EnterZonesViewController") as! EnterZonesViewController
-        zonesViewController.isRunning = false; //TODO:- Remove
         zonesViewController.userSettings = self.setUserSettings!
         zonesViewController.delegate = self;
         
@@ -80,6 +79,12 @@ class CalculatorViewController: UITableViewController, UITableViewDelegate, User
         saveUserSettings(setUserSettings!);
         
         self.navigationController?.popViewControllerAnimated(true);
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView;
+        
+        header.textLabel.textColor = redColour;
     }
     
     

@@ -25,7 +25,6 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
     @IBOutlet weak var healthkitMinutes: UILabel!
     
     weak var delegate: UserSettingsDelegate?;
-    var isRunning: Bool?;
     
     var setUserSettings: UserSettings?;
     var healthStore: HKHealthStore? = nil;
@@ -68,30 +67,12 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
         populateSliderFields(audioSlider, _text: audioMinutes);
         populateSliderFields(healthkitSlider, _text: healthkitMinutes);
         
-        toggleReadOnly(isRunning!);
-        
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
-        
-        
     }
     
-    func toggleReadOnly(_readOnly: Bool){
-        audioAnnouncementSwitch.userInteractionEnabled = !_readOnly;
-        audioAnnouncementZoneSwitch.userInteractionEnabled = !_readOnly;
-        audioSlider.userInteractionEnabled = !_readOnly;
-        audioMinutes.userInteractionEnabled = !_readOnly;
-        
-        healthkitSwitch.userInteractionEnabled = !_readOnly;
-        healthkitSlider.userInteractionEnabled = !_readOnly;
-        healthkitMinutes.userInteractionEnabled = !_readOnly;
-        
-        if(_readOnly){
-            displayAlert("Restricted", "Unable to modify settings when the monitor is running");
-        }
-    }
     @IBAction func audioSliderChanged(sender: AnyObject) {
         populateSliderFields(self.audioSlider, _text: self.audioMinutes);
         setUserSettings?.AudioIntervalMinutes = Double(self.audioSlider.value);

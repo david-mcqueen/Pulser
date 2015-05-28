@@ -12,8 +12,6 @@ import Foundation
 class ManageZonesViewController: UITableViewController, UITableViewDelegate, UserZonesDelegate {
 
     var setUserSettings: UserSettings?;
-    
-    var isRunning = false; //TODO:- Remove this limitation
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +29,6 @@ class ManageZonesViewController: UITableViewController, UITableViewDelegate, Use
             
             let zonesViewController = segue.destinationViewController as! EnterZonesViewController
             zonesViewController.delegate = self;
-            zonesViewController.isRunning = isRunning;
             zonesViewController.userSettings = setUserSettings!
             
         } else if segue.identifier == SegueIdentifier.CalculateZones.rawValue{
@@ -44,6 +41,12 @@ class ManageZonesViewController: UITableViewController, UITableViewDelegate, Use
         setUserSettings = _newSettings;
         //Save the settings to NSUserDefaults
         saveUserSettings(setUserSettings!);
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView;
+        
+        header.textLabel.textColor = redColour;
     }
     
 }
