@@ -172,10 +172,27 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
             }else{
                 return 1
             }
+        case 3:
+            return 2;
         default:
             return 1;
         }
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if (indexPath.section == 3){
+            switch indexPath.row{
+            case 0:
+                Instabug.invokeFeedbackSender();
+            case 1:
+                UIApplication.sharedApplication().openURL(NSURL(string: "itms-apps://itunes.apple.com/ca/app/pulser-hear-your-heart/id981645997")!)
+            default:
+                break;
+            }
+        }
+        
+    }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.ManageZones.rawValue{

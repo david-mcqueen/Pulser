@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451604519.677755"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "centralManager(_:didConnectPeripheral:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451605484.927802"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "getHeartBPMData(_:error:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451605484.927802"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451605484.927802"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "454529832.004225"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "503"
-            endingLineNumber = "503"
+            startingLineNumber = "509"
+            endingLineNumber = "509"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -392,11 +392,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451605484.927802"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -408,11 +408,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451605484.927802"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "peripheral(_:didUpdateValueForCharacteristic:error:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -424,11 +424,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451605484.927802"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "getHeartBPMData(_:error:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -440,39 +440,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451605484.927802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
-            landmarkName = "getHeartBPMData(_:error:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451605484.927802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
-            landmarkName = "getHeartBPMData(_:error:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451605484.927802"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "290"
@@ -488,11 +456,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451605484.927802"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "getHeartBPMData(_:error:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -504,11 +472,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451605484.927802"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
+            landmarkName = "getHeartBPMData(_:error:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Heart Rate Monitor - Audio/ViewController.swift"
+            timestampString = "454536042.856217"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
+            landmarkName = "getHeartBPMData(_:error:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Heart Rate Monitor - Audio/ViewController.swift"
+            timestampString = "454536042.856217"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "centralManagerDidUpdateState(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -520,11 +520,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "454529832.004225"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -536,11 +536,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "454529832.004225"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "400"
-            endingLineNumber = "400"
+            startingLineNumber = "406"
+            endingLineNumber = "406"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -552,11 +552,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451605484.927802"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "centralManagerDidUpdateState(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -568,11 +568,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "451605484.927802"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "centralManagerDidUpdateState(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -600,11 +600,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "454529832.004225"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "506"
-            endingLineNumber = "506"
+            startingLineNumber = "512"
+            endingLineNumber = "512"
             landmarkName = "didUpdateUserSettings(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -616,11 +616,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heart Rate Monitor - Audio/ViewController.swift"
-            timestampString = "454529832.004225"
+            timestampString = "454536042.856217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "478"
-            endingLineNumber = "478"
+            startingLineNumber = "484"
+            endingLineNumber = "484"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>

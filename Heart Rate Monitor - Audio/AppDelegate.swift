@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             GAI.sharedInstance().defaultTracker.send(build);
         }
         
-        Instabug.startWithToken("dcf1c73320935878b9ea99a52f622d91", captureSource: IBGCaptureSourceUIKit, invocationEvent: IBGInvocationEventShake);        
+        Instabug.startWithToken("dcf1c73320935878b9ea99a52f622d91", captureSource: IBGCaptureSourceUIKit, invocationEvent: IBGInvocationEventRightEdgePan);
         return true
     }
 

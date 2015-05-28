@@ -80,6 +80,11 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
         session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers, error: &error)
         
         services = [HRM_HEART_RATE_SERVICE_UUID, HRM_DEVICE_INFO_SERVICE_UUID];
+        
+        //Configure Instabug
+        Instabug.setEmailIsRequired(false);
+        Instabug.setWillSendCrashReportsImmediately(true);
+        Instabug.setCommentIsRequired(true);
     }
     
     override func viewWillAppear(animated: Bool) {
