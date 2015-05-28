@@ -66,6 +66,7 @@ func writeBPM(BPMInput: Double){
 
 func saveUserSettings(newUserSettings: UserSettings){
     NSUserDefaults.standardUserDefaults().setObject(newUserSettings.AnnounceAudio, forKey: UserDefaultKeys.SaveAudio.rawValue);
+    NSUserDefaults.standardUserDefaults().setObject(newUserSettings.AnnounceAudioZoneChange, forKey: UserDefaultKeys.SaveAudioZoneChange.rawValue);
     NSUserDefaults.standardUserDefaults().setObject(newUserSettings.SaveHealthkit, forKey: UserDefaultKeys.SaveHealthKit.rawValue);
     NSUserDefaults.standardUserDefaults().setObject(newUserSettings.getAudioIntervalasFloat(), forKey: UserDefaultKeys.AudioInterval.rawValue);
     NSUserDefaults.standardUserDefaults().setObject(newUserSettings.getHealthkitIntervalasFloat(), forKey: UserDefaultKeys.HealthKitInterval.rawValue);
@@ -88,6 +89,9 @@ func loadUserSettings()->UserSettings{
     
     if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.SaveAudio.rawValue) {
         savedUser.AnnounceAudio = savedValue as! Bool;
+    }
+    if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.SaveAudioZoneChange.rawValue) {
+        savedUser.AnnounceAudioZoneChange = savedValue as! Bool;
     }
     if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.SaveHealthKit.rawValue) {
         savedUser.SaveHealthkit = savedValue as! Bool;

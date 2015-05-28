@@ -15,6 +15,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
     var tracker: GAITracker = GAI.sharedInstance().defaultTracker;
     
     @IBOutlet weak var audioAnnouncementSwitch: UISwitch!
+    @IBOutlet weak var audioAnnouncementZoneSwitch: UISwitch!
     @IBOutlet weak var audioSlider: UISlider!
     @IBOutlet weak var audioMinutes: UILabel!
     
@@ -53,11 +54,13 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
         setUserSettings = loadUserSettings();
         
         var audioAnnounce = setUserSettings?.AnnounceAudio;
+        var audioAnnounceZones = setUserSettings?.AnnounceAudioZoneChange;
         var healthkitSave = setUserSettings?.SaveHealthkit;
         var audioInterval = setUserSettings?.getAudioIntervalasFloat();
         var healthkitInterval = setUserSettings?.getHealthkitIntervalasFloat();
         
         audioAnnouncementSwitch.on = audioAnnounce!;
+        audioAnnouncementZoneSwitch.on = audioAnnounceZones!;
         healthkitSwitch.on = healthkitSave!;
         audioSlider.value = audioInterval!;
         healthkitSlider.value = healthkitInterval!;
@@ -77,6 +80,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
     
     func toggleReadOnly(_readOnly: Bool){
         audioAnnouncementSwitch.userInteractionEnabled = !_readOnly;
+        audioAnnouncementZoneSwitch.userInteractionEnabled = !_readOnly;
         audioSlider.userInteractionEnabled = !_readOnly;
         audioMinutes.userInteractionEnabled = !_readOnly;
         
@@ -101,6 +105,11 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
     @IBAction func audioSwitchChanged(sender: AnyObject) {
         setUserSettings?.AnnounceAudio = audioAnnouncementSwitch.on;
         self.tableView.reloadData()
+    }
+    
+    @IBAction func audioZoneSwitchChanged(sender: AnyObject) {
+        setUserSettings?.AnnounceAudioZoneChange = audioAnnouncementZoneSwitch.on;
+        
     }
     
     @IBAction func healthkitSwitchChanged(sender: AnyObject) {
@@ -184,7 +193,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
             return 1
         case 1:
             if (audioAnnouncementSwitch.on){
-                return 2
+                return 3
             }else{
                 return 1
             }

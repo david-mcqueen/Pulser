@@ -433,7 +433,7 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
             speechArray.removeAtIndex(0);
             nextUtterence.rate = 0.15;
 //            nextUtterence.voice(AVSpeechSynthesisVoice(language:"en-GB"))
-            if(self.currentUserSettings.AnnounceAudio){
+            if(self.currentUserSettings.shouldAnnounceAudio()){
                 self.mySpeechSynthesizer.speakUtterance(nextUtterence);
             }
         }

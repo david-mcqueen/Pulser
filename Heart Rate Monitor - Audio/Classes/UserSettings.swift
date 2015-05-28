@@ -11,6 +11,7 @@ import Foundation
 
 class UserSettings {
     var AnnounceAudio: Bool;
+    var AnnounceAudioZoneChange: Bool;
     var AudioIntervalMinutes: Double;
     var SaveHealthkit: Bool;
     var HealthkitIntervalMinutes: Double;
@@ -20,11 +21,16 @@ class UserSettings {
     init(){
         //Default user settings
         AnnounceAudio = true;
+        AnnounceAudioZoneChange = true;
         AudioIntervalMinutes = 1.0;
         SaveHealthkit = false;
         HealthkitIntervalMinutes = 1.0;
         UserZones = [];
         CurrentZone = HeartRateZone.Rest;
+    }
+    
+    func shouldAnnounceAudio()->Bool{
+        return AnnounceAudio && AnnounceAudioZoneChange;
     }
     
     
