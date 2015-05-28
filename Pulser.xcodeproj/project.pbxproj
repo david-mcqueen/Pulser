@@ -18,6 +18,19 @@
 		5505230D1ACAF7E800446352 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5505230B1ACAF7E800446352 /* UserDefaultKeys.swift */; };
 		550CDAAE1B1752A300A92FE4 /* ManageZonesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550CDAAD1B1752A300A92FE4 /* ManageZonesViewController.swift */; };
 		550CDAB01B17534000A92FE4 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550CDAAF1B17534000A92FE4 /* CalculatorViewController.swift */; };
+		550CDAB31B179F7900A92FE4 /* Instabug.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 550CDAB11B179F7900A92FE4 /* Instabug.bundle */; };
+		550CDAB41B179F7900A92FE4 /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550CDAB21B179F7900A92FE4 /* Instabug.framework */; };
+		550CDAB61B179FA200A92FE4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550CDAB51B179FA200A92FE4 /* AudioToolbox.framework */; };
+		550CDAB81B179FAC00A92FE4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550CDAB71B179FAC00A92FE4 /* CoreGraphics.framework */; };
+		550CDABA1B179FB600A92FE4 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550CDAB91B179FB600A92FE4 /* CoreMotion.framework */; };
+		550CDABC1B179FC100A92FE4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550CDABB1B179FC100A92FE4 /* CoreTelephony.framework */; };
+		550CDABE1B179FCC00A92FE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550CDABD1B179FCC00A92FE4 /* Foundation.framework */; };
+		550CDAC01B179FD500A92FE4 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550CDABF1B179FD500A92FE4 /* GLKit.framework */; };
+		550CDAC21B179FE500A92FE4 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 550CDAC11B179FE500A92FE4 /* libc++.dylib */; };
+		550CDAC41B179FEE00A92FE4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550CDAC31B179FEE00A92FE4 /* MessageUI.framework */; };
+		550CDAC61B179FF700A92FE4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550CDAC51B179FF700A92FE4 /* OpenGLES.framework */; };
+		550CDAC81B179FFF00A92FE4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550CDAC71B179FFF00A92FE4 /* QuartzCore.framework */; };
+		550CDACA1B17A01700A92FE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550CDAC91B17A01700A92FE4 /* UIKit.framework */; };
 		553931671AC955DC0096B218 /* Logo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 553931661AC955DC0096B218 /* Logo.gif */; };
 		5539316E1AC973C70096B218 /* TickCircle_Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 5539316C1AC973C70096B218 /* TickCircle_Active.png */; };
 		5539316F1AC973C70096B218 /* TickCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5539316D1AC973C70096B218 /* TickCircle.png */; };
@@ -70,6 +83,19 @@
 		5505230F1ACB2CAB00446352 /* Pulser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Pulser.entitlements; sourceTree = "<group>"; };
 		550CDAAD1B1752A300A92FE4 /* ManageZonesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManageZonesViewController.swift; path = ViewControllers/ManageZonesViewController.swift; sourceTree = "<group>"; };
 		550CDAAF1B17534000A92FE4 /* CalculatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalculatorViewController.swift; path = ViewControllers/CalculatorViewController.swift; sourceTree = "<group>"; };
+		550CDAB11B179F7900A92FE4 /* Instabug.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Instabug.bundle; sourceTree = "<group>"; };
+		550CDAB21B179F7900A92FE4 /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Instabug.framework; sourceTree = "<group>"; };
+		550CDAB51B179FA200A92FE4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		550CDAB71B179FAC00A92FE4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		550CDAB91B179FB600A92FE4 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		550CDABB1B179FC100A92FE4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		550CDABD1B179FCC00A92FE4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		550CDABF1B179FD500A92FE4 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		550CDAC11B179FE500A92FE4 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		550CDAC31B179FEE00A92FE4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		550CDAC51B179FF700A92FE4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		550CDAC71B179FFF00A92FE4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		550CDAC91B17A01700A92FE4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		553931661AC955DC0096B218 /* Logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = Logo.gif; path = Designs/Logo.gif; sourceTree = SOURCE_ROOT; };
 		5539316C1AC973C70096B218 /* TickCircle_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TickCircle_Active.png; sourceTree = "<group>"; };
 		5539316D1AC973C70096B218 /* TickCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TickCircle.png; sourceTree = "<group>"; };
@@ -123,12 +149,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				550CDACA1B17A01700A92FE4 /* UIKit.framework in Frameworks */,
+				55E2D1161ACC111700F9D723 /* SystemConfiguration.framework in Frameworks */,
+				550CDAC81B179FFF00A92FE4 /* QuartzCore.framework in Frameworks */,
+				550CDAC61B179FF700A92FE4 /* OpenGLES.framework in Frameworks */,
+				550CDAC41B179FEE00A92FE4 /* MessageUI.framework in Frameworks */,
+				550CDAC21B179FE500A92FE4 /* libc++.dylib in Frameworks */,
+				550CDAC01B179FD500A92FE4 /* GLKit.framework in Frameworks */,
+				550CDABE1B179FCC00A92FE4 /* Foundation.framework in Frameworks */,
+				550CDABC1B179FC100A92FE4 /* CoreTelephony.framework in Frameworks */,
+				550CDABA1B179FB600A92FE4 /* CoreMotion.framework in Frameworks */,
+				550CDAB81B179FAC00A92FE4 /* CoreGraphics.framework in Frameworks */,
+				550CDAB61B179FA200A92FE4 /* AudioToolbox.framework in Frameworks */,
 				55E2D11D1ACC137E00F9D723 /* HealthKit.framework in Frameworks */,
 				55E2D11B1ACC120E00F9D723 /* libGoogleAnalyticsServices.a in Frameworks */,
 				55E2D11A1ACC118D00F9D723 /* libsqlite3.0.dylib in Frameworks */,
 				55E2D1171ACC112C00F9D723 /* CoreData.framework in Frameworks */,
-				55E2D1161ACC111700F9D723 /* SystemConfiguration.framework in Frameworks */,
 				55E2D1131ACC10B100F9D723 /* libz.dylib in Frameworks */,
+				550CDAB41B179F7900A92FE4 /* Instabug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,14 +190,27 @@
 		5597BE341A681A0800A59921 = {
 			isa = PBXGroup;
 			children = (
+				550CDAC91B17A01700A92FE4 /* UIKit.framework */,
+				550CDAC71B179FFF00A92FE4 /* QuartzCore.framework */,
+				550CDAC51B179FF700A92FE4 /* OpenGLES.framework */,
+				550CDAC31B179FEE00A92FE4 /* MessageUI.framework */,
+				550CDAC11B179FE500A92FE4 /* libc++.dylib */,
+				550CDABF1B179FD500A92FE4 /* GLKit.framework */,
+				550CDABD1B179FCC00A92FE4 /* Foundation.framework */,
+				550CDABB1B179FC100A92FE4 /* CoreTelephony.framework */,
+				550CDAB91B179FB600A92FE4 /* CoreMotion.framework */,
+				550CDAB71B179FAC00A92FE4 /* CoreGraphics.framework */,
+				550CDAB51B179FA200A92FE4 /* AudioToolbox.framework */,
+				550CDAB11B179F7900A92FE4 /* Instabug.bundle */,
+				550CDAB21B179F7900A92FE4 /* Instabug.framework */,
 				55E2D1181ACC115B00F9D723 /* libsqlite3.dylib */,
 				55E2D1141ACC10BB00F9D723 /* libsqlite3.0.dylib */,
 				55E2D1121ACC10B100F9D723 /* libz.dylib */,
 				55E2D1101ACC10A500F9D723 /* SystemConfiguration.framework */,
 				55E2D10E1ACC109B00F9D723 /* CoreData.framework */,
+				55D5DF4B1AC6ABC1008386D4 /* HealthKit.framework */,
 				55E2D0B11ACC106C00F9D723 /* GoogleAnalytics */,
 				5539317E1AC9AA530096B218 /* Settings.bundle */,
-				55D5DF4B1AC6ABC1008386D4 /* HealthKit.framework */,
 				5597BE3F1A681A0800A59921 /* Heart Rate Monitor - Audio */,
 				5597BE551A681A0900A59921 /* Heart Rate Monitor - AudioTests */,
 				5597BE3E1A681A0800A59921 /* Products */,
@@ -396,6 +447,7 @@
 				554D81C71AC9C29400DD958A /* Cog.gif in Resources */,
 				5539317F1AC9AA530096B218 /* Settings.bundle in Resources */,
 				5539316F1AC973C70096B218 /* TickCircle.png in Resources */,
+				550CDAB31B179F7900A92FE4 /* Instabug.bundle in Resources */,
 				55E2D0E91ACC106C00F9D723 /* Changelog.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,6 +619,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 11;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Heart Rate Monitor - Audio/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -590,6 +646,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 11;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Heart Rate Monitor - Audio/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

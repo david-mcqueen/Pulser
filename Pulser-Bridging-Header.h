@@ -16,3 +16,4 @@
 #import "GAILogger.h"
 #import "GAITrackedViewController.h"
 #import "GAITracker.h"
+#import <Instabug/Instabug.h>

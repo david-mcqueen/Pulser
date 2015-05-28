@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             build = GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "app_launched",label:"launch",value:nil).build() as [NSObject : AnyObject]
             GAI.sharedInstance().defaultTracker.send(build);
         }
+        
+        Instabug.startWithToken("dcf1c73320935878b9ea99a52f622d91", captureSource: IBGCaptureSourceUIKit, invocationEvent: IBGInvocationEventShake);        
         return true
     }
 
