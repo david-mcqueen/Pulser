@@ -31,14 +31,25 @@ class CalculatorViewController: UITableViewController, UITableViewDelegate {
         
         var alert = UIAlertController(title: warningTitle, message: warningMessage, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { action in
-            println("Did press Cancel")
+            //Don't do anything, as the user didn't accept.
         }))
         
         alert.addAction(UIAlertAction(title: "Continue", style: .Default, handler: { action in
             println("Did press OK")
+            //TODO:- Save the user acceptance. Dont want to ask again
+            calculateUserZones();
         }));
         
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func calculateUserZones(){
+        var zones = calculateHeartRateZones(
+            (self.inputMaxBPM.text as NSString).doubleValue,
+            (self.inputRestBPM.text as NSString).doubleValue
+        );
+        
+        //Finished with calculator, navigate to view the zones
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

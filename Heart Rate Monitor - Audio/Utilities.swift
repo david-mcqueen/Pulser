@@ -219,3 +219,72 @@ func displayAlert(title: String, message: String){
     var alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "OK")
     alert.show();
 }
+
+
+func calculateHeartRateZones(_maxBPM: Double, _restBPM: Double)->[Zone]{
+    //Following http://www.runnersworld.com/running-tips/heart-rate-training-is-it-right-for-you
+    
+    var heartRateReserve: Double = Double(_maxBPM - _restBPM);
+    var allZones: [Zone] = [];
+    
+    var rest: Zone = Zone(
+        _lower: 0,
+        _upper: calculateBPMForZone(heartRateReserve, 0.60, _restBPM),
+        _zone: HeartRateZone.Rest
+    );
+    
+    var zone1: Zone = Zone(
+        _lower: calculateBPMForZone(heartRateReserve, 0.50, _restBPM),
+        _upper: calculateBPMForZone(heartRateReserve, 0.59, _restBPM),
+        _zone: HeartRateZone.ZoneOne
+    );
+    
+    var zone2: Zone = Zone(
+        _lower: calculateBPMForZone(heartRateReserve, 0.60, _restBPM),
+        _upper: calculateBPMForZone(heartRateReserve, 0.70, _restBPM),
+        _zone: HeartRateZone.ZoneTwo
+    );
+    
+    var zone3: Zone = Zone(
+        _lower: calculateBPMForZone(heartRateReserve, 0.71, _restBPM),
+        _upper: calculateBPMForZone(heartRateReserve, 0.80, _restBPM),
+        _zone: HeartRateZone.ZoneThree
+    );
+    
+    var zone4: Zone = Zone(
+        _lower: calculateBPMForZone(heartRateReserve, 0.81, _restBPM),
+        _upper: calculateBPMForZone(heartRateReserve, 0.93, _restBPM),
+        _zone: HeartRateZone.ZoneFour
+    );
+    
+    var zone5: Zone = Zone(
+        _lower: calculateBPMForZone(heartRateReserve, 0.94, _restBPM),
+        _upper: calculateBPMForZone(heartRateReserve, 1.0, _restBPM),
+        _zone: HeartRateZone.ZoneFive
+    );
+    
+    var max: Zone = Zone(
+        _lower: calculateBPMForZone(heartRateReserve, 1.0, _restBPM),
+        _upper: 999,
+        _zone: HeartRateZone.Max
+    );
+    
+    allZones.append(rest);
+    allZones.append(zone1);
+    allZones.append(zone2);
+    allZones.append(zone3);
+    allZones.append(zone4);
+    allZones.append(zone5);
+    allZones.append(max);
+    
+    return allZones;
+}
+
+private func calculateBPMForZone(_reserve: Double, _modifier: Double, _restBPM: Double)->Int{
+    var step = (_reserve * (_modifier)) + _restBPM;
+    return Int(step);
+}
+
+
+
+
