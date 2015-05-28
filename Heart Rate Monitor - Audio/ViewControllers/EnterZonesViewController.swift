@@ -11,9 +11,7 @@ import UIKit
 
 
 class EnterZonesViewController: UITableViewController, UITableViewDelegate{
-    
-    var tracker: GAITracker = GAI.sharedInstance().defaultTracker;
-    
+        
     @IBOutlet weak var restZone: UITextField!
     @IBOutlet weak var maxZone: UITextField!
     

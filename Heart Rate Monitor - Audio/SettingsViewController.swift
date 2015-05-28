@@ -12,8 +12,6 @@ import HealthKit
 
 class SettingsViewController: UITableViewController, UITableViewDelegate {
     
-    var tracker: GAITracker = GAI.sharedInstance().defaultTracker;
-    
     @IBOutlet weak var audioAnnouncementSwitch: UISwitch!
     @IBOutlet weak var audioAnnouncementZoneSwitch: UISwitch!
     @IBOutlet weak var audioSlider: UISlider!
@@ -30,10 +28,6 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
     var healthStore: HKHealthStore? = nil;
     
     override func viewDidLoad() {
-        tracker.set(kGAIScreenName, value: "Settings");
-        var build = GAIDictionaryBuilder.createAppView().build() as [NSObject : AnyObject]
-        tracker.send(build);
-        
         super.viewDidLoad()
     }
     

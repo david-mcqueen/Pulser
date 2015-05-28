@@ -53,13 +53,10 @@
 		55D5DF551AC72989008386D4 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D5DF541AC72989008386D4 /* UserSettings.swift */; };
 		55D5DF581AC72AD2008386D4 /* SegueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D5DF571AC72AD2008386D4 /* SegueIdentifier.swift */; };
 		55D5DF5A1AC72C43008386D4 /* UserSettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D5DF591AC72C43008386D4 /* UserSettingsDelegate.swift */; };
-		55E2D0E91ACC106C00F9D723 /* Changelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 55E2D0B21ACC106C00F9D723 /* Changelog.txt */; };
-		55E2D1081ACC106C00F9D723 /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 55E2D0E81ACC106C00F9D723 /* Readme.txt */; };
 		55E2D1131ACC10B100F9D723 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E2D1121ACC10B100F9D723 /* libz.dylib */; };
 		55E2D1161ACC111700F9D723 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E2D1101ACC10A500F9D723 /* SystemConfiguration.framework */; };
 		55E2D1171ACC112C00F9D723 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E2D10E1ACC109B00F9D723 /* CoreData.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		55E2D11A1ACC118D00F9D723 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E2D1141ACC10BB00F9D723 /* libsqlite3.0.dylib */; };
-		55E2D11B1ACC120E00F9D723 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E2D10C1ACC107C00F9D723 /* libGoogleAnalyticsServices.a */; };
 		55E2D11D1ACC137E00F9D723 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D5DF4B1AC6ABC1008386D4 /* HealthKit.framework */; };
 		55E979821AC57D4700E19DBF /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979811AC57D4700E19DBF /* Utilities.swift */; };
 		55E979841AC57D7600E19DBF /* UserHeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E979831AC57D7600E19DBF /* UserHeartRate.swift */; };
@@ -120,19 +117,6 @@
 		55D5DF541AC72989008386D4 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSettings.swift; path = Classes/UserSettings.swift; sourceTree = "<group>"; };
 		55D5DF571AC72AD2008386D4 /* SegueIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueIdentifier.swift; path = Enums/SegueIdentifier.swift; sourceTree = "<group>"; };
 		55D5DF591AC72C43008386D4 /* UserSettingsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSettingsDelegate.swift; path = Protocols/UserSettingsDelegate.swift; sourceTree = "<group>"; };
-		55E2D0B21ACC106C00F9D723 /* Changelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changelog.txt; sourceTree = "<group>"; };
-		55E2D0DE1ACC106C00F9D723 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
-		55E2D0DF1ACC106C00F9D723 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
-		55E2D0E01ACC106C00F9D723 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
-		55E2D0E11ACC106C00F9D723 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
-		55E2D0E21ACC106C00F9D723 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
-		55E2D0E31ACC106C00F9D723 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
-		55E2D0E41ACC106C00F9D723 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
-		55E2D0E51ACC106C00F9D723 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
-		55E2D0E61ACC106C00F9D723 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
-		55E2D0E71ACC106C00F9D723 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		55E2D0E81ACC106C00F9D723 /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
-		55E2D10C1ACC107C00F9D723 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		55E2D10E1ACC109B00F9D723 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		55E2D1101ACC10A500F9D723 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		55E2D1121ACC10B100F9D723 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -162,7 +146,6 @@
 				550CDAB81B179FAC00A92FE4 /* CoreGraphics.framework in Frameworks */,
 				550CDAB61B179FA200A92FE4 /* AudioToolbox.framework in Frameworks */,
 				55E2D11D1ACC137E00F9D723 /* HealthKit.framework in Frameworks */,
-				55E2D11B1ACC120E00F9D723 /* libGoogleAnalyticsServices.a in Frameworks */,
 				55E2D11A1ACC118D00F9D723 /* libsqlite3.0.dylib in Frameworks */,
 				55E2D1171ACC112C00F9D723 /* CoreData.framework in Frameworks */,
 				55E2D1131ACC10B100F9D723 /* libz.dylib in Frameworks */,
@@ -209,7 +192,6 @@
 				55E2D1101ACC10A500F9D723 /* SystemConfiguration.framework */,
 				55E2D10E1ACC109B00F9D723 /* CoreData.framework */,
 				55D5DF4B1AC6ABC1008386D4 /* HealthKit.framework */,
-				55E2D0B11ACC106C00F9D723 /* GoogleAnalytics */,
 				5539317E1AC9AA530096B218 /* Settings.bundle */,
 				5597BE3F1A681A0800A59921 /* Heart Rate Monitor - Audio */,
 				5597BE551A681A0900A59921 /* Heart Rate Monitor - AudioTests */,
@@ -319,34 +301,6 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		55E2D0B11ACC106C00F9D723 /* GoogleAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				55E2D10C1ACC107C00F9D723 /* libGoogleAnalyticsServices.a */,
-				55E2D0B21ACC106C00F9D723 /* Changelog.txt */,
-				55E2D0DD1ACC106C00F9D723 /* Library */,
-				55E2D0E81ACC106C00F9D723 /* Readme.txt */,
-			);
-			path = GoogleAnalytics;
-			sourceTree = "<group>";
-		};
-		55E2D0DD1ACC106C00F9D723 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				55E2D0DE1ACC106C00F9D723 /* GAI.h */,
-				55E2D0DF1ACC106C00F9D723 /* GAIDictionaryBuilder.h */,
-				55E2D0E01ACC106C00F9D723 /* GAIEcommerceFields.h */,
-				55E2D0E11ACC106C00F9D723 /* GAIEcommerceProduct.h */,
-				55E2D0E21ACC106C00F9D723 /* GAIEcommerceProductAction.h */,
-				55E2D0E31ACC106C00F9D723 /* GAIEcommercePromotion.h */,
-				55E2D0E41ACC106C00F9D723 /* GAIFields.h */,
-				55E2D0E51ACC106C00F9D723 /* GAILogger.h */,
-				55E2D0E61ACC106C00F9D723 /* GAITrackedViewController.h */,
-				55E2D0E71ACC106C00F9D723 /* GAITracker.h */,
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -437,7 +391,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5539316E1AC973C70096B218 /* TickCircle_Active.png in Resources */,
-				55E2D1081ACC106C00F9D723 /* Readme.txt in Resources */,
 				553931821AC9AE050096B218 /* script.py in Resources */,
 				554D81C91AC9CCD500DD958A /* Cog2.png in Resources */,
 				5597BE481A681A0800A59921 /* Pulser.storyboard in Resources */,
@@ -448,7 +401,6 @@
 				5539317F1AC9AA530096B218 /* Settings.bundle in Resources */,
 				5539316F1AC973C70096B218 /* TickCircle.png in Resources */,
 				550CDAB31B179F7900A92FE4 /* Instabug.bundle in Resources */,
-				55E2D0E91ACC106C00F9D723 /* Changelog.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

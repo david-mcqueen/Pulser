@@ -13,7 +13,7 @@ import AVFoundation;
 import CoreLocation;
 import HealthKit;
 
-class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeripheralDelegate, AVSpeechSynthesizerDelegate, UserSettingsDelegate {
+class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, AVSpeechSynthesizerDelegate, UserSettingsDelegate {
 
     
     //MARK:- View Variables
@@ -64,9 +64,6 @@ class ViewController: GAITrackedViewController, CBCentralManagerDelegate, CBPeri
     //MARK:- View methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //The screen name for Google Analytics
-        self.screenName = "Main";
         
         mySpeechSynthesizer.delegate = self;
         currentUserSettings = loadUserSettings()

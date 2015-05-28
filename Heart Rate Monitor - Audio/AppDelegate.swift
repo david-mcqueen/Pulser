@@ -15,17 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        if true {
-            GAI.sharedInstance().trackUncaughtExceptions = true
-            GAI.sharedInstance().dispatchInterval = 20
-            GAI.sharedInstance().trackerWithTrackingId("UA-61448308-1")
-            GAI.sharedInstance().defaultTracker.allowIDFACollection = true
-            GAI.sharedInstance().logger.logLevel = GAILogLevel.Error
-            var build = GAIDictionaryBuilder.createAppView().build() as [NSObject : AnyObject]
-            GAI.sharedInstance().defaultTracker.send(build);
-            build = GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "app_launched",label:"launch",value:nil).build() as [NSObject : AnyObject]
-            GAI.sharedInstance().defaultTracker.send(build);
-        }
         
         Instabug.startWithToken("dcf1c73320935878b9ea99a52f622d91", captureSource: IBGCaptureSourceUIKit, invocationEvent: IBGInvocationEventRightEdgePan);
         return true
