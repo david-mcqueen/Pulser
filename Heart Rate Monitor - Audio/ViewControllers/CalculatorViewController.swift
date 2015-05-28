@@ -10,11 +10,12 @@
 import Foundation
 
 
-class CalculatorViewController: UITableViewController, UITableViewDelegate {
+class CalculatorViewController: UITableViewController, UITableViewDelegate, UserZonesDelegate {
     
     @IBOutlet weak var inputMaxBPM: UITextField!
     @IBOutlet weak var inputRestBPM: UITextField!
     @IBOutlet weak var btnCalculate: UIButton!
+    var setUserSettings: UserSettings?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,8 @@ class CalculatorViewController: UITableViewController, UITableViewDelegate {
         alert.addAction(UIAlertAction(title: "Continue", style: .Default, handler: { action in
             println("Did press OK")
             //TODO:- Save the user acceptance. Dont want to ask again
-            calculateUserZones();
+            self.calculateUserZones();
+
         }));
         
         self.presentViewController(alert, animated: true, completion: nil)
@@ -49,18 +51,35 @@ class CalculatorViewController: UITableViewController, UITableViewDelegate {
             (self.inputRestBPM.text as NSString).doubleValue
         );
         
+        setUserSettings?.UserZones = zones;
+        
+        
         //Finished with calculator, navigate to view the zones
+        let zonesViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EnterZonesViewController") as! EnterZonesViewController
+        zonesViewController.isRunning = false; //TODO:- Remove
+        zonesViewController.userSettings = self.setUserSettings!
+        zonesViewController.delegate = self;
+        
+        self.navigationController?.pushViewController(zonesViewController, animated: true);
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.section{
+        switch indexPath.row{
         case 0:
             inputMaxBPM.becomeFirstResponder();
         case 1:
-            inputRestBPM.becomeFirstResponder()
+            inputRestBPM.becomeFirstResponder();
         default:
             break;
         }
+    }
+    
+    func didUpdateUserZones(_newSettings: UserSettings) {
+        setUserSettings = _newSettings;
+        //Save the settings to NSUserDefaults
+        saveUserSettings(setUserSettings!);
+        
+        self.navigationController?.popViewControllerAnimated(true);
     }
     
     

@@ -31,7 +31,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="L8b-TX-Tcp" kind="show" id="mGH-BF-5nI"/>
+                                            <segue destination="L8b-TX-Tcp" kind="show" identifier="manageZones" id="mGH-BF-5nI"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -217,7 +217,7 @@
         <!--Enter Zones View Controller-->
         <scene sceneID="I13-MN-QTd">
             <objects>
-                <tableViewController id="51q-f5-D52" customClass="EnterZonesViewController" customModule="Pulser" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EnterZonesViewController" id="51q-f5-D52" customClass="EnterZonesViewController" customModule="Pulser" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="0aF-H7-Kvu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -613,7 +613,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="zUz-V7-jCv" kind="show" id="9NV-bR-CBh"/>
+                                            <segue destination="zUz-V7-jCv" kind="show" identifier="calculateZones" id="9NV-bR-CBh"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -634,7 +634,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="51q-f5-D52" kind="show" id="bdq-7g-i57"/>
+                                            <segue destination="51q-f5-D52" kind="show" identifier="modifyUserZones" id="bdq-7g-i57"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>

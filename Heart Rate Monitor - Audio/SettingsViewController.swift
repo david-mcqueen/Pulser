@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import HealthKit
 
-class SettingsViewController: UITableViewController, UITableViewDelegate, UserZonesDelegate {
+class SettingsViewController: UITableViewController, UITableViewDelegate {
     
     var tracker: GAITracker = GAI.sharedInstance().defaultTracker;
     
@@ -174,18 +174,6 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
         self.navigationController?.popViewControllerAnimated(true);
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == SegueIdentifier.ModifyUserZones.rawValue{
-            //Save the current settings before moving to a new screen
-            saveUserSettings(setUserSettings!)
-            let zonesViewController = segue.destinationViewController as! EnterZonesViewController
-            zonesViewController.delegate = self;
-            zonesViewController.isRunning = isRunning!;
-            zonesViewController.userSettings = setUserSettings!
-        }
-    }
-    
-    
     //MARK:- UITableViewDelegate
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
@@ -208,16 +196,19 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, UserZo
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueIdentifier.ManageZones.rawValue{
+            //Save the current settings before moving to a new screen
+            saveUserSettings(setUserSettings!)
+            let zonesViewController = segue.destinationViewController as! ManageZonesViewController
+//            zonesViewController.setUserSettings = setUserSettings!
+        }
+    }
+    
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView;
         
         header.textLabel.textColor = redColour;
-    }
-    
-    func didUpdateUserZones(_newSettings: UserSettings) {
-        setUserSettings = _newSettings;
-        //Save the settings to NSUserDefaults
-        saveUserSettings(setUserSettings!);
     }
     
 }

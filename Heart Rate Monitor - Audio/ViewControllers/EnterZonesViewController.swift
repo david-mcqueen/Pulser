@@ -42,7 +42,6 @@ class EnterZonesViewController: UITableViewController, UITableViewDelegate{
         }
         
         
-        
         displayZones();
     }
     

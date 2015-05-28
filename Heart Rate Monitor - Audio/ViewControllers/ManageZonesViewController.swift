@@ -9,8 +9,11 @@
 import Foundation
 
 
-class ManageZonesViewController: UITableViewController, UITableViewDelegate {
+class ManageZonesViewController: UITableViewController, UITableViewDelegate, UserZonesDelegate {
 
+    var setUserSettings: UserSettings?;
+    
+    var isRunning = false; //TODO:- Remove this limitation
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,5 +22,28 @@ class ManageZonesViewController: UITableViewController, UITableViewDelegate {
     override func viewWillDisappear(animated: Bool) {
     }
     
-
+    override func viewWillAppear(animated: Bool) {
+        setUserSettings = loadUserSettings();
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueIdentifier.ModifyUserZones.rawValue{
+            
+            let zonesViewController = segue.destinationViewController as! EnterZonesViewController
+            zonesViewController.delegate = self;
+            zonesViewController.isRunning = isRunning;
+            zonesViewController.userSettings = setUserSettings!
+            
+        } else if segue.identifier == SegueIdentifier.CalculateZones.rawValue{
+            let zonesViewController = segue.destinationViewController as! CalculatorViewController
+            zonesViewController.setUserSettings = setUserSettings!
+        }
+    }
+    
+    func didUpdateUserZones(_newSettings: UserSettings) {
+        setUserSettings = _newSettings;
+        //Save the settings to NSUserDefaults
+        saveUserSettings(setUserSettings!);
+    }
+    
 }
