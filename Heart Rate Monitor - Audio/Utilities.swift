@@ -184,8 +184,10 @@ func getAllZonesforBPM(BPM:Int, _zones:[Zone]) -> [HeartRateZone]{
             matchedZones.append(zone.getZoneType());
         }
     }
-    if (matchedZones.count > 1){
-        matchedZones.append(HeartRateZone.Unknown)
+    
+    //Return Rest as default
+    if (matchedZones.count < 1){
+        matchedZones.append(HeartRateZone.Rest)
     }
     
     return matchedZones;

@@ -289,10 +289,15 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         self.CurrentBPM = Int(values[1]);
         var newZone = getZoneforBPM(self.CurrentBPM, self.currentUserSettings.UserZones)
         
-        if (newZone != currentUserSettings.CurrentZone && connected && currentUserSettings.AnnounceAudioZoneChange){
-            speechArray.append("Zones Changed from \(currentUserSettings.CurrentZone.rawValue) to \(newZone.rawValue)")
+        if (newZone != currentUserSettings.CurrentZone && connected){
             currentUserSettings.CurrentZone = newZone
-            speakAllUtterences();
+            
+            //Only announce the zone change if the user has it turned on
+            if(currentUserSettings.AnnounceAudioZoneChange){
+                speechArray.append("Zones Changed from \(currentUserSettings.CurrentZone.rawValue) to \(newZone.rawValue)")
+                
+                speakAllUtterences();
+            }
         }
         displayCurrentHeartRate(self.CurrentBPM, _zone: currentUserSettings.CurrentZone);
         
@@ -511,8 +516,10 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         saveUserSettings(newSettings);
         
         //reset the timers, as the interval could have changed
-        resetAudioTimer();
-        resetHKTimer();
+        if(running){
+            resetAudioTimer();
+            resetHKTimer();
+        }
     }
 }
 
