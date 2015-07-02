@@ -1,0 +1,5 @@
+"ERROR" = "Error!";
+"FAILED_TO_CONNECT" = "Failed to connect to Heart Rate Monitor";
+"LOST_CONNECTION" = "Lost connection to Heart Rate Monitor";
+"REGAINED_CONNECTION" = "regained connection to heart rate monitor";
+"BLE_NOT_SUPPORTED" = "CoreBluetooth BLE hardware is unsupported on this platform";

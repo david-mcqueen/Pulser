@@ -1,0 +1,210 @@
+
+/* Class = "UITextField"; placeholder = "160"; ObjectID = "0W2-Nj-4ee"; */
+"0W2-Nj-4ee.placeholder" = "160";
+
+/* Class = "UILabel"; text = "Two"; ObjectID = "1c4-5R-Unl"; */
+"1c4-5R-Unl.text" = "Two";
+
+/* Class = "UILabel"; text = "Resting Heart Rate"; ObjectID = "4a6-be-CLo"; */
+"4a6-be-CLo.text" = "Resting Heart Rate";
+
+/* Class = "UIButton"; normalTitle = "Connect"; ObjectID = "5Bx-Dk-Vkb"; */
+"5Bx-Dk-Vkb.normalTitle" = "Connect";
+
+/* Class = "UILabel"; text = "Minimum"; ObjectID = "6ws-cz-g8G"; */
+"6ws-cz-g8G.text" = "Minimum";
+
+/* Class = "UILabel"; text = "Calculator Information"; ObjectID = "78I-op-3yS"; */
+"78I-op-3yS.text" = "Calculator Information";
+
+/* Class = "UILabel"; text = "Minutes"; ObjectID = "7Eb-1Z-TSe"; */
+"7Eb-1Z-TSe.text" = "Minutes";
+
+/* Class = "UITableViewSection"; headerTitle = "Support"; ObjectID = "9MM-Vw-tk7"; */
+"9MM-Vw-tk7.headerTitle" = "Support";
+
+/* Class = "UITableViewSection"; headerTitle = "Health Kit"; ObjectID = "AlC-BD-etM"; */
+"AlC-BD-etM.headerTitle" = "Health Kit";
+
+/* Class = "UITableViewSection"; headerTitle = "Audio"; ObjectID = "D2S-5m-xqp"; */
+"D2S-5m-xqp.headerTitle" = "Audio";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "DNm-96-8kD"; */
+"DNm-96-8kD.text" = "1";
+
+/* Class = "UILabel"; text = "BPM"; ObjectID = "EhC-tB-ZrX"; */
+"EhC-tB-ZrX.text" = "BPM";
+
+/* Class = "UITextField"; placeholder = "199"; ObjectID = "Fbe-2f-GhT"; */
+"Fbe-2f-GhT.placeholder" = "199";
+
+/* Class = "UILabel"; text = "Minimum"; ObjectID = "G6d-Hf-p23"; */
+"G6d-Hf-p23.text" = "Minimum";
+
+/* Class = "UITableViewSection"; headerTitle = "Calculator"; ObjectID = "GHW-V6-jII"; */
+"GHW-V6-jII.headerTitle" = "Calculator";
+
+/* Class = "UILabel"; text = "Manage Zones"; ObjectID = "GPu-0I-ER9"; */
+"GPu-0I-ER9.text" = "Manage Zones";
+
+/* Class = "UITextField"; placeholder = "100"; ObjectID = "HjE-go-hD1"; */
+"HjE-go-hD1.placeholder" = "100";
+
+/* Class = "UITableViewSection"; headerTitle = "Zone 2"; ObjectID = "HzL-9v-hA4"; */
+"HzL-9v-hA4.headerTitle" = "Zone 2";
+
+/* Class = "UILabel"; text = "Minimum"; ObjectID = "I09-CC-fAF"; */
+"I09-CC-fAF.text" = "Minimum";
+
+/* Class = "UILabel"; text = "HealthKit"; ObjectID = "Itg-3z-JR4"; */
+"Itg-3z-JR4.text" = "HealthKit";
+
+/* Class = "UITextField"; placeholder = "190"; ObjectID = "J2R-an-omF"; */
+"J2R-an-omF.placeholder" = "190";
+
+/* Class = "UILabel"; text = "Minimum"; ObjectID = "JQW-i3-uNJ"; */
+"JQW-i3-uNJ.text" = "Minimum";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "JhH-Mn-1qp"; */
+"JhH-Mn-1qp.normalTitle" = "Start";
+
+/* Class = "UILabel"; text = "Zone Calculator"; ObjectID = "MOf-j6-M2Y"; */
+"MOf-j6-M2Y.text" = "Zone Calculator";
+
+/* Class = "UILabel"; text = "BPM"; ObjectID = "NDi-TF-DWA"; */
+"NDi-TF-DWA.text" = "BPM";
+
+/* Class = "UILabel"; text = "Minutes"; ObjectID = "O3U-Pb-EON"; */
+"O3U-Pb-EON.text" = "Minutes";
+
+/* Class = "UILabel"; text = "Maximum"; ObjectID = "O9Y-VJ-zat"; */
+"O9Y-VJ-zat.text" = "Maximum";
+
+/* Class = "UILabel"; text = "Max Heart Rate"; ObjectID = "O9b-Mx-OIA"; */
+"O9b-Mx-OIA.text" = "Max Heart Rate";
+
+/* Class = "UILabel"; text = "Maximum"; ObjectID = "P6e-p8-gM0"; */
+"P6e-p8-gM0.text" = "Maximum";
+
+/* Class = "UITextField"; placeholder = "99"; ObjectID = "Q9C-zN-Ng2"; */
+"Q9C-zN-Ng2.placeholder" = "99";
+
+/* Class = "UITextField"; placeholder = "180"; ObjectID = "QHF-qP-wuY"; */
+"QHF-qP-wuY.placeholder" = "180";
+
+/* Class = "UILabel"; text = "Rate on the App store"; ObjectID = "RGm-4I-dIY"; */
+"RGm-4I-dIY.text" = "Rate on the App store";
+
+/* Class = "UITableViewSection"; headerTitle = "Calculator"; ObjectID = "S3k-d3-6Lu"; */
+"S3k-d3-6Lu.headerTitle" = "Calculator";
+
+/* Class = "UILabel"; text = "147"; ObjectID = "V9F-gO-DGg"; */
+"V9F-gO-DGg.text" = "147";
+
+/* Class = "UIBarButtonItem"; title = "Settings"; ObjectID = "WLW-4M-xbF"; */
+"WLW-4M-xbF.title" = "Settings";
+
+/* Class = "UITableViewSection"; headerTitle = "Manual"; ObjectID = "Wxq-wn-mLy"; */
+"Wxq-wn-mLy.headerTitle" = "Manual";
+
+/* Class = "UITableViewSection"; headerTitle = "Zone 5"; ObjectID = "X9j-LK-zTB"; */
+"X9j-LK-zTB.headerTitle" = "Zone 5";
+
+/* Class = "UITextField"; placeholder = "139"; ObjectID = "XGT-SC-ta3"; */
+"XGT-SC-ta3.placeholder" = "139";
+
+/* Class = "UILabel"; text = "Maximum"; ObjectID = "Xmb-EA-SUU"; */
+"Xmb-EA-SUU.text" = "Maximum";
+
+/* Class = "UILabel"; text = "Audio"; ObjectID = "YbN-f2-Dn2"; */
+"YbN-f2-Dn2.text" = "Audio";
+
+/* Class = "UITableViewSection"; headerTitle = "Zone 1"; ObjectID = "Yqn-Oh-Dw5"; */
+"Yqn-Oh-Dw5.headerTitle" = "Zone 1";
+
+/* Class = "UITableViewSection"; headerTitle = "Zones"; ObjectID = "YzK-sO-T2f"; */
+"YzK-sO-T2f.headerTitle" = "Zones";
+
+/* Class = "UILabel"; text = "Maximum"; ObjectID = "b1N-X7-b2U"; */
+"b1N-X7-b2U.text" = "Maximum";
+
+/* Class = "UILabel"; text = "View Zones"; ObjectID = "bVZ-zG-tSb"; */
+"bVZ-zG-tSb.text" = "View Zones";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "fWN-MV-Xv0"; */
+"fWN-MV-Xv0.text" = "1";
+
+/* Class = "UILabel"; text = "Current BPM"; ObjectID = "fZB-hp-4eD"; */
+"fZB-hp-4eD.text" = "Current BPM";
+
+/* Class = "UILabel"; text = "Connected"; ObjectID = "g8y-fL-rGO"; */
+"g8y-fL-rGO.text" = "Connected";
+
+/* Class = "UITextField"; placeholder = "159"; ObjectID = "gFL-h9-uEy"; */
+"gFL-h9-uEy.placeholder" = "159";
+
+/* Class = "UITextField"; placeholder = "119"; ObjectID = "h3V-ca-y0o"; */
+"h3V-ca-y0o.placeholder" = "119";
+
+/* Class = "UITextField"; placeholder = "60"; ObjectID = "hLn-Ge-BVO"; */
+"hLn-Ge-BVO.placeholder" = "60";
+
+/* Class = "UITextField"; placeholder = "140"; ObjectID = "i3E-Ya-sRC"; */
+"i3E-Ya-sRC.placeholder" = "140";
+
+/* Class = "UILabel"; text = "Zone Changes"; ObjectID = "l3j-i1-K1C"; */
+"l3j-i1-K1C.text" = "Zone Changes";
+
+/* Class = "UILabel"; text = "Feedback & Suggestions"; ObjectID = "mZX-JN-P1k"; */
+"mZX-JN-P1k.text" = "Feedback & Suggestions";
+
+/* Class = "UITableViewSection"; headerTitle = "Resting"; ObjectID = "nXe-H5-sVf"; */
+"nXe-H5-sVf.headerTitle" = "Resting";
+
+/* Class = "UILabel"; text = "Maximum"; ObjectID = "nhN-PQ-934"; */
+"nhN-PQ-934.text" = "Maximum";
+
+/* Class = "UIButton"; normalTitle = "Calculate"; ObjectID = "nyv-1e-C62"; */
+"nyv-1e-C62.normalTitle" = "Calculate";
+
+/* Class = "UILabel"; text = "Save to HealthKit"; ObjectID = "oFm-73-M9d"; */
+"oFm-73-M9d.text" = "Save to HealthKit";
+
+/* Class = "UITableViewSection"; headerTitle = "Maximum"; ObjectID = "orT-Nh-nzc"; */
+"orT-Nh-nzc.headerTitle" = "Maximum";
+
+/* Class = "UILabel"; text = "Current Zone"; ObjectID = "p6C-nP-VoW"; */
+"p6C-nP-VoW.text" = "Current Zone";
+
+/* Class = "UITextField"; placeholder = "179"; ObjectID = "pOs-Q7-DrP"; */
+"pOs-Q7-DrP.placeholder" = "179";
+
+/* Class = "UITextField"; placeholder = "120"; ObjectID = "pjm-9b-9DE"; */
+"pjm-9b-9DE.placeholder" = "120";
+
+/* Class = "UITextField"; placeholder = "200"; ObjectID = "qgH-Qz-uBe"; */
+"qgH-Qz-uBe.placeholder" = "200";
+
+/* Class = "UITableViewSection"; headerTitle = "Zone 3"; ObjectID = "qqq-bC-GqB"; */
+"qqq-bC-GqB.headerTitle" = "Zone 3";
+
+/* Class = "UILabel"; text = "Connecting..."; ObjectID = "reE-Q6-TbR"; */
+"reE-Q6-TbR.text" = "Connecting...";
+
+/* Class = "UILabel"; text = "Audio Announcements"; ObjectID = "stA-wr-88J"; */
+"stA-wr-88J.text" = "Audio Announcements";
+
+/* Class = "UILabel"; text = "Minimum"; ObjectID = "tLt-oC-jsU"; */
+"tLt-oC-jsU.text" = "Minimum";
+
+/* Class = "UILabel"; text = "Minimum"; ObjectID = "vZi-sK-vPf"; */
+"vZi-sK-vPf.text" = "Minimum";
+
+/* Class = "UITableViewSection"; headerTitle = "Zone 4"; ObjectID = "wCz-lW-J3d"; */
+"wCz-lW-J3d.headerTitle" = "Zone 4";
+
+/* Class = "UILabel"; text = "Minimum"; ObjectID = "wfM-Eq-vgs"; */
+"wfM-Eq-vgs.text" = "Minimum";
+
+/* Class = "UIViewController"; title = "Disclaimer"; ObjectID = "zko-ne-Bkg"; */
+"zko-ne-Bkg.title" = "Disclaimer";

@@ -107,7 +107,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         if (attemptReconnect){
             runningHRM(attemptReconnect);
             running = true;
-            speechArray.append("Pulser regained connection to heart rate monitor")
+            speechArray.append("Pulser " + NSLocalizedString("REGAINED_CONNECTION", comment: "regained connection to HRM"));
             speakAllUtterences()
             
         }
@@ -137,23 +137,27 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         self.running = false;
         connectedToHRM(false);
         runningHRM(false);
-        displayAlert("Error", "Failed to connect to Heart Rate Monitor")
+        displayAlert(
+            NSLocalizedString("ERROR", comment: "Error"),
+            NSLocalizedString("FAILED_TO_CONNECT", comment: "Failed to Connect to HRM")
+        );
     }
     
     
     func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
         println("Lost Connection");
 
-        
         if (running){
-            speechArray.append("Pulser lost connection to heart rate monitor")
+            speechArray.append("Pulser " + NSLocalizedString("LOST_CONNECTION", comment: "Lost Connection to HRM"))
             speakAllUtterences()
             
             //Attempt to reconnect to HRM
             attemptReconnect = true;
-            centralManager.scanForPeripheralsWithServices(services as [AnyObject], options: nil)
+            centralManager.scanForPeripheralsWithServices(services as [AnyObject], options: nil);
         }else{
-            displayAlert("Error", "Lost connection to Heart Rate Monitor")
+            displayAlert(NSLocalizedString("ERROR", comment: "Error"),
+                NSLocalizedString("LOST_CONNECTION", comment: "Lost Connection to HRM")
+            );
         }
         
         HRMPeripheral = nil;
@@ -199,7 +203,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             connectingLabel.hidden = true;
 
         case .Unsupported:
-            displayAlert("Error", "CoreBluetooth BLE hardware is unsupported on this platform");
+            displayAlert(NSLocalizedString("ERROR", comment: "Error"),
+                NSLocalizedString("BLE_NOT_SUPPORTED", comment: "BLE not supported"));
             self.running = false;
             connectedToHRM(false);
             runningHRM(false);
