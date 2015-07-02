@@ -93,10 +93,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
-   
-    
     //MARK:- CBCentralManagerDelegate
     //Called when a peripheral is successfully connected
     func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
@@ -180,7 +176,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             
         case .PoweredOn:
             NSLog("CoreBluetooth BLE hardware is powered on and ready");
-            
             
             //Add a peripheral that has connected via another app
             if (!alreadyConnectedDevice()){
@@ -271,10 +266,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     func speakData(){
         if(self.CurrentBPM > 0 && connected){
             speechArray.append("Heart rate is \(self.CurrentBPM) beats per minute");
-            
-            speechArray.append("Currently in zone \(currentUserSettings.CurrentZone.rawValue)")
+            speechArray.append("Currently in zone \(currentUserSettings.CurrentZone.rawValue)");
         }else{
-            speechArray.append("Unable to get Heart Rate")
+            speechArray.append(NSLocalizedString("UNABLE_TO_GET_BPM", comment: "Unable to get heart rate"));
         }
         speakAllUtterences();
     }
@@ -366,21 +360,27 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
                 toggleHealthKitTimer(false);
             }
             
-            changeButtonText(self.startStopButton, _buttonText: "Stop");
+            changeButtonText(self.startStopButton, _buttonText: NSLocalizedString("STOP", comment: "Stop"));
             
         }else{
             //End the timers
             toggleAudioTimer(false)
             toggleHealthKitTimer(false);
             
-            changeButtonText(self.startStopButton, _buttonText: "Start");
+            changeButtonText(self.startStopButton, _buttonText: NSLocalizedString("START", comment: "Start"));
         }
     }
     
     func toggleAudioTimer(shouldStart: Bool){
         if (shouldStart){
             //Start a repeating timer for X seconds, to announce BPM changes
-            audioTimer = NSTimer.scheduledTimerWithTimeInterval(currentUserSettings.getAudioIntervalSeconds(), target: self, selector: Selector("speakData"), userInfo: nil, repeats: true);
+            audioTimer = NSTimer.scheduledTimerWithTimeInterval(
+                currentUserSettings.getAudioIntervalSeconds(),
+                target: self,
+                selector: Selector("speakData"),
+                userInfo: nil,
+                repeats: true
+            );
         }else{
             if(audioTimer != nil){
                 audioTimer?.invalidate();
@@ -415,11 +415,13 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             running = !running;
             attemptReconnect = !running;
             runningHRM(running);
-            var action = running ? "Starting" : "Stopping"
+            var action = running ? NSLocalizedString("STARTING", comment: "Starting") : NSLocalizedString("STOPPING", comment: "Stopping")
             speechArray.append("\(action) Pulser");
             speakAllUtterences();
         }else{
-            displayAlert("Error", "Please setup heart rate zones first");
+            displayAlert(NSLocalizedString("ERROR", comment: "Error"),
+                NSLocalizedString("SETUP_ZONES_FIRST", comment: "Please setup zones first")
+            );
         }
         
         

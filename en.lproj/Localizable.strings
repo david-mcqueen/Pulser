@@ -3,3 +3,9 @@
 "LOST_CONNECTION" = "Lost connection to Heart Rate Monitor";
 "REGAINED_CONNECTION" = "regained connection to heart rate monitor";
 "BLE_NOT_SUPPORTED" = "CoreBluetooth BLE hardware is unsupported on this platform";
+"UNABLE_TO_GET_BPM" = "Unable to get Heart Rate";
+"STARTING" = "Starting";
+"STOPPING" = "Stopping";
+"SETUP_ZONES_FIRST" = "Please setup heart rate zones first";
+"STOP" = "Stop";
+"Start" = "Start";
