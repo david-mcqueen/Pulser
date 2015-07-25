@@ -55,6 +55,20 @@ class UserSettings {
         return convertMinuteToSeconds(self.HealthkitIntervalMinutes)
     }
     
+    func allZonesToString()->String{
+        var zonesAsString: String = "";
+        
+        for zone in UserZones{
+            zonesAsString += "\(singleZoneToString(zone))\n"
+        }
+        
+        return zonesAsString;
+    }
+    
+    private func singleZoneToString(inputZone: Zone)->String{
+        return "Zone \(inputZone.getZoneType().rawValue) - Min: \(inputZone.Lower) - Max: \(inputZone.Upper)"
+    }
+    
     private func convertMinuteToSeconds(minutes: Double)->Double{
         return minutes * 60;
     }

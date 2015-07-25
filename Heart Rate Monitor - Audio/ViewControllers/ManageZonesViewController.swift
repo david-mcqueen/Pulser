@@ -41,6 +41,8 @@ class ManageZonesViewController: UITableViewController, UITableViewDelegate, Use
         setUserSettings = _newSettings;
         //Save the settings to NSUserDefaults
         saveUserSettings(setUserSettings!);
+        NSLog("didUpdateUserZones");
+        NSLog("\n\(setUserSettings?.allZonesToString())!)");
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
