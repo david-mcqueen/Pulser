@@ -292,15 +292,24 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
             //Only announce the zone change if the user has it turned on
             if(currentUserSettings.AnnounceAudioZoneChange){
-                speechArray.append("Zones Changed from \(currentUserSettings.CurrentZone.rawValue) to \(newZone.rawValue)")
-                
+                speechArray.append(updateCurrentZoneAndReturnSpeechString(currentUserSettings.CurrentZone, newZone: newZone));
                 speakAllUtterences();
             }
-            
-            currentUserSettings.CurrentZone = newZone
         }
         displayCurrentHeartRate(self.CurrentBPM, _zone: currentUserSettings.CurrentZone);
+    }
+    
+    func updateCurrentZoneAndReturnSpeechString(oldZone: HeartRateZone, newZone: HeartRateZone)->String{
+        //The speech much be created before the zones are updated!
+        var speechString = createZoneChangedSpeech(currentUserSettings.CurrentZone, newZone: newZone);
         
+        currentUserSettings.CurrentZone = newZone;
+        
+        return speechString;
+    }
+    
+    private func createZoneChangedSpeech(oldZone: HeartRateZone, newZone: HeartRateZone)->String{
+        return "Zones Changed from \(oldZone.rawValue) to \(newZone.rawValue)";
     }
     
     func displayCurrentHeartRate(_bpm: Int, _zone: HeartRateZone){
