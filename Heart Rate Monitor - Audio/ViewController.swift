@@ -289,14 +289,15 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         var newZone = getZoneforBPM(self.CurrentBPM, self.currentUserSettings.UserZones)
         
         if (newZone != currentUserSettings.CurrentZone && connected){
-            currentUserSettings.CurrentZone = newZone
-            
+        
             //Only announce the zone change if the user has it turned on
             if(currentUserSettings.AnnounceAudioZoneChange){
                 speechArray.append("Zones Changed from \(currentUserSettings.CurrentZone.rawValue) to \(newZone.rawValue)")
                 
                 speakAllUtterences();
             }
+            
+            currentUserSettings.CurrentZone = newZone
         }
         displayCurrentHeartRate(self.CurrentBPM, _zone: currentUserSettings.CurrentZone);
         
