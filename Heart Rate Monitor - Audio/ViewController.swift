@@ -367,7 +367,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             }
             
             if(currentUserSettings.SaveHealthkit){
-                toggleHealthKitTimer(false);
+                toggleHealthKitTimer(true);
             }
             
             changeButtonText(self.startStopButton, _buttonText: NSLocalizedString("STOP", comment: "Stop"));
