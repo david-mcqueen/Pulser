@@ -17,6 +17,8 @@ class UserSettings {
     var HealthkitIntervalMinutes: Double;
     var UserZones: [Zone];
     var CurrentZone: HeartRateZone;
+    var AverageBPM: Bool;
+    var AverageBPMInterval: Double;
     
     init(){
         //Default user settings
@@ -27,6 +29,8 @@ class UserSettings {
         HealthkitIntervalMinutes = 1.0;
         UserZones = [];
         CurrentZone = HeartRateZone.Rest;
+        AverageBPM = false;
+        AverageBPMInterval = 10.0;
     }
     
     func shouldAnnounceAudio()->Bool{
@@ -42,10 +46,13 @@ class UserSettings {
         return convertDoubleToFloat(self.HealthkitIntervalMinutes);
     }
     
+    func getAverageBPMIntervalasFloat()-> Float{
+        return convertDoubleToFloat(self.AverageBPMInterval);
+    }
+    
     private func convertDoubleToFloat(input: Double)->Float{
         return Float(input);
     }
-    
     
     func getAudioIntervalSeconds()->Double{
         return convertMinuteToSeconds(self.AudioIntervalMinutes)
@@ -53,6 +60,10 @@ class UserSettings {
     
     func getHealthkitIntervalSeconds()->Double{
         return convertMinuteToSeconds(self.HealthkitIntervalMinutes)
+    }
+    
+    func getAverageBPMIntervalSeconds()->Double{
+        return self.AverageBPMInterval;
     }
     
     func allZonesToString()->String{

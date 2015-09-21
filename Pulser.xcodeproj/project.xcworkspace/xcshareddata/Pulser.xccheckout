@@ -11,9 +11,7 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>3810A386E5FEC0296224D592FAFE69EED1B91AEC</key>
-		<string>https://github.com/david-mcqueen/Heart-Rate-Monitor.git</string>
-		<key>89DEA3F5F9568CF75855BA588A653ED890DBDD26</key>
-		<string>https://github.com/david-mcqueen/Swift.git</string>
+		<string>https://github.com/david-mcqueen/Pulser.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Pulser.xcodeproj</string>
@@ -21,11 +19,9 @@
 	<dict>
 		<key>3810A386E5FEC0296224D592FAFE69EED1B91AEC</key>
 		<string>../..</string>
-		<key>89DEA3F5F9568CF75855BA588A653ED890DBDD26</key>
-		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/david-mcqueen/Heart-Rate-Monitor.git</string>
+	<string>https://github.com/david-mcqueen/Pulser.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -36,17 +32,9 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>89DEA3F5F9568CF75855BA588A653ED890DBDD26</string>
-			<key>IDESourceControlWCCName</key>
-			<string></string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>3810A386E5FEC0296224D592FAFE69EED1B91AEC</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Heart%20Rate%20Monitor%20-%20Audio</string>
+			<string>Pulser</string>
 		</dict>
 	</array>
 </dict>

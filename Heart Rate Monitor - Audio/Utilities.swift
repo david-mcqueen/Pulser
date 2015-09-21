@@ -58,7 +58,7 @@ func writeBPM(BPMInput: Double){
                 NSLog("BPM was saved OK");
             })
         }else{
-            NSLog("Failed to save Weight. Error: \(error)");
+            NSLog("Failed to save BPM. Error: \(error)");
         }
     })
     
@@ -70,6 +70,8 @@ func saveUserSettings(newUserSettings: UserSettings){
     NSUserDefaults.standardUserDefaults().setObject(newUserSettings.SaveHealthkit, forKey: UserDefaultKeys.SaveHealthKit.rawValue);
     NSUserDefaults.standardUserDefaults().setObject(newUserSettings.getAudioIntervalasFloat(), forKey: UserDefaultKeys.AudioInterval.rawValue);
     NSUserDefaults.standardUserDefaults().setObject(newUserSettings.getHealthkitIntervalasFloat(), forKey: UserDefaultKeys.HealthKitInterval.rawValue);
+    NSUserDefaults.standardUserDefaults().setObject(newUserSettings.AverageBPM, forKey: UserDefaultKeys.SaveAverageBPM.rawValue);
+    NSUserDefaults.standardUserDefaults().setObject(newUserSettings.getAverageBPMIntervalasFloat(), forKey: UserDefaultKeys.AverageBPM.rawValue)
     NSUserDefaults.standardUserDefaults().synchronize();
     saveUserZones(newUserSettings);
 }
@@ -102,6 +104,13 @@ func loadUserSettings()->UserSettings{
     if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.HealthKitInterval.rawValue) {
         savedUser.HealthkitIntervalMinutes = savedValue as! Double;
     }
+    if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.SaveAverageBPM.rawValue) {
+        savedUser.AverageBPM = savedValue as! Bool;
+    }
+    if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.AverageBPM.rawValue) {
+        savedUser.AverageBPMInterval = savedValue as! Double;
+    }
+    
     
     savedUser.UserZones = loadUserZones().UserZones;
     

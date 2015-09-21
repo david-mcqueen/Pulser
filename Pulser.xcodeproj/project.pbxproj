@@ -127,15 +127,11 @@
 		55E979811AC57D4700E19DBF /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		55E979831AC57D7600E19DBF /* UserHeartRate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeartRate.swift; sourceTree = "<group>"; };
 		55E979851AC57E4700E19DBF /* Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zone.swift; sourceTree = "<group>"; };
-		79A34DC31B409B6200C93722 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Pulser.strings; sourceTree = "<group>"; };
 		79A34DC41B409B6200C93722 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		79A34DC61B409BDF00C93722 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Pulser.strings; sourceTree = "<group>"; };
-		79A34DC71B409BF000C93722 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Pulser.strings; sourceTree = "<group>"; };
 		79A34DC81B409BF000C93722 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		79A34DCA1B409BFA00C93722 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		79A34DCE1B409C4B00C93722 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		79A34DD01B409C4D00C93722 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		79A34DD11B409C4E00C93722 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		79A34DD21B409C5100C93722 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -492,9 +488,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5597BE471A681A0800A59921 /* Base */,
-				79A34DC31B409B6200C93722 /* fr */,
 				79A34DC61B409BDF00C93722 /* en */,
-				79A34DC71B409BF000C93722 /* de */,
 			);
 			name = Pulser.storyboard;
 			sourceTree = "<group>";
@@ -514,8 +508,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				79A34DCE1B409C4B00C93722 /* en */,
-				79A34DD01B409C4D00C93722 /* fr */,
-				79A34DD11B409C4E00C93722 /* de */,
 				79A34DD21B409C5100C93722 /* Base */,
 			);
 			name = Localizable.strings;
@@ -665,6 +657,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -685,6 +678,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Heart Rate Monitor - AudioTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
