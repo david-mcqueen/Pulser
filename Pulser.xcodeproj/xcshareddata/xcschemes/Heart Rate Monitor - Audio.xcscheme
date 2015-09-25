@@ -16,12 +16,12 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5597BE3C1A681A0800A59921"
                BuildableName = "Pulser.app"
-               BlueprintName = "Heart Rate Monitor - Audio"
+               BlueprintName = "Pulser"
                ReferencedContainer = "container:Pulser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
-            buildForTesting = "NO"
+            buildForTesting = "YES"
             buildForRunning = "NO"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5597BE511A681A0900A59921"
-               BuildableName = "Heart Rate Monitor - AudioTests.xctest"
-               BlueprintName = "Heart Rate Monitor - AudioTests"
+               BuildableName = "Pulser-Tests.xctest"
+               BlueprintName = "Pulser-Tests"
                ReferencedContainer = "container:Pulser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -48,7 +48,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5597BE3C1A681A0800A59921"
             BuildableName = "Pulser.app"
-            BlueprintName = "Heart Rate Monitor - Audio"
+            BlueprintName = "Pulser"
             ReferencedContainer = "container:Pulser.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -72,7 +72,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5597BE3C1A681A0800A59921"
             BuildableName = "Pulser.app"
-            BlueprintName = "Heart Rate Monitor - Audio"
+            BlueprintName = "Pulser"
             ReferencedContainer = "container:Pulser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -91,7 +91,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5597BE3C1A681A0800A59921"
             BuildableName = "Pulser.app"
-            BlueprintName = "Heart Rate Monitor - Audio"
+            BlueprintName = "Pulser"
             ReferencedContainer = "container:Pulser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

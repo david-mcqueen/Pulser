@@ -110,7 +110,7 @@
 		5597BE471A681A0800A59921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Pulser.storyboard; sourceTree = "<group>"; };
 		5597BE491A681A0900A59921 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5597BE4C1A681A0900A59921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		5597BE521A681A0900A59921 /* Heart Rate Monitor - AudioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Heart Rate Monitor - AudioTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5597BE521A681A0900A59921 /* Pulser-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pulser-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5597BE571A681A0900A59921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5597BE581A681A0900A59921 /* Heart_Rate_Monitor___AudioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Heart_Rate_Monitor___AudioTests.swift"; sourceTree = "<group>"; };
 		55D5DF4B1AC6ABC1008386D4 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -192,7 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				5597BE3D1A681A0800A59921 /* Pulser.app */,
-				5597BE521A681A0900A59921 /* Heart Rate Monitor - AudioTests.xctest */,
+				5597BE521A681A0900A59921 /* Pulser-Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -320,9 +320,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5597BE3C1A681A0800A59921 /* Heart Rate Monitor - Audio */ = {
+		5597BE3C1A681A0800A59921 /* Pulser */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5597BE5C1A681A0900A59921 /* Build configuration list for PBXNativeTarget "Heart Rate Monitor - Audio" */;
+			buildConfigurationList = 5597BE5C1A681A0900A59921 /* Build configuration list for PBXNativeTarget "Pulser" */;
 			buildPhases = (
 				5597BE391A681A0800A59921 /* Sources */,
 				5597BE3A1A681A0800A59921 /* Frameworks */,
@@ -332,14 +332,14 @@
 			);
 			dependencies = (
 			);
-			name = "Heart Rate Monitor - Audio";
+			name = Pulser;
 			productName = "Heart Rate Monitor - Audio";
 			productReference = 5597BE3D1A681A0800A59921 /* Pulser.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5597BE511A681A0900A59921 /* Heart Rate Monitor - AudioTests */ = {
+		5597BE511A681A0900A59921 /* Pulser-Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5597BE5F1A681A0900A59921 /* Build configuration list for PBXNativeTarget "Heart Rate Monitor - AudioTests" */;
+			buildConfigurationList = 5597BE5F1A681A0900A59921 /* Build configuration list for PBXNativeTarget "Pulser-Tests" */;
 			buildPhases = (
 				5597BE4E1A681A0900A59921 /* Sources */,
 				5597BE4F1A681A0900A59921 /* Frameworks */,
@@ -350,9 +350,9 @@
 			dependencies = (
 				5597BE541A681A0900A59921 /* PBXTargetDependency */,
 			);
-			name = "Heart Rate Monitor - AudioTests";
+			name = "Pulser-Tests";
 			productName = "Heart Rate Monitor - AudioTests";
-			productReference = 5597BE521A681A0900A59921 /* Heart Rate Monitor - AudioTests.xctest */;
+			productReference = 5597BE521A681A0900A59921 /* Pulser-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -399,8 +399,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5597BE3C1A681A0800A59921 /* Heart Rate Monitor - Audio */,
-				5597BE511A681A0900A59921 /* Heart Rate Monitor - AudioTests */,
+				5597BE3C1A681A0800A59921 /* Pulser */,
+				5597BE511A681A0900A59921 /* Pulser-Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -480,7 +480,7 @@
 /* Begin PBXTargetDependency section */
 		5597BE541A681A0900A59921 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5597BE3C1A681A0800A59921 /* Heart Rate Monitor - Audio */;
+			target = 5597BE3C1A681A0800A59921 /* Pulser */;
 			targetProxy = 5597BE531A681A0900A59921 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -674,6 +674,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.uk.davemcqueen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				"TEST_HOST[sdk=*]" = "$(BUNDLE_LOADER)";
 			};
@@ -692,6 +693,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.uk.davemcqueen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				"TEST_HOST[sdk=*]" = "$(BUNDLE_LOADER)";
 			};
@@ -709,7 +711,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5597BE5C1A681A0900A59921 /* Build configuration list for PBXNativeTarget "Heart Rate Monitor - Audio" */ = {
+		5597BE5C1A681A0900A59921 /* Build configuration list for PBXNativeTarget "Pulser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5597BE5D1A681A0900A59921 /* Debug */,
@@ -718,7 +720,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5597BE5F1A681A0900A59921 /* Build configuration list for PBXNativeTarget "Heart Rate Monitor - AudioTests" */ = {
+		5597BE5F1A681A0900A59921 /* Build configuration list for PBXNativeTarget "Pulser-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5597BE601A681A0900A59921 /* Debug */,
