@@ -12,6 +12,8 @@ This is the main repo for Pulser (http://www.pulser.co.uk/), an iOS application 
 * Calculator for user heart rate zones
 
 
-
 ## License
 Pulser is freely available on the [iOS app store](https://itunes.apple.com/us/app/pulser-hear-your-heart/id981645997?ls=1&mt=8), and the source code is provided here under the [GNU V3](http://choosealicense.com/licenses/gpl-3.0/) license.
+
+##Contribution
+Pulser is, and always will be, free to obtain and use, and free from ads. If you wish to contribute to Pulser, either through bug fixes, or implementing new functionality then please get in contact and submit a code away
