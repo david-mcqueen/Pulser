@@ -361,7 +361,9 @@
 		5597BE351A681A0800A59921 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "David McQueen";
 				TargetAttributes = {
 					5597BE3C1A681A0800A59921 = {
@@ -537,6 +539,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -604,6 +607,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 11;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -615,6 +619,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleAnalytics",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.uk.davemcqueen.HRM;
 				PRODUCT_NAME = Pulser;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/Media/Mega/Programming/iOS_Applications/Pulser/Pulser-Bridging-Header.h";
@@ -631,6 +636,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 11;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -642,6 +648,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleAnalytics",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.uk.davemcqueen.HRM;
 				PRODUCT_NAME = Pulser;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/Media/Mega/Programming/iOS_Applications/Pulser/Pulser-Bridging-Header.h";
@@ -665,6 +672,7 @@
 				);
 				INFOPLIST_FILE = "Heart Rate Monitor - AudioTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "co.uk.davemcqueen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				"TEST_HOST[sdk=*]" = "$(BUNDLE_LOADER)";
@@ -682,6 +690,7 @@
 				);
 				INFOPLIST_FILE = "Heart Rate Monitor - AudioTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "co.uk.davemcqueen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				"TEST_HOST[sdk=*]" = "$(BUNDLE_LOADER)";

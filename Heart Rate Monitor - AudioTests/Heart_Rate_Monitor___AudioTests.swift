@@ -57,18 +57,18 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
     }
     
     func testCreateZone(){
-        var zoneValues: [String] = ["0", "100"];
-        var newZone:Zone = createZone(zoneValues, HeartRateZone.ZoneOne)
+        let zoneValues: [String] = ["0", "100"];
+        let newZone:Zone = createZone(zoneValues, _type: HeartRateZone.ZoneOne)
         
         XCTAssertTrue(newZone.Lower == 0, "Create New Zone - lower value");
         XCTAssertTrue(newZone.Upper == 100, "Create New Zone = upper value");
     }
     
     func testZoneChanges(){
-        var user = UserSettings();
+        let user = UserSettings();
         
-        var rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
-        var zone1 = Zone(_lower: 100, _upper: 119, _zone: HeartRateZone.ZoneOne);
+        let rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
+        let zone1 = Zone(_lower: 100, _upper: 119, _zone: HeartRateZone.ZoneOne);
         let zone2 = Zone(_lower: 120, _upper: 139, _zone: HeartRateZone.ZoneTwo);
         let zone3 = Zone(_lower: 140, _upper: 159, _zone: HeartRateZone.ZoneThree);
         let zone4 = Zone(_lower: 160, _upper: 179, _zone: HeartRateZone.ZoneFour);
@@ -87,7 +87,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         var currentBPM = 0;
         
         currentBPM = 100
-        var newZone = getZoneforBPM(currentBPM, user.UserZones)
+        var newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertTrue(newZone == HeartRateZone.ZoneOne, "Zone match - Pass");
         XCTAssertFalse(newZone == HeartRateZone.ZoneTwo, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneThree, "Zone match - Fail");
@@ -97,7 +97,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         XCTAssertFalse(newZone == HeartRateZone.Rest, "Zone match - Fail");
         
         currentBPM = 119
-        newZone = getZoneforBPM(currentBPM, user.UserZones)
+        newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertTrue(newZone == HeartRateZone.ZoneOne, "Zone match - Pass");
         XCTAssertFalse(newZone == HeartRateZone.ZoneTwo, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneThree, "Zone match - Fail");
@@ -107,7 +107,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         XCTAssertFalse(newZone == HeartRateZone.Rest, "Zone match - Fail");
         
         currentBPM = 120
-        newZone = getZoneforBPM(currentBPM, user.UserZones)
+        newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertFalse(newZone == HeartRateZone.ZoneOne, "Zone match - Fail");
         XCTAssertTrue(newZone == HeartRateZone.ZoneTwo, "Zone match - Pass");
         XCTAssertFalse(newZone == HeartRateZone.ZoneThree, "Zone match - Fail");
@@ -117,7 +117,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         XCTAssertFalse(newZone == HeartRateZone.Rest, "Zone match - Fail");
         
         currentBPM = 139
-        newZone = getZoneforBPM(currentBPM, user.UserZones)
+        newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertFalse(newZone == HeartRateZone.ZoneOne, "Zone match - Fail");
         XCTAssertTrue(newZone == HeartRateZone.ZoneTwo, "Zone match - Pass");
         XCTAssertFalse(newZone == HeartRateZone.ZoneThree, "Zone match - Fail");
@@ -127,7 +127,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         XCTAssertFalse(newZone == HeartRateZone.Rest, "Zone match - Fail");
         
         currentBPM = 140
-        newZone = getZoneforBPM(currentBPM, user.UserZones)
+        newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertFalse(newZone == HeartRateZone.ZoneOne, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneTwo, "Zone match - Fail");
         XCTAssertTrue(newZone == HeartRateZone.ZoneThree, "Zone match - Pass");
@@ -137,7 +137,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         XCTAssertFalse(newZone == HeartRateZone.Rest, "Zone match - Fail");
         
         currentBPM = 159
-        newZone = getZoneforBPM(currentBPM, user.UserZones)
+        newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertFalse(newZone == HeartRateZone.ZoneOne, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneTwo, "Zone match - Fail");
         XCTAssertTrue(newZone == HeartRateZone.ZoneThree, "Zone match - Pass");
@@ -147,7 +147,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         XCTAssertFalse(newZone == HeartRateZone.Rest, "Zone match - Fail");
         
         currentBPM = 160
-        newZone = getZoneforBPM(currentBPM, user.UserZones)
+        newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertFalse(newZone == HeartRateZone.ZoneOne, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneTwo, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneThree, "Zone match - Fail");
@@ -157,7 +157,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         XCTAssertFalse(newZone == HeartRateZone.Rest, "Zone match - Fail");
         
         currentBPM = 179
-        newZone = getZoneforBPM(currentBPM, user.UserZones)
+        newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertFalse(newZone == HeartRateZone.ZoneOne, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneTwo, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneThree, "Zone match - Fail");
@@ -167,7 +167,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         XCTAssertFalse(newZone == HeartRateZone.Rest, "Zone match - Fail");
         
         currentBPM = 180
-        newZone = getZoneforBPM(currentBPM, user.UserZones)
+        newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertFalse(newZone == HeartRateZone.ZoneOne, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneTwo, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneThree, "Zone match - Fail");
@@ -177,7 +177,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         XCTAssertFalse(newZone == HeartRateZone.Rest, "Zone match - Fail");
         
         currentBPM = 199
-        newZone = getZoneforBPM(currentBPM, user.UserZones)
+        newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertFalse(newZone == HeartRateZone.ZoneOne, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneTwo, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneThree, "Zone match - Fail");
@@ -187,7 +187,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         XCTAssertFalse(newZone == HeartRateZone.Rest, "Zone match - Fail");
         
         currentBPM = 200
-        newZone = getZoneforBPM(currentBPM, user.UserZones)
+        newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertFalse(newZone == HeartRateZone.ZoneOne, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneTwo, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneThree, "Zone match - Fail");
@@ -197,7 +197,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         XCTAssertFalse(newZone == HeartRateZone.Rest, "Zone match - Fail");
         
         currentBPM = 219
-        newZone = getZoneforBPM(currentBPM, user.UserZones)
+        newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertFalse(newZone == HeartRateZone.ZoneOne, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneTwo, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneThree, "Zone match - Fail");
@@ -207,7 +207,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         XCTAssertFalse(newZone == HeartRateZone.Rest, "Zone match - Fail");
         
         currentBPM = 99
-        newZone = getZoneforBPM(currentBPM, user.UserZones)
+        newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertFalse(newZone == HeartRateZone.ZoneOne, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneTwo, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneThree, "Zone match - Fail");
@@ -217,7 +217,7 @@ class Heart_Rate_Monitor___AudioTests: XCTestCase {
         XCTAssertTrue(newZone == HeartRateZone.Rest, "Zone match - Pass");
         
         currentBPM = 0
-        newZone = getZoneforBPM(currentBPM, user.UserZones)
+        newZone = getZoneforBPM(currentBPM, _zones: user.UserZones)
         XCTAssertFalse(newZone == HeartRateZone.ZoneOne, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneTwo, "Zone match - Fail");
         XCTAssertFalse(newZone == HeartRateZone.ZoneThree, "Zone match - Fail");

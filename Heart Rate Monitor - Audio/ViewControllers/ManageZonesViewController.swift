@@ -9,7 +9,7 @@
 import Foundation
 
 
-class ManageZonesViewController: UITableViewController, UITableViewDelegate, UserZonesDelegate {
+class ManageZonesViewController: UITableViewController, UserZonesDelegate {
 
     var setUserSettings: UserSettings?;
 
@@ -48,7 +48,7 @@ class ManageZonesViewController: UITableViewController, UITableViewDelegate, Use
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView;
         
-        header.textLabel.textColor = redColour;
+        header.textLabel!.textColor = redColour;
     }
     
 }

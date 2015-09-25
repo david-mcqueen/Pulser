@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import HealthKit
 
-class SettingsViewController: UITableViewController, UITableViewDelegate {
+class SettingsViewController: UITableViewController {
     
     @IBOutlet weak var audioAnnouncementSwitch: UISwitch!
     @IBOutlet weak var audioAnnouncementZoneSwitch: UISwitch!
@@ -39,7 +39,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
         
         //Check if the back button has been pressed
         for stackedView in self.navigationController!.viewControllers{
-            if stackedView as! NSObject == self{
+            if stackedView as NSObject == self{
                 return
             }
         }
@@ -50,13 +50,13 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
         
         setUserSettings = loadUserSettings();
         
-        var audioAnnounce = setUserSettings?.AnnounceAudio;
-        var audioAnnounceZones = setUserSettings?.AnnounceAudioZoneChange;
-        var healthkitSave = setUserSettings?.SaveHealthkit;
-        var audioInterval = setUserSettings?.getAudioIntervalasFloat();
-        var healthkitInterval = setUserSettings?.getHealthkitIntervalasFloat();
-        var averageBPMSecondsActual = setUserSettings?.getAverageBPMIntervalasFloat();
-        var averageBPM = setUserSettings?.AverageBPM;
+        let audioAnnounce = setUserSettings?.AnnounceAudio;
+        let audioAnnounceZones = setUserSettings?.AnnounceAudioZoneChange;
+        let healthkitSave = setUserSettings?.SaveHealthkit;
+        let audioInterval = setUserSettings?.getAudioIntervalasFloat();
+        let healthkitInterval = setUserSettings?.getHealthkitIntervalasFloat();
+        let averageBPMSecondsActual = setUserSettings?.getAverageBPMIntervalasFloat();
+        let averageBPM = setUserSettings?.AverageBPM;
         
         audioAnnouncementSwitch.on = audioAnnounce!;
         audioAnnouncementZoneSwitch.on = audioAnnounceZones!;
@@ -109,23 +109,25 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
     @IBAction func healthkitSwitchChanged(sender: AnyObject) {
         
         if(!deviceSupportsHealthKitAccess()){
-            displayAlert("Error", "Healthkit not supported on this device");
+            displayAlert("Error", message: "Healthkit not supported on this device");
             return;
         }
         
         self.healthStore = HKHealthStore();
         
-        let dataTypesToWrite = [
-            HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
-        ]
-        let dataTypesToRead = [];
+        let dataTypesToWrite: Set<HKSampleType> = [
+            HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)!
+            ]
+        let dataTypesToRead: Set<HKObjectType> = [];
         
-        self.healthStore?.requestAuthorizationToShareTypes(NSSet(array: dataTypesToWrite) as Set<NSObject>, readTypes: NSSet(array: dataTypesToRead as [AnyObject]) as Set<NSObject>, completion: {
+        self.healthStore?.requestAuthorizationToShareTypes(
+                dataTypesToWrite as Set<HKSampleType>,
+                readTypes: dataTypesToRead as Set<HKObjectType>, completion: {
             (success, error) in
             if success {
                 dispatch_async(dispatch_get_main_queue(), {
                     if(!havePermissionToSaveHealthKit()){
-                        displayAlert("Error", "Permission not received to save HealthKit data. Grant permission from iPhone settings to allow Pulser to save to HealthKit")
+                        displayAlert("Error", message: "Permission not received to save HealthKit data. Grant permission from iPhone settings to allow Pulser to save to HealthKit")
                         self.setUserSettings?.SaveHealthkit = false
                         self.healthkitSwitch.on = false;
                     }else{
@@ -136,7 +138,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
                 })
             }else{
                 dispatch_async(dispatch_get_main_queue(), {
-                    displayAlert("Error", "Permission not received to save HealthKit data. Grant permission from iPhone settings to allow Pulser to save to HealthKit")
+                    displayAlert("Error", message: "Permission not received to save HealthKit data. Grant permission from iPhone settings to allow Pulser to save to HealthKit")
                     self.setUserSettings?.SaveHealthkit = false
                     self.healthkitSwitch.on = false;
                     self.tableView.reloadData()
@@ -213,7 +215,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
         if segue.identifier == SegueIdentifier.ManageZones.rawValue{
             //Save the current settings before moving to a new screen
             saveUserSettings(setUserSettings!)
-            let zonesViewController = segue.destinationViewController as! ManageZonesViewController
+//            let zonesViewController = segue.destinationViewController as! ManageZonesViewController
 //            zonesViewController.setUserSettings = setUserSettings!
         }
     }
@@ -221,7 +223,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView;
         
-        header.textLabel.textColor = redColour;
+        header.textLabel!.textColor = redColour;
     }
     
 }

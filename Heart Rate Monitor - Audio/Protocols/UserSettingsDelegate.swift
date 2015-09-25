@@ -9,5 +9,5 @@
 import Foundation
 
 protocol UserSettingsDelegate: class {
-    func didUpdateUserSettings(UserSettings);
+    func didUpdateUserSettings(_: UserSettings);
 }

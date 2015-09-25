@@ -20,7 +20,7 @@ func havePermissionToSaveHealthKit()->Bool{
     
     let identifier = HKQuantityTypeIdentifierHeartRate;
     let quantityType = HKObjectType.quantityTypeForIdentifier(identifier);
-    let authorisationStatus = healthStore?.authorizationStatusForType(quantityType);
+    let authorisationStatus = healthStore?.authorizationStatusForType(quantityType!);
     
     if (authorisationStatus != HKAuthorizationStatus.SharingAuthorized){
         return false;
@@ -36,7 +36,7 @@ func writeBPM(BPMInput: Double){
     healthStore = HKHealthStore();
     
     if(!havePermissionToSaveHealthKit()){
-        displayAlert("Error", "Permission not received to save HealthKit. Grant permission from iPhone settings to allow Pulser to save to HealthKit")
+        displayAlert("Error", message: "Permission not received to save HealthKit. Grant permission from iPhone settings to allow Pulser to save to HealthKit")
     }
     
     let startDate = NSDate();
@@ -46,13 +46,13 @@ func writeBPM(BPMInput: Double){
     let heartRateUnit: HKUnit = HKUnit.countUnit().unitDividedByUnit(HKUnit.minuteUnit())
     let heartRateQuantity: HKQuantity = HKQuantity(unit: heartRateUnit, doubleValue: BPMInput)
     
-    var heartRate : HKQuantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
+    let heartRate : HKQuantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)!
     
     let WeightSample = HKQuantitySample(type: heartRate, quantity: heartRateQuantity, startDate: startDate, endDate: endDate);
     
     
     healthStore?.saveObject(WeightSample, withCompletion: {
-        (success: Bool, error: NSError!) -> Void in
+        (success: Bool, error: NSError?) -> Void in
         if success {
             dispatch_async(dispatch_get_main_queue(), {
                 NSLog("BPM was saved OK");
@@ -87,7 +87,7 @@ private func saveUserZones(userSettings: UserSettings){
 }
 
 func loadUserSettings()->UserSettings{
-    var savedUser:UserSettings = UserSettings();
+    let savedUser:UserSettings = UserSettings();
     
     if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.SaveAudio.rawValue) {
         savedUser.AnnounceAudio = savedValue as! Bool;
@@ -118,10 +118,10 @@ func loadUserSettings()->UserSettings{
 }
 
 private func loadUserZones()->UserSettings{
-    var savedUserZones: UserSettings = UserSettings();
+    let savedUserZones: UserSettings = UserSettings();
     
     //All the zone keys, and correspoing types to be retrieved
-    var zoneDictionary: [UserDefaultKeys: HeartRateZone] = [
+    let zoneDictionary: [UserDefaultKeys: HeartRateZone] = [
         UserDefaultKeys.ZoneRest : HeartRateZone.Rest,
         UserDefaultKeys.ZoneOne : HeartRateZone.ZoneOne,
         UserDefaultKeys.ZoneTwo : HeartRateZone.ZoneTwo,
@@ -133,8 +133,8 @@ private func loadUserZones()->UserSettings{
     
     for (key, zone) in zoneDictionary{
         if let savedZone: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(key.rawValue) {
-            var zoneValues = savedZone as! [NSString];
-            savedUserZones.UserZones.append(createZone(zoneValues as! [String], zone))
+            let zoneValues = savedZone as! [NSString];
+            savedUserZones.UserZones.append(createZone(zoneValues as! [String], _type: zone))
         }
     }
     
@@ -145,7 +145,7 @@ private func loadUserZones()->UserSettings{
 //Check that the input string is a valid BPM
 func isValidBPM(_inputBPM: String)->Bool{
     let validBPMRegex = "^([0-9]{1,3})$";
-    var bpmTest = NSPredicate(format:"SELF MATCHES %@", validBPMRegex);
+    let bpmTest = NSPredicate(format:"SELF MATCHES %@", validBPMRegex);
     return bpmTest.evaluateWithObject(_inputBPM);
 }
 
@@ -155,7 +155,7 @@ func validateZoneBoundaries(_inputZones: [Zone])->(Bool, String){
     var errorMessage = "\nZone boundaries invalid:";
     
     for zone in _inputZones{
-        if(zone.Lower > zone.Upper || (getAllZonesforBPM(zone.Lower, _inputZones).count > 1 || getAllZonesforBPM(zone.Upper, _inputZones).count > 1)){
+        if(zone.Lower > zone.Upper || (getAllZonesforBPM(zone.Lower, _zones: _inputZones).count > 1 || getAllZonesforBPM(zone.Upper, _zones: _inputZones).count > 1)){
             valid = false;
             errorMessage += "\n - Zone \(zone.getZoneType().rawValue) incorrect"
         }
@@ -165,7 +165,7 @@ func validateZoneBoundaries(_inputZones: [Zone])->(Bool, String){
 
 //Create a new zone
 func createZone(_zoneInputs: [String], _type: HeartRateZone)->Zone{
-    return Zone(_lower: _zoneInputs[0].toInt()!, _upper: _zoneInputs[1].toInt()!, _zone: _type);
+    return Zone(_lower: Int(_zoneInputs[0])!, _upper: Int(_zoneInputs[1])!, _zone: _type);
 }
 
 //Return the input values for the provided UITextField collection
@@ -173,13 +173,13 @@ func getZoneInputValues(_zoneInputGroup: [UITextField])->[String]{
     var zoneBPM: [String] = [];
     
     for inputBPM in _zoneInputGroup{
-        zoneBPM.append(inputBPM.text);
+        zoneBPM.append(inputBPM.text!);
     }
     return zoneBPM;
 }
 
 func getZoneforBPM(BPM:Int, _zones:[Zone]) -> HeartRateZone{
-    return getAllZonesforBPM(BPM, _zones)[0];
+    return getAllZonesforBPM(BPM, _zones: _zones)[0];
 }
 
 //Return all zones that the BPM falls into
@@ -227,7 +227,7 @@ func displayZonesValues(_zoneValues:[Int], _zoneFields: [UITextField]){
 
 
 func displayAlert(title: String, message: String){
-    var alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "OK")
+    let alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "OK")
     alert.show();
 }
 
@@ -235,47 +235,47 @@ func displayAlert(title: String, message: String){
 func calculateHeartRateZones(_maxBPM: Double, _restBPM: Double)->[Zone]{
     //Following http://www.runnersworld.com/running-tips/heart-rate-training-is-it-right-for-you
     
-    var heartRateReserve: Double = Double(_maxBPM - _restBPM);
+    let heartRateReserve: Double = Double(_maxBPM - _restBPM);
     var allZones: [Zone] = [];
     
-    var rest: Zone = Zone(
+    let rest: Zone = Zone(
         _lower: Int(_restBPM),
-        _upper: calculateBPMForZone(heartRateReserve, 0.50, _restBPM)-1,
+        _upper: calculateBPMForZone(heartRateReserve, _modifier: 0.50, _restBPM: _restBPM)-1,
         _zone: HeartRateZone.Rest
     );
     
-    var zone1: Zone = Zone(
-        _lower: calculateBPMForZone(heartRateReserve, 0.50, _restBPM),
-        _upper: calculateBPMForZone(heartRateReserve, 0.599999, _restBPM),
+    let zone1: Zone = Zone(
+        _lower: calculateBPMForZone(heartRateReserve, _modifier: 0.50, _restBPM: _restBPM),
+        _upper: calculateBPMForZone(heartRateReserve, _modifier: 0.599999, _restBPM: _restBPM),
         _zone: HeartRateZone.ZoneOne
     );
     
-    var zone2: Zone = Zone(
-        _lower: calculateBPMForZone(heartRateReserve, 0.60, _restBPM),
-        _upper: calculateBPMForZone(heartRateReserve, 0.70, _restBPM),
+    let zone2: Zone = Zone(
+        _lower: calculateBPMForZone(heartRateReserve, _modifier: 0.60, _restBPM: _restBPM),
+        _upper: calculateBPMForZone(heartRateReserve, _modifier: 0.70, _restBPM: _restBPM),
         _zone: HeartRateZone.ZoneTwo
     );
     
-    var zone3: Zone = Zone(
-        _lower: calculateBPMForZone(heartRateReserve, 0.71, _restBPM),
-        _upper: calculateBPMForZone(heartRateReserve, 0.80, _restBPM),
+    let zone3: Zone = Zone(
+        _lower: calculateBPMForZone(heartRateReserve, _modifier: 0.71, _restBPM: _restBPM),
+        _upper: calculateBPMForZone(heartRateReserve, _modifier: 0.80, _restBPM: _restBPM),
         _zone: HeartRateZone.ZoneThree
     );
     
-    var zone4: Zone = Zone(
-        _lower: calculateBPMForZone(heartRateReserve, 0.81, _restBPM),
-        _upper: calculateBPMForZone(heartRateReserve, 0.93, _restBPM),
+    let zone4: Zone = Zone(
+        _lower: calculateBPMForZone(heartRateReserve, _modifier: 0.81, _restBPM: _restBPM),
+        _upper: calculateBPMForZone(heartRateReserve, _modifier: 0.93, _restBPM: _restBPM),
         _zone: HeartRateZone.ZoneFour
     );
     
-    var zone5: Zone = Zone(
-        _lower: calculateBPMForZone(heartRateReserve, 0.94, _restBPM),
-        _upper: calculateBPMForZone(heartRateReserve, 1.0, _restBPM) - 1,
+    let zone5: Zone = Zone(
+        _lower: calculateBPMForZone(heartRateReserve, _modifier: 0.94, _restBPM: _restBPM),
+        _upper: calculateBPMForZone(heartRateReserve, _modifier: 1.0, _restBPM: _restBPM) - 1,
         _zone: HeartRateZone.ZoneFive
     );
     
-    var max: Zone = Zone(
-        _lower: calculateBPMForZone(heartRateReserve, 1.0, _restBPM),
+    let max: Zone = Zone(
+        _lower: calculateBPMForZone(heartRateReserve, _modifier: 1.0, _restBPM: _restBPM),
         _upper: 999,
         _zone: HeartRateZone.Max
     );
@@ -292,7 +292,7 @@ func calculateHeartRateZones(_maxBPM: Double, _restBPM: Double)->[Zone]{
 }
 
 private func calculateBPMForZone(_reserve: Double, _modifier: Double, _restBPM: Double)->Int{
-    var step = (_reserve * (_modifier)) + _restBPM;
+    let step = (_reserve * (_modifier)) + _restBPM;
     return Int(step);
 }
 

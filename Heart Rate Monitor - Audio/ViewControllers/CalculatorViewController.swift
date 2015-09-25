@@ -10,7 +10,7 @@
 import Foundation
 
 
-class CalculatorViewController: UITableViewController, UITableViewDelegate, UserZonesDelegate {
+class CalculatorViewController: UITableViewController, UserZonesDelegate {
     
     @IBOutlet weak var inputMaxBPM: UITextField!
     @IBOutlet weak var inputRestBPM: UITextField!
@@ -30,13 +30,13 @@ class CalculatorViewController: UITableViewController, UITableViewDelegate, User
         let warningTitle = "Guidlines Only!";
         let warningMessage = "Pulser provides these heart rate zones for guidance only. By continuing you indicate you accept the disclaimer detailed under the calculator information";
         
-        var alert = UIAlertController(title: warningTitle, message: warningMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: warningTitle, message: warningMessage, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { action in
             //Don't do anything, as the user didn't accept.
         }))
         
         alert.addAction(UIAlertAction(title: "Continue", style: .Default, handler: { action in
-            println("Did press OK")
+            print("Did press OK")
             //TODO:- Save the user acceptance. Dont want to ask again
             self.calculateUserZones();
 
@@ -46,9 +46,9 @@ class CalculatorViewController: UITableViewController, UITableViewDelegate, User
     }
     
     func calculateUserZones(){
-        var zones = calculateHeartRateZones(
-            (self.inputMaxBPM.text as NSString).doubleValue,
-            (self.inputRestBPM.text as NSString).doubleValue
+        let zones = calculateHeartRateZones(
+            (self.inputMaxBPM.text! as NSString).doubleValue,
+            _restBPM: (self.inputRestBPM.text! as NSString).doubleValue
         );
         
         setUserSettings?.UserZones = zones;
@@ -84,7 +84,7 @@ class CalculatorViewController: UITableViewController, UITableViewDelegate, User
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView;
         
-        header.textLabel.textColor = redColour;
+        header.textLabel!.textColor = redColour;
     }
     
     

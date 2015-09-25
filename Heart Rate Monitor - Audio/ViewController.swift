@@ -73,8 +73,12 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
         self.connectingLabel.hidden = true;
         
-        //Setup the Speech Synthesizer to annouce over the top of other playing audio (reduces other volume whilst uttering)
-        session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers, error: &error)
+        do {
+            //Setup the Speech Synthesizer to annouce over the top of other playing audio (reduces other volume whilst uttering)
+            try session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers)
+        } catch let error1 as NSError {
+            error = error1
+        }
         
         services = [HRM_HEART_RATE_SERVICE_UUID, HRM_DEVICE_INFO_SERVICE_UUID];
         
@@ -95,7 +99,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     //MARK:- CBCentralManagerDelegate
     //Called when a peripheral is successfully connected
-    func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
+    func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
         peripheral.delegate = self;
         peripheral.discoverServices(nil);
         self.connected = (peripheral.state == CBPeripheralState.Connected ? true : false);
@@ -111,37 +115,37 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     //called with the CBPeripheral class as its main input parameter. This contains most of the information there is to know about a BLE peripheral.
-    func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
-        println("Discovered \(peripheral.name)")
-        var localName = advertisementData;
+    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
+        print("Discovered \(peripheral.name)")
+        let localName = advertisementData;
         if localName.count > 0 {
-            println("stop scan")
+            print("stop scan")
             self.centralManager.stopScan();
-            println("assign peripheral")
+            print("assign peripheral")
             self.HRMPeripheral = peripheral;
-            println("delegate")
+            print("delegate")
             peripheral.delegate = self;
             
-            println("connect");
+            print("connect");
             self.centralManager.connectPeripheral(peripheral, options: nil);
         }
         
     }
     
-    func centralManager(central: CBCentralManager!, didFailToConnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
-        println("Failed to connect")
+    func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        print("Failed to connect")
         self.running = false;
         connectedToHRM(false);
         runningHRM(false);
         displayAlert(
             NSLocalizedString("ERROR", comment: "Error"),
-            NSLocalizedString("FAILED_TO_CONNECT", comment: "Failed to Connect to HRM")
+            message: NSLocalizedString("FAILED_TO_CONNECT", comment: "Failed to Connect to HRM")
         );
     }
     
     
-    func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
-        println("Lost Connection");
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        print("Lost Connection");
 
         if (running){
             speechArray.append("Pulser " + NSLocalizedString("LOST_CONNECTION", comment: "Lost Connection to HRM"))
@@ -149,10 +153,10 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             
             //Attempt to reconnect to HRM
             attemptReconnect = true;
-            centralManager.scanForPeripheralsWithServices(services as [AnyObject], options: nil);
+            centralManager.scanForPeripheralsWithServices(services as? [CBUUID], options: nil);
         }else{
             displayAlert(NSLocalizedString("ERROR", comment: "Error"),
-                NSLocalizedString("LOST_CONNECTION", comment: "Lost Connection to HRM")
+                message: NSLocalizedString("LOST_CONNECTION", comment: "Lost Connection to HRM")
             );
         }
         
@@ -164,7 +168,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     
     //Called whenever the device state changes
-    func centralManagerDidUpdateState(central: CBCentralManager!) {
+    func centralManagerDidUpdateState(central: CBCentralManager) {
         //Determine the state of the peripheral
         switch(central.state){
         case .PoweredOff:
@@ -179,7 +183,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             
             //Add a peripheral that has connected via another app
             if (!alreadyConnectedDevice()){
-                centralManager.scanForPeripheralsWithServices(services as [AnyObject], options: nil);
+                centralManager.scanForPeripheralsWithServices(services as? [CBUUID], options: nil);
                 connectingLabel.hidden = false;
             }
             
@@ -199,7 +203,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
 
         case .Unsupported:
             displayAlert(NSLocalizedString("ERROR", comment: "Error"),
-                NSLocalizedString("BLE_NOT_SUPPORTED", comment: "BLE not supported"));
+                message: NSLocalizedString("BLE_NOT_SUPPORTED", comment: "BLE not supported"));
             self.running = false;
             connectedToHRM(false);
             runningHRM(false);
@@ -219,17 +223,17 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     //MARK:- CBPeripheralDelegate
     //Called when you discover the peripherals available services
-    func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
-        for service  in peripheral.services as! [CBService] {
+    func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
+        for service  in peripheral.services! {
             NSLog("Discovered service: \(service.UUID)")
             peripheral.discoverCharacteristics(nil, forService: service as CBService)
         }
     }
     
     //When you discover the characteristics of a specified service
-    func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
+    func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
         if (service.UUID == HRM_HEART_RATE_SERVICE_UUID){
-            for char in service.characteristics as! [CBCharacteristic] {
+            for char in service.characteristics! {
                 if (char.UUID == HRM_MEASUREMENT_CHARACTERISTIC_UUID){
                     self.HRMPeripheral.setNotifyValue(true, forCharacteristic: char as CBCharacteristic);
                     NSLog("Found heart rate measurement characteristic");
@@ -241,8 +245,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         }
         
         if (service.UUID == HRM_DEVICE_INFO_SERVICE_UUID){
-            for char in service.characteristics as! [CBCharacteristic]{
-                print(char.UUID)
+            for char in service.characteristics! {
+                print(char.UUID, terminator: "")
                 if (char.UUID == HRM_MANUFACTURER_NAME_CHARACTERISTIC_UUID){
                     self.HRMPeripheral.readValueForCharacteristic(char as CBCharacteristic);
                     NSLog("Found a device manufacturer name characteristic");
@@ -252,9 +256,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     // Invoked when you retrieve a specified characteristic's value, or when the peripheral device notifies your app that the characteristic's value has changed.
-    func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
-        println("didUpdateValueForCharacteristic")
-        if (characteristic!.UUID == HRM_MEASUREMENT_CHARACTERISTIC_UUID){
+    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+        print("didUpdateValueForCharacteristic")
+        if (characteristic.UUID == HRM_MEASUREMENT_CHARACTERISTIC_UUID){
             if(running){
                 self.getHeartBPMData(characteristic, error: error)
             }
@@ -281,12 +285,12 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     //MARK:- CBCharacteristic helpers
     //Get the BPM info
     func getHeartBPMData(characteristic: CBCharacteristic!, error: NSError!){
-        var data = characteristic.value;
-        var values = [UInt8](count:data.length, repeatedValue: 0)
-        data.getBytes(&values, length: data.length);
+        let data = characteristic.value;
+        var values = [UInt8](count:data!.length, repeatedValue: 0)
+        data!.getBytes(&values, length: data!.length);
         
         self.CurrentBPM = Int(values[1]);
-        var newZone = getZoneforBPM(self.CurrentBPM, self.currentUserSettings.UserZones)
+        let newZone = getZoneforBPM(self.CurrentBPM, _zones: self.currentUserSettings.UserZones)
         
         if (newZone != currentUserSettings.CurrentZone && connected){
         
@@ -301,7 +305,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func updateCurrentZoneAndReturnSpeechString(oldZone: HeartRateZone, newZone: HeartRateZone)->String{
         //The speech much be created before the zones are updated!
-        var speechString = createZoneChangedSpeech(currentUserSettings.CurrentZone, newZone: newZone);
+        let speechString = createZoneChangedSpeech(currentUserSettings.CurrentZone, newZone: newZone);
         
         currentUserSettings.CurrentZone = newZone;
         
@@ -425,12 +429,12 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             running = !running;
             attemptReconnect = !running;
             runningHRM(running);
-            var action = running ? NSLocalizedString("STARTING", comment: "Starting") : NSLocalizedString("STOPPING", comment: "Stopping")
+            let action = running ? NSLocalizedString("STARTING", comment: "Starting") : NSLocalizedString("STOPPING", comment: "Stopping")
             speechArray.append("\(action) Pulser");
             speakAllUtterences();
         }else{
             displayAlert(NSLocalizedString("ERROR", comment: "Error"),
-                NSLocalizedString("SETUP_ZONES_FIRST", comment: "Please setup zones first")
+                message: NSLocalizedString("SETUP_ZONES_FIRST", comment: "Please setup zones first")
             );
         }
         
@@ -445,7 +449,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         attemptReconnect = false; //Manually connect
         centralManager = CBCentralManager(delegate: self, queue: nil);
         //Check every 2 seconds if the device is connected via another app
-        centralManager.scanForPeripheralsWithServices(services as [AnyObject], options: nil);
+        centralManager.scanForPeripheralsWithServices(services as? [CBUUID], options: nil);
         connectTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("alreadyConnectedDevice"), userInfo: nil, repeats: true);
        
     }
@@ -456,12 +460,12 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             return true
         }
         
-        var services = [HRM_HEART_RATE_SERVICE_UUID, HRM_DEVICE_INFO_SERVICE_UUID];
-        var connectedDevice = centralManager.retrieveConnectedPeripheralsWithServices(services);
+        let services = [HRM_HEART_RATE_SERVICE_UUID, HRM_DEVICE_INFO_SERVICE_UUID];
+        let connectedDevice = centralManager.retrieveConnectedPeripheralsWithServices(services);
         
         //Add a peripheral that has connected via another app
         if (connectedDevice.count > 0){
-            let device = connectedDevice.last as! CBPeripheral;
+            let device = connectedDevice.last!;
             self.HRMPeripheral = device;
             device.delegate = self;
             centralManager.connectPeripheral(device, options: nil)
@@ -478,7 +482,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func speakNextUtterence(){
         if((speechArray.count > 0)){
-            var nextUtterence: AVSpeechUtterance = AVSpeechUtterance(string:speechArray[0]);
+            let nextUtterence: AVSpeechUtterance = AVSpeechUtterance(string:speechArray[0]);
             speechArray.removeAtIndex(0);
             nextUtterence.rate = 0.15;
 //            nextUtterence.voice(AVSpeechSynthesisVoice(language:"en-GB"))
@@ -504,24 +508,44 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     
     //MARK:- AVSpeechSynthesizerDelegate
-    func speechSynthesizer(synthesizer: AVSpeechSynthesizer!, didStartSpeechUtterance utterance: AVSpeechUtterance!) {
-        session.setActive(true, error: &error)
+    func speechSynthesizer(synthesizer: AVSpeechSynthesizer, didStartSpeechUtterance utterance: AVSpeechUtterance) {
+        do {
+            try session.setActive(true)
+        } catch let error1 as NSError {
+            error = error1
+        }
     }
     
-    func speechSynthesizer(synthesizer: AVSpeechSynthesizer!, didFinishSpeechUtterance utterance: AVSpeechUtterance!) {
-        session.setActive(false, error: &error)
+    func speechSynthesizer(synthesizer: AVSpeechSynthesizer, didFinishSpeechUtterance utterance: AVSpeechUtterance) {
+        do {
+            try session.setActive(false)
+        } catch let error1 as NSError {
+            error = error1
+        }
     }
     
-    func speechSynthesizer(synthesizer: AVSpeechSynthesizer!, didPauseSpeechUtterance utterance: AVSpeechUtterance!) {
-        session.setActive(false, error: &error)
+    func speechSynthesizer(synthesizer: AVSpeechSynthesizer, didPauseSpeechUtterance utterance: AVSpeechUtterance) {
+        do {
+            try session.setActive(false)
+        } catch let error1 as NSError {
+            error = error1
+        }
     }
     
-    func speechSynthesizer(synthesizer: AVSpeechSynthesizer!, didContinueSpeechUtterance utterance: AVSpeechUtterance!) {
-        session.setActive(true, error: &error)
+    func speechSynthesizer(synthesizer: AVSpeechSynthesizer, didContinueSpeechUtterance utterance: AVSpeechUtterance) {
+        do {
+            try session.setActive(true)
+        } catch let error1 as NSError {
+            error = error1
+        }
     }
     
-    func speechSynthesizer(synthesizer: AVSpeechSynthesizer!, didCancelSpeechUtterance utterance: AVSpeechUtterance!) {
-        session.setActive(false, error: &error)
+    func speechSynthesizer(synthesizer: AVSpeechSynthesizer, didCancelSpeechUtterance utterance: AVSpeechUtterance) {
+        do {
+            try session.setActive(false)
+        } catch let error1 as NSError {
+            error = error1
+        }
     }
     
     //MARK:- UpdateSettingsDelegate

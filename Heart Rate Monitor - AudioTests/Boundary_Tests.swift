@@ -29,10 +29,10 @@ class Boundary_Tests: XCTestCase {
     }
     
     func testvalidateZoneBoundaries_1(){
-        var user = UserSettings();
+        let user = UserSettings();
         
-        var rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
-        var zone1 = Zone(_lower: 100, _upper: 119, _zone: HeartRateZone.ZoneOne);
+        let rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
+        let zone1 = Zone(_lower: 100, _upper: 119, _zone: HeartRateZone.ZoneOne);
         let zone2 = Zone(_lower: 120, _upper: 139, _zone: HeartRateZone.ZoneTwo);
         let zone3 = Zone(_lower: 140, _upper: 159, _zone: HeartRateZone.ZoneThree);
         let zone4 = Zone(_lower: 160, _upper: 179, _zone: HeartRateZone.ZoneFour);
@@ -53,10 +53,10 @@ class Boundary_Tests: XCTestCase {
     }
     
     func testvalidateZoneBoundaries_2(){
-        var user = UserSettings();
+        let user = UserSettings();
         
-        var rest = Zone(_lower: 0, _upper: 100, _zone: HeartRateZone.Rest);
-        var zone1 = Zone(_lower: 100, _upper: 119, _zone: HeartRateZone.ZoneOne);
+        let rest = Zone(_lower: 0, _upper: 100, _zone: HeartRateZone.Rest);
+        let zone1 = Zone(_lower: 100, _upper: 119, _zone: HeartRateZone.ZoneOne);
         let zone2 = Zone(_lower: 120, _upper: 139, _zone: HeartRateZone.ZoneTwo);
         let zone3 = Zone(_lower: 140, _upper: 159, _zone: HeartRateZone.ZoneThree);
         let zone4 = Zone(_lower: 160, _upper: 179, _zone: HeartRateZone.ZoneFour);
@@ -77,10 +77,10 @@ class Boundary_Tests: XCTestCase {
     }
     
     func testvalidateZoneBoundaries_3(){
-        var user = UserSettings();
+        let user = UserSettings();
         
-        var rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
-        var zone1 = Zone(_lower: 99, _upper: 119, _zone: HeartRateZone.ZoneOne);
+        let rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
+        let zone1 = Zone(_lower: 99, _upper: 119, _zone: HeartRateZone.ZoneOne);
         let zone2 = Zone(_lower: 120, _upper: 139, _zone: HeartRateZone.ZoneTwo);
         let zone3 = Zone(_lower: 140, _upper: 159, _zone: HeartRateZone.ZoneThree);
         let zone4 = Zone(_lower: 160, _upper: 179, _zone: HeartRateZone.ZoneFour);
@@ -101,10 +101,10 @@ class Boundary_Tests: XCTestCase {
     }
     
     func testvalidateZoneBoundaries_4(){
-        var user = UserSettings();
+        let user = UserSettings();
         
-        var rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
-        var zone1 = Zone(_lower: 100, _upper: 120, _zone: HeartRateZone.ZoneOne);
+        let rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
+        let zone1 = Zone(_lower: 100, _upper: 120, _zone: HeartRateZone.ZoneOne);
         let zone2 = Zone(_lower: 120, _upper: 139, _zone: HeartRateZone.ZoneTwo);
         let zone3 = Zone(_lower: 140, _upper: 159, _zone: HeartRateZone.ZoneThree);
         let zone4 = Zone(_lower: 160, _upper: 179, _zone: HeartRateZone.ZoneFour);
@@ -125,10 +125,10 @@ class Boundary_Tests: XCTestCase {
     }
     
     func testvalidateZoneBoundaries_5(){
-        var user = UserSettings();
+        let user = UserSettings();
         
-        var rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
-        var zone1 = Zone(_lower: 100, _upper: 199, _zone: HeartRateZone.ZoneOne);
+        let rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
+        let zone1 = Zone(_lower: 100, _upper: 199, _zone: HeartRateZone.ZoneOne);
         let zone2 = Zone(_lower: 120, _upper: 139, _zone: HeartRateZone.ZoneTwo);
         let zone3 = Zone(_lower: 140, _upper: 159, _zone: HeartRateZone.ZoneThree);
         let zone4 = Zone(_lower: 160, _upper: 179, _zone: HeartRateZone.ZoneFour);
@@ -149,10 +149,10 @@ class Boundary_Tests: XCTestCase {
     }
     
     func testvalidateZoneBoundaries_6(){
-        var user = UserSettings();
+        let user = UserSettings();
         
-        var rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
-        var zone1 = Zone(_lower: 100, _upper: 99, _zone: HeartRateZone.ZoneOne);
+        let rest = Zone(_lower: 0, _upper: 99, _zone: HeartRateZone.Rest);
+        let zone1 = Zone(_lower: 100, _upper: 99, _zone: HeartRateZone.ZoneOne);
         let zone2 = Zone(_lower: 120, _upper: 139, _zone: HeartRateZone.ZoneTwo);
         let zone3 = Zone(_lower: 140, _upper: 159, _zone: HeartRateZone.ZoneThree);
         let zone4 = Zone(_lower: 160, _upper: 179, _zone: HeartRateZone.ZoneFour);
