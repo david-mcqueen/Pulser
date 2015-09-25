@@ -622,7 +622,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.uk.davemcqueen.HRM;
 				PRODUCT_NAME = Pulser;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/Media/Mega/Programming/iOS_Applications/Pulser/Pulser-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pulser-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -651,7 +651,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.uk.davemcqueen.HRM;
 				PRODUCT_NAME = Pulser;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/Media/Mega/Programming/iOS_Applications/Pulser/Pulser-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pulser-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
