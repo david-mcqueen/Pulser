@@ -47,7 +47,7 @@ class Boundary_Tests: XCTestCase {
         user.UserZones.append(zone5);
         user.UserZones.append(max);
         
-        var (zonesValid, errorMessages) = validateZoneBoundaries(user.UserZones)
+        let (zonesValid, _) = validateZoneBoundaries(user.UserZones)
         
         XCTAssertTrue(zonesValid, "Zone Boundaries - Valid");
     }
@@ -71,7 +71,7 @@ class Boundary_Tests: XCTestCase {
         user.UserZones.append(zone5);
         user.UserZones.append(max);
         
-        var (zonesValid, errorMessages) = validateZoneBoundaries(user.UserZones)
+        let (zonesValid, _) = validateZoneBoundaries(user.UserZones)
         
         XCTAssertFalse(zonesValid, "Zone Boundaries - Invalid, rest -> zone 1");
     }
@@ -95,7 +95,7 @@ class Boundary_Tests: XCTestCase {
         user.UserZones.append(zone5);
         user.UserZones.append(max);
         
-        var (zonesValid, errorMessages) = validateZoneBoundaries(user.UserZones)
+        let (zonesValid, _) = validateZoneBoundaries(user.UserZones)
         
         XCTAssertFalse(zonesValid, "Zone Boundaries - Invalid, rest -> zone 1");
     }
@@ -119,7 +119,7 @@ class Boundary_Tests: XCTestCase {
         user.UserZones.append(zone5);
         user.UserZones.append(max);
         
-        var (zonesValid, errorMessages) = validateZoneBoundaries(user.UserZones)
+        let (zonesValid, _) = validateZoneBoundaries(user.UserZones)
         
         XCTAssertFalse(zonesValid, "Zone Boundaries - Invalid, zone 1 -> zone 2");
     }
@@ -143,7 +143,7 @@ class Boundary_Tests: XCTestCase {
         user.UserZones.append(zone5);
         user.UserZones.append(max);
         
-        var (zonesValid, errorMessages) = validateZoneBoundaries(user.UserZones)
+        let (zonesValid, _) = validateZoneBoundaries(user.UserZones)
         
         XCTAssertFalse(zonesValid, "Zone Boundaries - Invalid, zone1 -> zone 5");
     }
@@ -167,7 +167,7 @@ class Boundary_Tests: XCTestCase {
         user.UserZones.append(zone5);
         user.UserZones.append(max);
         
-        var (zonesValid, errorMessages) = validateZoneBoundaries(user.UserZones)
+        let (zonesValid, _) = validateZoneBoundaries(user.UserZones)
         
         XCTAssertFalse(zonesValid, "Zone Boundaries - Invalid, zone1");
     }
