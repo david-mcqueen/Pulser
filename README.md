@@ -1,4 +1,4 @@
-https://travis-ci.org/david-mcqueen/Pulser.svg?branch=master
+[![Build Status](https://travis-ci.org/david-mcqueen/Pulser.svg?branch=master)](https://travis-ci.org/david-mcqueen/Pulser)
 
 # Pulser
 This is the main repo for Pulser (http://www.pulser.co.uk/), an iOS application which provides audible announcements as to the users current heart rate.
