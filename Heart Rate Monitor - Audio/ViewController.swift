@@ -269,8 +269,11 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func speakData(){
         if(self.CurrentBPM > 0 && connected){
-            speechArray.append("Heart rate is \(self.CurrentBPM) beats per minute");
-            speechArray.append("Currently in zone \(currentUserSettings.CurrentZone.rawValue)");
+            let rateAnnouncementStringPre = NSLocalizedString("CURRENT_RATE_PRE", comment: "Heart Rate is ");
+            let rateAnnouncementStringPost = NSLocalizedString("CURRENT_RATE_POST", comment: "Heart Rate is ");
+            speechArray.append(rateAnnouncementStringPre + String(self.CurrentBPM) + rateAnnouncementStringPost);
+            let zoneAnnouncementString = NSLocalizedString("CURRENTLY_IN_ZONE", comment: "CURRENTLY_IN_ZONE");
+            speechArray.append(zoneAnnouncementString + currentUserSettings.CurrentZone.rawValue);
         }else{
             speechArray.append(NSLocalizedString("UNABLE_TO_GET_BPM", comment: "Unable to get heart rate"));
         }
@@ -313,7 +316,10 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     private func createZoneChangedSpeech(oldZone: HeartRateZone, newZone: HeartRateZone)->String{
-        return "Zones Changed from \(oldZone.rawValue) to \(newZone.rawValue)";
+        let zoneChangedStringPre = NSLocalizedString("ZONES_CHANGED_FROM", comment: "Zones Changed from ");
+        let zoneChangedStringTo = NSLocalizedString("TO_LITERAL", comment: "to");
+        
+        return zoneChangedStringPre + String(oldZone.rawValue) + zoneChangedStringTo + String(newZone.rawValue);
     }
     
     func displayCurrentHeartRate(_bpm: Int, _zone: HeartRateZone){

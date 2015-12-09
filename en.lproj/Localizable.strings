@@ -9,3 +9,8 @@
 "SETUP_ZONES_FIRST" = "Please setup heart rate zones first";
 "STOP" = "Stop";
 "Start" = "Start";
+"CURRENTLY_IN_ZONE" = "Currently in zone ";
+"CURRENT_RATE_PRE" = "Heart rate is "
+"CURRENT_RATE_POST" = " beats per minute";
+"TO_LITERAL" = " to "
+"ZONES_CHANGED_FROM" = "Zones Changed from ";
