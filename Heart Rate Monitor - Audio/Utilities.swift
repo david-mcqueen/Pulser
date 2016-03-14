@@ -143,7 +143,10 @@ private func loadUserZones()->UserSettings{
 
 
 //Check that the input string is a valid BPM
+//It must be a positive integer, containing between 1 and 3 digits
 func isValidBPM(_inputBPM: String)->Bool{
+    //The function only checks on 3 digits, and not the value of the digits
+    //TODO:- Change so that it checks the value of the BPM as well (not just the length being a maximum of 999)
     let validBPMRegex = "^([0-9]{1,3})$";
     let bpmTest = NSPredicate(format:"SELF MATCHES %@", validBPMRegex);
     return bpmTest.evaluateWithObject(_inputBPM);
@@ -294,6 +297,14 @@ func calculateHeartRateZones(_maxBPM: Double, _restBPM: Double)->[Zone]{
 private func calculateBPMForZone(_reserve: Double, _modifier: Double, _restBPM: Double)->Int{
     let step = (_reserve * (_modifier)) + _restBPM;
     return Int(step);
+}
+
+func randomNumberBetweenRange(lower: UInt32, upper: UInt32) -> UInt32{
+    return arc4random_uniform(upper - lower) + lower
+}
+
+func convertNumberToString(number: UInt32) -> String{
+    return String(number);
 }
 
 

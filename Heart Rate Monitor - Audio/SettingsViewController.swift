@@ -55,7 +55,6 @@ class SettingsViewController: UITableViewController {
         let healthkitSave = setUserSettings?.SaveHealthkit;
         let audioInterval = setUserSettings?.getAudioIntervalasFloat();
         let healthkitInterval = setUserSettings?.getHealthkitIntervalasFloat();
-        let averageBPMSecondsActual = setUserSettings?.getAverageBPMIntervalasFloat();
         let averageBPM = setUserSettings?.AverageBPM;
         
         audioAnnouncementSwitch.on = audioAnnounce!;
@@ -63,7 +62,6 @@ class SettingsViewController: UITableViewController {
         healthkitSwitch.on = healthkitSave!;
         averageBPMSwitch.on = averageBPM!;
         
-        averageBPMSlider.value = averageBPMSecondsActual!;
         audioSlider.value = audioInterval!;
         healthkitSlider.value = healthkitInterval!;
         
@@ -188,7 +186,7 @@ class SettingsViewController: UITableViewController {
                 return 1
             }
         case 3:
-            return (averageBPMSwitch.on ? 2 : 1);
+            return (averageBPMSwitch.on ? 1 : 1);
         case 4:
             return 2;
         default:
