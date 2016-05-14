@@ -219,7 +219,7 @@ func displayZonesValues(_zoneValues:[Int], _zoneFields: [UITextField]){
         var loopCounter = 0;
         for zoneField in _zoneFields{
             zoneField.text = String(_zoneValues[loopCounter]);
-            loopCounter++;
+            loopCounter += 1;
         }
     }
     

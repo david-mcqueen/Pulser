@@ -17,14 +17,13 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var audioSlider: UISlider!
     @IBOutlet weak var audioMinutes: UILabel!
     
+    @IBOutlet weak var frequencyLabel: UILabel!
+    @IBOutlet weak var granualitySwitch: UISwitch!
+    @IBOutlet weak var announcementSummarySwitch: NSLayoutConstraint!
     
     @IBOutlet weak var healthkitSwitch: UISwitch!
     @IBOutlet weak var healthkitSlider: UISlider!
     @IBOutlet weak var healthkitMinutes: UILabel!
-    
-    @IBOutlet weak var averageBPMSwitch: UISwitch!
-    @IBOutlet weak var averageBPMSlider: UISlider!
-    @IBOutlet weak var averageBPMSeconds: UILabel!
     
     weak var delegate: UserSettingsDelegate?;
     
@@ -55,22 +54,17 @@ class SettingsViewController: UITableViewController {
         let healthkitSave = setUserSettings?.SaveHealthkit;
         let audioInterval = setUserSettings?.getAudioIntervalasFloat();
         let healthkitInterval = setUserSettings?.getHealthkitIntervalasFloat();
-        let averageBPMSecondsActual = setUserSettings?.getAverageBPMIntervalasFloat();
-        let averageBPM = setUserSettings?.AverageBPM;
         
         audioAnnouncementSwitch.on = audioAnnounce!;
         audioAnnouncementZoneSwitch.on = audioAnnounceZones!;
         healthkitSwitch.on = healthkitSave!;
-        averageBPMSwitch.on = averageBPM!;
         
-        averageBPMSlider.value = averageBPMSecondsActual!;
         audioSlider.value = audioInterval!;
         healthkitSlider.value = healthkitInterval!;
         
         
         populateSliderFields(audioSlider, _text: audioMinutes);
         populateSliderFields(healthkitSlider, _text: healthkitMinutes);
-        populateSliderFields(averageBPMSlider, _text: averageBPMSeconds);
         
     }
     
@@ -87,20 +81,19 @@ class SettingsViewController: UITableViewController {
         populateSliderFields(self.healthkitSlider, _text: self.healthkitMinutes);
         setUserSettings?.HealthkitIntervalMinutes = Double(self.healthkitSlider.value);
     }
-    @IBAction func averageBPMSliderChanged(sender: AnyObject) {
-        populateSliderFields(self.averageBPMSlider, _text: self.averageBPMSeconds)
-        setUserSettings?.AverageBPMInterval = Double(self.averageBPMSlider.value);
-        
-    }
-    @IBAction func averageBPMSwitchChanged(sender: AnyObject) {
-        setUserSettings?.AverageBPM = averageBPMSwitch.on;
-    }
+    
     
     @IBAction func audioSwitchChanged(sender: AnyObject) {
         setUserSettings?.AnnounceAudio = audioAnnouncementSwitch.on;
         self.tableView.reloadData()
     }
     
+    @IBAction func granualitySwitchChanged(sender: AnyObject) {
+        //TODO:- Update the user settings
+        
+        self.frequencyLabel.text = self.granualitySwitch.on ? "Seconds" : "Minutes";
+        
+    }
     @IBAction func audioZoneSwitchChanged(sender: AnyObject) {
         setUserSettings?.AnnounceAudioZoneChange = audioAnnouncementZoneSwitch.on;
         
@@ -176,20 +169,10 @@ class SettingsViewController: UITableViewController {
         case 0:
             return 1
         case 1:
-            if (audioAnnouncementSwitch.on){
-                return 3
-            }else{
-                return 1
-            }
+            return audioAnnouncementSwitch.on ? 5 : 1;
         case 2:
-            if(healthkitSwitch.on){
-                return 2
-            }else{
-                return 1
-            }
+            return healthkitSwitch.on ? 2 : 1;
         case 3:
-            return (averageBPMSwitch.on ? 2 : 1);
-        case 4:
             return 2;
         default:
             return 1;
