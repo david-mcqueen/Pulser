@@ -16,10 +16,12 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var audioAnnouncementZoneSwitch: UISwitch!
     @IBOutlet weak var audioSlider: UISlider!
     @IBOutlet weak var audioMinutes: UILabel!
+    @IBOutlet weak var audioSecondsSlider: UISlider!
+    @IBOutlet weak var audioSecondsLabel: UILabel!
+    
+    @IBOutlet weak var announcementSummarySwitch: UISwitch!
     
     @IBOutlet weak var frequencyLabel: UILabel!
-    @IBOutlet weak var granualitySwitch: UISwitch!
-    @IBOutlet weak var announcementSummarySwitch: NSLayoutConstraint!
     
     @IBOutlet weak var healthkitSwitch: UISwitch!
     @IBOutlet weak var healthkitSlider: UISlider!
@@ -52,19 +54,24 @@ class SettingsViewController: UITableViewController {
         let audioAnnounce = setUserSettings?.AnnounceAudio;
         let audioAnnounceZones = setUserSettings?.AnnounceAudioZoneChange;
         let healthkitSave = setUserSettings?.SaveHealthkit;
-        let audioInterval = setUserSettings?.getAudioIntervalasFloat();
+        let audioInterval = setUserSettings?.getAudioIntervalMinutesFloat();
+        let audioIntervalSeconds = setUserSettings?.getAudioIntervalSecondsFloat();
         let healthkitInterval = setUserSettings?.getHealthkitIntervalasFloat();
+        let announcementSummary = setUserSettings?.AnnounceAudioShort;
         
         audioAnnouncementSwitch.on = audioAnnounce!;
         audioAnnouncementZoneSwitch.on = audioAnnounceZones!;
         healthkitSwitch.on = healthkitSave!;
+        announcementSummarySwitch.on = announcementSummary!;
         
         audioSlider.value = audioInterval!;
+        audioSecondsSlider.value = audioIntervalSeconds!;
         healthkitSlider.value = healthkitInterval!;
         
         
         populateSliderFields(audioSlider, _text: audioMinutes);
         populateSliderFields(healthkitSlider, _text: healthkitMinutes);
+        populateSliderFields(audioSecondsSlider, _text: audioSecondsLabel);
         
     }
     
@@ -77,23 +84,26 @@ class SettingsViewController: UITableViewController {
         setUserSettings?.AudioIntervalMinutes = Double(self.audioSlider.value);
     }
     
+    @IBAction func audioSecondsSliderChanged(sender: AnyObject) {
+        populateSliderFields(self.audioSecondsSlider, _text: self.audioSecondsLabel);
+        setUserSettings?.AudioIntervalSeconds = Double(self.audioSecondsSlider.value);
+    }
+    
     @IBAction func healthkitSliderChange(sender: AnyObject) {
         populateSliderFields(self.healthkitSlider, _text: self.healthkitMinutes);
         setUserSettings?.HealthkitIntervalMinutes = Double(self.healthkitSlider.value);
     }
     
+    @IBAction func audioSummarySwitchChanged(sender: AnyObject) {
+        setUserSettings?.AnnounceAudioShort = announcementSummarySwitch.on;
+        self.tableView.reloadData();
+    }
     
     @IBAction func audioSwitchChanged(sender: AnyObject) {
         setUserSettings?.AnnounceAudio = audioAnnouncementSwitch.on;
         self.tableView.reloadData()
     }
     
-    @IBAction func granualitySwitchChanged(sender: AnyObject) {
-        //TODO:- Update the user settings
-        
-        self.frequencyLabel.text = self.granualitySwitch.on ? "Seconds" : "Minutes";
-        
-    }
     @IBAction func audioZoneSwitchChanged(sender: AnyObject) {
         setUserSettings?.AnnounceAudioZoneChange = audioAnnouncementZoneSwitch.on;
         

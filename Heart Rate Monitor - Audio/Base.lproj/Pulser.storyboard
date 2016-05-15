@@ -70,43 +70,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ZI2-RE-FN0">
-                                        <rect key="frame" x="0.0" y="245" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZI2-RE-FN0" id="coQ-st-tWS">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ife-cd-ZrH">
-                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
-                                                    <connections>
-                                                        <action selector="audioZoneSwitchChanged:" destination="PJP-Ey-dyv" eventType="valueChanged" id="XJa-XW-gX2"/>
-                                                        <action selector="granualitySwitchChanged:" destination="PJP-Ey-dyv" eventType="valueChanged" id="TdF-ZW-P3g"/>
-                                                    </connections>
-                                                </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Granular intervals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HK4-Os-Qde">
-                                                    <rect key="frame" x="8" y="11" width="135" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="HK4-Os-Qde" firstAttribute="leading" secondItem="coQ-st-tWS" secondAttribute="leadingMargin" id="WKb-de-bFH"/>
-                                                <constraint firstAttribute="centerY" secondItem="HK4-Os-Qde" secondAttribute="centerY" id="hJh-QS-iIw"/>
-                                                <constraint firstAttribute="centerY" secondItem="ife-cd-ZrH" secondAttribute="centerY" id="pGL-4T-Rgf"/>
-                                                <constraint firstItem="ife-cd-ZrH" firstAttribute="trailing" secondItem="coQ-st-tWS" secondAttribute="trailingMargin" id="yOb-u9-W0f"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="5Hy-Bl-PH3">
-                                        <rect key="frame" x="0.0" y="289" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="245" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Hy-Bl-PH3" id="twZ-fg-w3z">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="X8G-gT-gnb">
+                                                <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="X8G-gT-gnb">
                                                     <rect key="frame" x="81" y="7" width="463" height="31"/>
                                                     <color key="tintColor" red="0.82352941176470584" green="0.25490196078431371" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
@@ -134,6 +105,45 @@
                                                 <constraint firstItem="O3U-Pb-EON" firstAttribute="leading" secondItem="twZ-fg-w3z" secondAttribute="leadingMargin" id="hC2-Rv-kPY"/>
                                                 <constraint firstAttribute="centerY" secondItem="X8G-gT-gnb" secondAttribute="centerY" id="hmF-LP-c1Q"/>
                                                 <constraint firstItem="DNm-96-8kD" firstAttribute="trailing" secondItem="twZ-fg-w3z" secondAttribute="trailingMargin" id="zNa-Ve-U01"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="rgk-dP-lwq">
+                                        <rect key="frame" x="0.0" y="289" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rgk-dP-lwq" id="oIO-Lu-aaN">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="0.0" maxValue="59" translatesAutoresizingMaskIntoConstraints="NO" id="cNG-1b-2TY">
+                                                    <rect key="frame" x="81" y="7" width="463" height="31"/>
+                                                    <color key="tintColor" red="0.82352941180000006" green="0.25490196079999999" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="audioSecondsSliderChanged:" destination="PJP-Ey-dyv" eventType="valueChanged" id="7pm-H0-4lb"/>
+                                                        <action selector="audioSliderChanged:" destination="PJP-Ey-dyv" eventType="valueChanged" id="1Ai-O2-tvM"/>
+                                                    </connections>
+                                                </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Seconds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DuQ-AE-Zzt">
+                                                    <rect key="frame" x="8" y="12" width="67" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Pi-FF-8bp">
+                                                    <rect key="frame" x="550" y="12" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DuQ-AE-Zzt" firstAttribute="leading" secondItem="oIO-Lu-aaN" secondAttribute="leadingMargin" id="1vd-6L-dQt"/>
+                                                <constraint firstItem="cNG-1b-2TY" firstAttribute="leading" secondItem="DuQ-AE-Zzt" secondAttribute="trailing" constant="8" id="336-AR-aZF"/>
+                                                <constraint firstAttribute="centerY" secondItem="DuQ-AE-Zzt" secondAttribute="centerY" constant="0.5" id="f9W-q7-kr1"/>
+                                                <constraint firstItem="9Pi-FF-8bp" firstAttribute="leading" secondItem="cNG-1b-2TY" secondAttribute="trailing" constant="8" id="gSt-AJ-efd"/>
+                                                <constraint firstAttribute="centerY" secondItem="9Pi-FF-8bp" secondAttribute="centerY" constant="0.5" id="q2e-Pi-HmS"/>
+                                                <constraint firstAttribute="centerY" secondItem="cNG-1b-2TY" secondAttribute="centerY" id="rgF-Yi-WKO"/>
+                                                <constraint firstItem="9Pi-FF-8bp" firstAttribute="trailing" secondItem="oIO-Lu-aaN" secondAttribute="trailingMargin" id="yE6-LI-VnO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -175,11 +185,11 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Gj-ei-xmz">
                                                     <rect key="frame" x="543" y="6" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="audioZoneSwitchChanged:" destination="PJP-Ey-dyv" eventType="valueChanged" id="g7K-kG-ZZC"/>
+                                                        <action selector="audioSummarySwitchChanged:" destination="PJP-Ey-dyv" eventType="valueChanged" id="eNv-8t-Q7N"/>
                                                     </connections>
                                                 </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rapid Announcements" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uK9-3e-6TW">
-                                                    <rect key="frame" x="8" y="11" width="173" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Short Announcements" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uK9-3e-6TW">
+                                                    <rect key="frame" x="8" y="11" width="172" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -316,13 +326,14 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="announcementSummarySwitch" destination="Y36-Tf-3qE" id="QcU-Io-B4p"/>
+                        <outlet property="announcementSummarySwitch" destination="5Gj-ei-xmz" id="Iph-YJ-sHb"/>
                         <outlet property="audioAnnouncementSwitch" destination="s4T-rN-tym" id="YjN-l0-6V7"/>
                         <outlet property="audioAnnouncementZoneSwitch" destination="cHS-mo-Ldf" id="Hvh-kL-4kB"/>
                         <outlet property="audioMinutes" destination="DNm-96-8kD" id="izz-OG-Tdf"/>
+                        <outlet property="audioSecondsLabel" destination="9Pi-FF-8bp" id="FpF-71-Tvm"/>
+                        <outlet property="audioSecondsSlider" destination="cNG-1b-2TY" id="Ngs-9d-gvh"/>
                         <outlet property="audioSlider" destination="X8G-gT-gnb" id="LDo-fh-gZN"/>
                         <outlet property="frequencyLabel" destination="O3U-Pb-EON" id="AmP-ur-bKm"/>
-                        <outlet property="granualitySwitch" destination="ife-cd-ZrH" id="pFO-ZJ-ykJ"/>
                         <outlet property="healthkitMinutes" destination="fWN-MV-Xv0" id="ylD-U8-kdq"/>
                         <outlet property="healthkitSlider" destination="1WA-rz-oDI" id="fzw-Du-1hd"/>
                         <outlet property="healthkitSwitch" destination="MEW-9t-bcv" id="tgI-kl-43y"/>

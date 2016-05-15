@@ -484,7 +484,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         if((speechArray.count > 0)){
             let nextUtterence: AVSpeechUtterance = AVSpeechUtterance(string:speechArray[0]);
             speechArray.removeAtIndex(0);
-            nextUtterence.rate = 0.15;
+            nextUtterence.rate = 0.5;
 //            nextUtterence.voice(AVSpeechSynthesisVoice(language:"en-GB"))
             if(self.currentUserSettings.AnnounceAudio && self.running){
                 self.mySpeechSynthesizer.speakUtterance(nextUtterence);

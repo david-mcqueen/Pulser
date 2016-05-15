@@ -68,10 +68,11 @@ func saveUserSettings(newUserSettings: UserSettings){
     NSUserDefaults.standardUserDefaults().setObject(newUserSettings.AnnounceAudio, forKey: UserDefaultKeys.SaveAudio.rawValue);
     NSUserDefaults.standardUserDefaults().setObject(newUserSettings.AnnounceAudioZoneChange, forKey: UserDefaultKeys.SaveAudioZoneChange.rawValue);
     NSUserDefaults.standardUserDefaults().setObject(newUserSettings.SaveHealthkit, forKey: UserDefaultKeys.SaveHealthKit.rawValue);
-    NSUserDefaults.standardUserDefaults().setObject(newUserSettings.getAudioIntervalasFloat(), forKey: UserDefaultKeys.AudioInterval.rawValue);
+    NSUserDefaults.standardUserDefaults().setObject(newUserSettings.getAudioIntervalMinutesFloat(), forKey: UserDefaultKeys.AudioInterval.rawValue);
+    NSUserDefaults.standardUserDefaults().setObject(newUserSettings.getAudioIntervalSecondsFloat(), forKey: UserDefaultKeys.AudioIntervalSeconds.rawValue);
     NSUserDefaults.standardUserDefaults().setObject(newUserSettings.getHealthkitIntervalasFloat(), forKey: UserDefaultKeys.HealthKitInterval.rawValue);
-    NSUserDefaults.standardUserDefaults().setObject(newUserSettings.AverageBPM, forKey: UserDefaultKeys.SaveAverageBPM.rawValue);
-    NSUserDefaults.standardUserDefaults().setObject(newUserSettings.getAverageBPMIntervalasFloat(), forKey: UserDefaultKeys.AverageBPM.rawValue)
+    NSUserDefaults.standardUserDefaults().setObject(newUserSettings.AnnounceAudioShort, forKey: UserDefaultKeys.AnnounceAudioShort.rawValue);
+    
     NSUserDefaults.standardUserDefaults().synchronize();
     saveUserZones(newUserSettings);
 }
@@ -104,11 +105,11 @@ func loadUserSettings()->UserSettings{
     if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.HealthKitInterval.rawValue) {
         savedUser.HealthkitIntervalMinutes = savedValue as! Double;
     }
-    if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.SaveAverageBPM.rawValue) {
-        savedUser.AverageBPM = savedValue as! Bool;
+    if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.AudioIntervalSeconds.rawValue) {
+        savedUser.AudioIntervalSeconds = savedValue as! Double;
     }
-    if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.AverageBPM.rawValue) {
-        savedUser.AverageBPMInterval = savedValue as! Double;
+    if let savedValue: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultKeys.AnnounceAudioShort.rawValue) {
+        savedUser.AnnounceAudioShort = savedValue as! Bool;
     }
     
     
