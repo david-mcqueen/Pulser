@@ -293,10 +293,12 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         let newZone = getZoneforBPM(self.CurrentBPM, _zones: self.currentUserSettings.UserZones)
         
         if (newZone != currentUserSettings.CurrentZone && connected){
+            
+            let zoneStringToSpeak = updateCurrentZoneAndReturnSpeechString(currentUserSettings.CurrentZone, newZone: newZone);
         
             //Only announce the zone change if the user has it turned on
             if(currentUserSettings.AnnounceAudioZoneChange){
-                speechArray.append(updateCurrentZoneAndReturnSpeechString(currentUserSettings.CurrentZone, newZone: newZone));
+                speechArray.append(zoneStringToSpeak);
                 speakAllUtterences();
             }
         }
