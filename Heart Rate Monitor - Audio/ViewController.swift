@@ -269,8 +269,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func speakData(){
         if(self.CurrentBPM > 0 && connected){
-            speechArray.append("Heart rate is \(self.CurrentBPM) beats per minute");
-            speechArray.append("Currently in zone \(currentUserSettings.CurrentZone.rawValue)");
+            if (currentUserSettings.AnnounceAudioShort){
+                speechArray.append("\(self.CurrentBPM)");
+                speechArray.append("Zone \(currentUserSettings.CurrentZone.rawValue)");
+            }else{
+                speechArray.append("Heart rate is \(self.CurrentBPM) beats per minute");
+                speechArray.append("Currently in zone \(currentUserSettings.CurrentZone.rawValue)");
+            }
+            
         }else{
             speechArray.append(NSLocalizedString("UNABLE_TO_GET_BPM", comment: "Unable to get heart rate"));
         }
@@ -315,7 +321,11 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     private func createZoneChangedSpeech(oldZone: HeartRateZone, newZone: HeartRateZone)->String{
-        return "Zones Changed from \(oldZone.rawValue) to \(newZone.rawValue)";
+        if (currentUserSettings.AnnounceAudioShort){
+            return "Zone \(newZone.rawValue)"
+        }else{
+            return "Zones Changed from \(oldZone.rawValue) to \(newZone.rawValue)";
+        }
     }
     
     func displayCurrentHeartRate(_bpm: Int, _zone: HeartRateZone){
