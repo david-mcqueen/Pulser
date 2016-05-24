@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5597BE3C1A681A0800A59921"
                BuildableName = "Pulser.app"
-               BlueprintName = "Heart Rate Monitor - Audio"
+               BlueprintName = "Pulser"
                ReferencedContainer = "container:Pulser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,26 +29,26 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5597BE511A681A0900A59921"
-               BuildableName = "Heart Rate Monitor - AudioTests.xctest"
-               BlueprintName = "Heart Rate Monitor - AudioTests"
+               BuildableName = "Pulser-Tests.xctest"
+               BlueprintName = "Pulser-Tests"
                ReferencedContainer = "container:Pulser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5597BE511A681A0900A59921"
-               BuildableName = "Heart Rate Monitor - AudioTests.xctest"
-               BlueprintName = "Heart Rate Monitor - AudioTests"
+               BuildableName = "Pulser-Tests.xctest"
+               BlueprintName = "Pulser-Tests"
                ReferencedContainer = "container:Pulser.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -58,19 +58,22 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5597BE3C1A681A0800A59921"
             BuildableName = "Pulser.app"
-            BlueprintName = "Heart Rate Monitor - Audio"
+            BlueprintName = "Pulser"
             ReferencedContainer = "container:Pulser.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
@@ -78,7 +81,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5597BE3C1A681A0800A59921"
             BuildableName = "Pulser.app"
-            BlueprintName = "Heart Rate Monitor - Audio"
+            BlueprintName = "Pulser"
             ReferencedContainer = "container:Pulser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -86,10 +89,10 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
@@ -97,7 +100,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5597BE3C1A681A0800A59921"
             BuildableName = "Pulser.app"
-            BlueprintName = "Heart Rate Monitor - Audio"
+            BlueprintName = "Pulser"
             ReferencedContainer = "container:Pulser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

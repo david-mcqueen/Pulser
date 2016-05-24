@@ -13,24 +13,24 @@ class UserSettings {
     var AnnounceAudio: Bool;
     var AnnounceAudioZoneChange: Bool;
     var AudioIntervalMinutes: Double;
+    var AudioIntervalSeconds: Double;
     var SaveHealthkit: Bool;
     var HealthkitIntervalMinutes: Double;
     var UserZones: [Zone];
     var CurrentZone: HeartRateZone;
-    var AverageBPM: Bool;
-    var AverageBPMInterval: Double;
+    var AnnounceAudioShort: Bool;
     
     init(){
         //Default user settings
         AnnounceAudio = true;
         AnnounceAudioZoneChange = true;
         AudioIntervalMinutes = 1.0;
+        AudioIntervalSeconds = 0.0;
         SaveHealthkit = false;
         HealthkitIntervalMinutes = 1.0;
         UserZones = [];
         CurrentZone = HeartRateZone.Rest;
-        AverageBPM = false;
-        AverageBPMInterval = 10.0;
+        AnnounceAudioShort = false;
     }
     
     func shouldAnnounceAudio()->Bool{
@@ -38,16 +38,16 @@ class UserSettings {
     }
     
     
-    func getAudioIntervalasFloat()->Float{
+    func getAudioIntervalMinutesFloat()->Float{
         return convertDoubleToFloat(self.AudioIntervalMinutes);
+    }
+    
+    func getAudioIntervalSecondsFloat()->Float {
+        return convertDoubleToFloat(self.AudioIntervalSeconds);
     }
     
     func getHealthkitIntervalasFloat()->Float{
         return convertDoubleToFloat(self.HealthkitIntervalMinutes);
-    }
-    
-    func getAverageBPMIntervalasFloat()-> Float{
-        return convertDoubleToFloat(self.AverageBPMInterval);
     }
     
     private func convertDoubleToFloat(input: Double)->Float{
@@ -55,16 +55,13 @@ class UserSettings {
     }
     
     func getAudioIntervalSeconds()->Double{
-        return convertMinuteToSeconds(self.AudioIntervalMinutes)
+        return convertMinuteToSeconds(self.AudioIntervalMinutes) + self.AudioIntervalSeconds
     }
     
     func getHealthkitIntervalSeconds()->Double{
         return convertMinuteToSeconds(self.HealthkitIntervalMinutes)
     }
     
-    func getAverageBPMIntervalSeconds()->Double{
-        return self.AverageBPMInterval;
-    }
     
     func allZonesToString()->String{
         var zonesAsString: String = "";

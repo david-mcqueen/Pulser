@@ -12,10 +12,13 @@ enum UserDefaultKeys: String{
     case SaveAudio = "SettingsAnnounceAudio";
     case SaveHealthKit = "SettingsSaveHealthkit";
     case AudioInterval = "SettingsAudioInterval";
+    case AudioIntervalSeconds = "SettingsAudioIntervalSeconds"
     case HealthKitInterval = "SettingsHealthkitInterval";
     case SaveAudioZoneChange = "SettingsAnnounceAudioZones";
     case SaveAverageBPM = "SettingsSaveAverageBPM";
     case AverageBPM = "SettingsAverageBPMInterval";
+    
+    case AnnounceAudioShort = "SettingsAnnounceAudioShort"
     
     case ZoneRest = "SettingsZoneRest";
     case ZoneOne = "SettingsZoneOne";

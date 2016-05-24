@@ -269,8 +269,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func speakData(){
         if(self.CurrentBPM > 0 && connected){
-            speechArray.append("Heart rate is \(self.CurrentBPM) beats per minute");
-            speechArray.append("Currently in zone \(currentUserSettings.CurrentZone.rawValue)");
+            if (currentUserSettings.AnnounceAudioShort){
+                speechArray.append("\(self.CurrentBPM)");
+                speechArray.append("Zone \(currentUserSettings.CurrentZone.rawValue)");
+            }else{
+                speechArray.append("Heart rate is \(self.CurrentBPM) beats per minute");
+                speechArray.append("Currently in zone \(currentUserSettings.CurrentZone.rawValue)");
+            }
+            
         }else{
             speechArray.append(NSLocalizedString("UNABLE_TO_GET_BPM", comment: "Unable to get heart rate"));
         }
@@ -293,10 +299,12 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         let newZone = getZoneforBPM(self.CurrentBPM, _zones: self.currentUserSettings.UserZones)
         
         if (newZone != currentUserSettings.CurrentZone && connected){
+            
+            let zoneStringToSpeak = updateCurrentZoneAndReturnSpeechString(currentUserSettings.CurrentZone, newZone: newZone);
         
             //Only announce the zone change if the user has it turned on
             if(currentUserSettings.AnnounceAudioZoneChange){
-                speechArray.append(updateCurrentZoneAndReturnSpeechString(currentUserSettings.CurrentZone, newZone: newZone));
+                speechArray.append(zoneStringToSpeak);
                 speakAllUtterences();
             }
         }
@@ -313,7 +321,11 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     private func createZoneChangedSpeech(oldZone: HeartRateZone, newZone: HeartRateZone)->String{
-        return "Zones Changed from \(oldZone.rawValue) to \(newZone.rawValue)";
+        if (currentUserSettings.AnnounceAudioShort){
+            return "Zone \(newZone.rawValue)"
+        }else{
+            return "Zones Changed from \(oldZone.rawValue) to \(newZone.rawValue)";
+        }
     }
     
     func displayCurrentHeartRate(_bpm: Int, _zone: HeartRateZone){
@@ -484,7 +496,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         if((speechArray.count > 0)){
             let nextUtterence: AVSpeechUtterance = AVSpeechUtterance(string:speechArray[0]);
             speechArray.removeAtIndex(0);
-            nextUtterence.rate = 0.15;
+            nextUtterence.rate = 0.5;
 //            nextUtterence.voice(AVSpeechSynthesisVoice(language:"en-GB"))
             if(self.currentUserSettings.AnnounceAudio && self.running){
                 self.mySpeechSynthesizer.speakUtterance(nextUtterence);

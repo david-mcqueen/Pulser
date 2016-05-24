@@ -16,15 +16,16 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var audioAnnouncementZoneSwitch: UISwitch!
     @IBOutlet weak var audioSlider: UISlider!
     @IBOutlet weak var audioMinutes: UILabel!
+    @IBOutlet weak var audioSecondsSlider: UISlider!
+    @IBOutlet weak var audioSecondsLabel: UILabel!
     
+    @IBOutlet weak var announcementSummarySwitch: UISwitch!
+    
+    @IBOutlet weak var frequencyLabel: UILabel!
     
     @IBOutlet weak var healthkitSwitch: UISwitch!
     @IBOutlet weak var healthkitSlider: UISlider!
     @IBOutlet weak var healthkitMinutes: UILabel!
-    
-    @IBOutlet weak var averageBPMSwitch: UISwitch!
-    @IBOutlet weak var averageBPMSlider: UISlider!
-    @IBOutlet weak var averageBPMSeconds: UILabel!
     
     weak var delegate: UserSettingsDelegate?;
     
@@ -53,24 +54,24 @@ class SettingsViewController: UITableViewController {
         let audioAnnounce = setUserSettings?.AnnounceAudio;
         let audioAnnounceZones = setUserSettings?.AnnounceAudioZoneChange;
         let healthkitSave = setUserSettings?.SaveHealthkit;
-        let audioInterval = setUserSettings?.getAudioIntervalasFloat();
+        let audioInterval = setUserSettings?.getAudioIntervalMinutesFloat();
+        let audioIntervalSeconds = setUserSettings?.getAudioIntervalSecondsFloat();
         let healthkitInterval = setUserSettings?.getHealthkitIntervalasFloat();
-        let averageBPMSecondsActual = setUserSettings?.getAverageBPMIntervalasFloat();
-        let averageBPM = setUserSettings?.AverageBPM;
+        let announcementSummary = setUserSettings?.AnnounceAudioShort;
         
         audioAnnouncementSwitch.on = audioAnnounce!;
         audioAnnouncementZoneSwitch.on = audioAnnounceZones!;
         healthkitSwitch.on = healthkitSave!;
-        averageBPMSwitch.on = averageBPM!;
+        announcementSummarySwitch.on = announcementSummary!;
         
-        averageBPMSlider.value = averageBPMSecondsActual!;
         audioSlider.value = audioInterval!;
+        audioSecondsSlider.value = audioIntervalSeconds!;
         healthkitSlider.value = healthkitInterval!;
         
         
         populateSliderFields(audioSlider, _text: audioMinutes);
         populateSliderFields(healthkitSlider, _text: healthkitMinutes);
-        populateSliderFields(averageBPMSlider, _text: averageBPMSeconds);
+        populateSliderFields(audioSecondsSlider, _text: audioSecondsLabel);
         
     }
     
@@ -83,17 +84,19 @@ class SettingsViewController: UITableViewController {
         setUserSettings?.AudioIntervalMinutes = Double(self.audioSlider.value);
     }
     
+    @IBAction func audioSecondsSliderChanged(sender: AnyObject) {
+        populateSliderFields(self.audioSecondsSlider, _text: self.audioSecondsLabel);
+        setUserSettings?.AudioIntervalSeconds = Double(self.audioSecondsSlider.value);
+    }
+    
     @IBAction func healthkitSliderChange(sender: AnyObject) {
         populateSliderFields(self.healthkitSlider, _text: self.healthkitMinutes);
         setUserSettings?.HealthkitIntervalMinutes = Double(self.healthkitSlider.value);
     }
-    @IBAction func averageBPMSliderChanged(sender: AnyObject) {
-        populateSliderFields(self.averageBPMSlider, _text: self.averageBPMSeconds)
-        setUserSettings?.AverageBPMInterval = Double(self.averageBPMSlider.value);
-        
-    }
-    @IBAction func averageBPMSwitchChanged(sender: AnyObject) {
-        setUserSettings?.AverageBPM = averageBPMSwitch.on;
+    
+    @IBAction func audioSummarySwitchChanged(sender: AnyObject) {
+        setUserSettings?.AnnounceAudioShort = announcementSummarySwitch.on;
+        self.tableView.reloadData();
     }
     
     @IBAction func audioSwitchChanged(sender: AnyObject) {
@@ -176,20 +179,10 @@ class SettingsViewController: UITableViewController {
         case 0:
             return 1
         case 1:
-            if (audioAnnouncementSwitch.on){
-                return 3
-            }else{
-                return 1
-            }
+            return audioAnnouncementSwitch.on ? 5 : 1;
         case 2:
-            if(healthkitSwitch.on){
-                return 2
-            }else{
-                return 1
-            }
+            return healthkitSwitch.on ? 2 : 1;
         case 3:
-            return (averageBPMSwitch.on ? 2 : 1);
-        case 4:
             return 2;
         default:
             return 1;
