@@ -47,6 +47,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     var attemptReconnect: Bool = false;
     var currentUserSettings: UserSettings = UserSettings();
     var CurrentBPM:Int = 0;
+    var lastUpdateTimeInterval: CFTimeInterval?; //Seconds since the last announcement
+    var delayBetweenAnnouncements: Double = 5.0; //Number of seconds between annoucing, usefurl for when on the edge of a zone
     
     var speechArray:[String] = [];
     
@@ -287,6 +289,20 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         writeBPM(Double(self.CurrentBPM));
     }
     
+    func enoughTimePassedAnnouncement(currentTime: CFTimeInterval) -> Bool {
+        var delta = CFTimeInterval?()
+        
+        if let lastUpdate = lastUpdateTimeInterval {
+            delta = currentTime - lastUpdate
+        } else {
+            delta = currentTime
+        }
+        
+        lastUpdateTimeInterval = currentTime
+        
+        return delta > delayBetweenAnnouncements
+    }
+    
     
     //MARK:- CBCharacteristic helpers
     //Get the BPM info
@@ -303,7 +319,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             let zoneStringToSpeak = updateCurrentZoneAndReturnSpeechString(currentUserSettings.CurrentZone, newZone: newZone);
         
             //Only announce the zone change if the user has it turned on
-            if(currentUserSettings.AnnounceAudioZoneChange){
+            if(currentUserSettings.AnnounceAudioZoneChange && enoughTimePassedAnnouncement(CFAbsoluteTimeGetCurrent())){
                 speechArray.append(zoneStringToSpeak);
                 speakAllUtterences();
             }
